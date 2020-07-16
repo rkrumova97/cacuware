@@ -1,0 +1,29 @@
+server:
+  port: ${PORT:8084}
+
+spring:
+  application:
+    name: hrms-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hrms
+    username: cacuware
+    password: cacuware
+    driver-class-name: org.postgresql.Driver
+
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+security:
+  user:
+    password: none
+  oauth2:
+    client:
+      client-id: hrms-service
+      client-secret: secret
+      scope: read
+      access-token-uri: http://localhost:9999/oauth/token
+      user-authorization-uri: http://localhost:9999/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:9999/oauth/check_token

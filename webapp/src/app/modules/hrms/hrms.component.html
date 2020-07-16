@@ -1,0 +1,167 @@
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+  <title>Human Resources</title>
+</head>
+
+<body>
+<div class="container-fluid">
+
+  <!--Hire person card -->
+  <div class="row">
+    <div class="container py-3">
+      <div class="card text-white bg-info mb-3 p-3">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="assets/approved.png" class="cardImg img-fluid">
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">Hire person</h4>
+              <p class="card-text">After the person has agreed to the offer he can be hired.</p>
+              <p class="card-text">You will be navigated to a page with inputs about the salary, starting data, vacation days and many more.</p>
+              <a href="/hr/hire" class="btn btn-outline-light mt-5" id="hireBtn">Hire</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Closing hire person card -->
+
+  <!--Fire person card -->
+  <div class="row">
+    <div class="container py-3">
+      <div class="card text-white bg-info mb-3 p-3">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="assets/man-on-fire.png" class="cardImg img-fluid">
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">Fire person</h4>
+              <p class="card-text">Fire an employee.</p>
+              <p class="card-text">In this section you can fire an employee.</p>
+              <a href="/hr/fire" class="btn btn-outline-light mt-5" id="fireBtn">Fire</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Closing fire person card -->
+
+  <!-- All employees card -->
+  <div class="row">
+    <div class="container py-3">
+      <div class="card text-white bg-secondary mb-3 p-3">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="assets/note.png" class="cardImg img-fluid">
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">All employees</h4>
+              <p class="card-text">In this section you can find two views:</p>
+              <ol>
+                <li>Table with all employees</li>
+                <li>Table with all fired employees</li>
+              </ol>
+              <p class="card-text">Here you can fire, edit or just look for the profile of the employee.</p>
+              <a href="hr/list" class="btn btn-outline-light mt-5" id="employeeBtn">Employees</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Closing all employees card -->
+
+  <!--Salaries card -->
+  <div class="row">
+    <div class="container py-3">
+      <div class="card text-white bg-secondary mb-3 p-3">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="assets/profit.png" class="cardImg img-fluid">
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">Salaries</h4>
+              <p class="card-text">Salaries section is for generating an excel used of Fibank.</p>
+              <p class="card-text"></p>
+              <a href="/hr/salary" class="btn btn-outline-light mt-5" id="salariesBtn">Salaries</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Closing salaries card -->
+
+  <!-- Application for vacation card -->
+  <div class="row">
+    <div class="container py-3">
+      <div class="card text-white bg-success mb-3 p-3">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="assets/vacation.png" class="cardImg img-fluid">
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">Application for vacation</h4>
+              <p class="card-text">Here you can request an application for vacation.</p>
+              <a href="/hr/vacation" class="btn btn-outline-light mt-5">Apply</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Closing Application for vacation card -->
+
+  <!-- Time card -->
+  <div class="row">
+    <div class="container py-3">
+      <div class="card text-white bg-success mb-3 p-3">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="assets/timecard.png" class="cardImg img-fluid">
+          </div>
+          <div class="col-md-8 px-3">
+            <div class="card-block px-3">
+              <h4 class="card-title">Time card</h4>
+              <p class="card-text"></p>
+              <p class="card-text">Here you can fill a time card.</p>
+              <a href="/hr/time-card" class="btn btn-outline-light mt-5">Time card</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Closing Time card -->
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

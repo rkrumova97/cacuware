@@ -1,0 +1,24 @@
+html {
+  height: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  padding-top: 26px;
+}
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+.cardImg{
+  margin-left:50px;
+  height :230px;
+  width :230px;
+}
+

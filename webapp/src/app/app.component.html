@@ -1,0 +1,4 @@
+<link rel="icon" href="assets/favicon.png">
+<app-navigation *ngIf="!isLogin()"></app-navigation>
+<router-outlet></router-outlet>
+<app-footer *ngIf="!isLogin()"></app-footer>

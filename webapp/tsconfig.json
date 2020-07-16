@@ -1,0 +1,51 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./e2e/tsconfig.json"
+    }
+],  "compilerOptions": {
+    "composite": true,
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "target/classes/static/app",
+    "lib": [
+      "es7",
+      "dom"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "app/*": [
+        "src/main/webapp/app/*"
+      ]
+    },
+    "importHelpers": true,
+    "allowJs": true
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules"
+  ]
+}
