@@ -4,10 +4,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
-    <property name="uuid_type" value="uuid"/>
-    <property name="uuid_function" value="uid.uuid_generate_v4()"/>
 
-    <changeSet id="20181202-1-users-table" author="Rumyana Krumova">
+    <property name="uuid_type" value="uuid"/>
+    <property name="uuid_function" value="public.uuid_generate_v4()"/>
+
+    <changeSet id="20181202-1-add-uuid-extension" author="Rumyana Krumova">
+        <sql>CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</sql>
+    </changeSet>
+
+    <changeSet id="20181202-2-users-table" author="Rumyana Krumova">
 
         <createTable tableName="person">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -38,6 +43,7 @@
             <column name="security_data_id" type="${uuid_type}"/>
             <column name="person_id" type="${uuid_type}"/>
             <column name="skill_id" type="${uuid_type}"/>
+            <column name="file_ids" type="${uuid_type} []"/>
         </createTable>
         <createTable tableName="skill">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -60,4 +66,6 @@
             <column name="IBAN" type="varchar"/>
         </createTable>
     </changeSet>
+
+
 </databaseChangeLog>
