@@ -35,7 +35,7 @@
 		<module>account</module>
 		<module>discovery</module>
 		<module>gateway</module>
-		<module>customer</module>
+		<module>file</module>
         <module>hrms</module>
     </modules>
 

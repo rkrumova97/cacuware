@@ -75,3 +75,18 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 *.iml
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/jarRepositories.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/customer/target/classes/db.changelog/20200717-1.xml
+/customer/target/classes/application.properties
+/.idea/dataSources.xml
+/customer/target/classes/com/cacuware/file/repository/FileRepository.class
+/customer/target/classes/com/cacuware/file/exception/FileStorageException.class
+/customer/target/classes/com/cacuware/file/service/FileStorageService.class
+/customer/target/classes/db.changelog/master.xml
+/customer/target/classes/com/cacuware/file/exception/MyFileNotFoundException.class
+/customer/target/classes/com/cacuware/file/model/Type.class
+/customer/target/classes/com/cacuware/file/api/dto/UploadFileResponse.class
