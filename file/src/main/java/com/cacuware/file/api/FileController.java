@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.ws.rs.Produces;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -32,6 +31,7 @@ public class FileController {
     private FileStorageService dbFileStorageService;
 
     @PostMapping("/uploadFile")
+    @Produces("application/json")
     @PreAuthorize("#oauth2.hasScope('read')")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("type") int type) {
         File dbFile = dbFileStorageService.storeFile(file, type);
@@ -48,7 +48,7 @@ public class FileController {
     @PostMapping("/uploadMultipleFiles")
     @PreAuthorize("#oauth2.hasScope('read')")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @RequestParam("types") List<Integer> types) {
-        if (types.size() != files.length){
+        if (types.size() != files.length) {
             return null;
         } else {
             return IntStream.range(0, files.length)
