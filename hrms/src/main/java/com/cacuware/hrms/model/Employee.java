@@ -61,9 +61,11 @@ public class Employee {
     @JoinColumn(name = "security_data_id")
     private SecurityData securityData;
 
-    @Column(name = "file_ids")
-    @ElementCollection
-    private List<UUID> fileIDs;
+//    @ManyToMany
+//    @JoinTable(name = "employee_fieldid",
+//            joinColumns = { @JoinColumn(name = "employee_id",nullable = false)},
+//            inverseJoinColumns = { @JoinColumn(name = "file_id")})
+//    private List<UUID> fileIDs;
 
     @Builder(builderMethodName = "employeeBuilder")
     public Employee(String email, String startDate, Integer vacationDays,

@@ -9,6 +9,7 @@ import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -49,6 +50,9 @@ public class Person {
 
     @Column
     private String address;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate birthday;
 
     @Column
     @Enumerated(EnumType.ORDINAL)

@@ -26,6 +26,8 @@
             <column name="city" type="varchar"/>
             <column name="address" type="varchar"/>
             <column name="contact" type="varchar"/>
+            <column name="birthday" type="date"/>
+            <column name="status" type="int"/>
         </createTable>
         <createTable tableName="employee">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -43,7 +45,6 @@
             <column name="security_data_id" type="${uuid_type}"/>
             <column name="person_id" type="${uuid_type}"/>
             <column name="skill_id" type="${uuid_type}"/>
-            <column name="file_ids" type="${uuid_type} []"/>
         </createTable>
         <createTable tableName="skill">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -64,7 +65,17 @@
             <column name="days_of_labour" type="int"/>
             <column name="salary" type="real"/>
             <column name="IBAN" type="varchar"/>
+            <column name="email" type="varchar"/>
         </createTable>
+        <createTable tableName="employee_fileids">
+            <column name="file_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="employee_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+
     </changeSet>
 
 

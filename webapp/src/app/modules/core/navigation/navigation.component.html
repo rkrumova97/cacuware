@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!------ Include the above in your HEAD tag ---------->
-<nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-lg">
-  <a class="navbar-brand" href="/hr">HR Management System</a>
+<nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-lg alert-danger">
+  <a class="navbar-brand" href="/core">Cacuware</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -18,20 +18,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="navbar-brand " href="#">
+        <a class="navbar-brand " href="/hr">
+          HRMS
         </a>
       </li>
-      <li class="nav-item active pt-3">
-        <a class="nav-link" href="#">{{name}}</a>
+      <li class="nav-item active">
+        <a class="navbar-brand " href="#">
+          Warehouse
+        </a>
       </li>
-      <li class="nav-item pt-3">
-        <a href="/" type="button" class="btn btn-outline-danger" >Log out</a>
+      <li class="nav-item active">
+        <a class="navbar-brand " href="#">
+          Clients
+        </a>
       </li>
 
+
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search employee" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+        <a class="nav-link" href="#">{{name}}</a>
+        <a href="/" type="button" class="btn btn-outline-danger" >Log out</a>
+    </div>
   </div>
 </nav>
