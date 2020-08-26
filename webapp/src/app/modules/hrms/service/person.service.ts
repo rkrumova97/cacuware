@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
-import {SERVER_API_URL} from "../../../app.constants";
 import {Observable} from "rxjs";
-import {IPerson, Person} from "../model/person.model";
+import {IPerson} from "../model/person.model";
 
 type EntityResponseType = HttpResponse<IPerson[]>;
 
@@ -11,7 +10,7 @@ type EntityResponseType = HttpResponse<IPerson[]>;
 })
 export class PersonService {
 
-  public resourceUrl = SERVER_API_URL + 'api/hrms';
+  public resourceUrl = 'http://localhost:8084/api/hrms';
 
   constructor(protected http: HttpClient) {
   }

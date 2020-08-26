@@ -13,10 +13,11 @@ import {FireEmployeeComponent} from "./components/fire-employee/fire-employee.co
 import {ListEmployeesComponent} from "./components/list-employees/list-employees.component";
 import {FormsModule} from "@angular/forms";
 import { HireEmployeeDetailsComponent } from './components/hire-employee-details/hire-employee-details.component';
+import { HireSensitiveInfoComponent } from './components/hire-sensitive-info/hire-sensitive-info.component';
 
 
 @NgModule({
-  declarations: [HrmsComponent, HireEmployeeComponent, ListEmployeesComponent, GiveSalaryComponent, EmployeeProfileComponent, ArchiveComponent, VacationComponent, FireEmployeeComponent, TimeCardComponent, HireEmployeeDetailsComponent],
+  declarations: [HrmsComponent, HireEmployeeComponent, ListEmployeesComponent, GiveSalaryComponent, EmployeeProfileComponent, ArchiveComponent, VacationComponent, FireEmployeeComponent, TimeCardComponent, HireEmployeeDetailsComponent, HireSensitiveInfoComponent],
   imports: [
     CommonModule,
     HrmsRoutingModule,

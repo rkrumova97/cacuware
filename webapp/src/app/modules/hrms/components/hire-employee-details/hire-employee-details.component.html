@@ -1,1 +1,130 @@
-<p>hire-employee-details works!</p>
+<div class="container-fluid ">
+
+  <div class="row  justify-content-sm-center">
+    <div class="col-12 ">
+      <h1 class="headerTitle text-center">Hire Employee</h1>
+    </div>
+    <div class="col-12 ">
+      <h2 class="headerTitle text-center">2) Employee information</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label class="col-12 col-form-label">Job</label>
+            <div class="col-12">
+              <ng-container *ngFor="let job of jobs">
+                <div class="custom-control custom-radio">
+                  <input type="radio" id="{{job}}" name="jj" class="custom-control-input"
+                         [value]="job" [(ngModel)]="employee.jobNumber">
+                  <label class="custom-control-label" for="{{job}}">{{job}}</label>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="startingDate" class="col-12 col-form-label">Starting Date</label>
+            <div class="col-12">
+              <input class="form-control"
+                     placeholder="First working day"
+                     type="date"
+                     id="startingDate"
+                     [(ngModel)]="employee.startDate"
+                     name="startingDate"
+                     required
+                     #startingDate="ngModel"
+                     [ngClass]="{ 'is-invalid': startingDate.invalid && (startingDate.dirty || startingDate.touched || submitted) }"/>
+              <div *ngIf="startingDate.invalid && (startingDate.dirty || startingDate.touched || submitted)"
+                   class="invalid-feedback d-block">
+                <span>Starting Date is required field.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="vacation" class="col-12 col-form-label">Vacation Days</label>
+            <div class="col-12">
+              <input type="number"
+                     placeholder="Vacation days"
+                     min="0"
+                     max="25"
+                     class="form-control"
+                     id="vacation"
+                     name="vacation"
+                     [(ngModel)]="employee.vacationDays"
+                     required
+                     #vacation="ngModel"
+                     [ngClass]="{ 'is-invalid': vacation.invalid && (vacation.dirty || vacation.touched || submitted) }"/>
+              <div *ngIf="vacation.invalid && (vacation.dirty || vacation.touched || submitted)"
+                   class="invalid-feedback">
+                <span>Vacation days is required field.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="workingHoursSelect" class="col-12 col-form-label">Working Hours</label>
+            <div class="col-12">
+              <select
+                [(ngModel)]="employee.workingHours"
+                name="workingHoursSelect"
+                id="workingHoursSelect"
+                class="custom-select"
+                required
+                #workingHoursSelect="ngModel"
+                [ngClass]="{ 'is-invalid': workingHoursSelect.invalid && (workingHoursSelect.dirty || workingHoursSelect.touched || submitted) }">
+                <option *ngFor="let o of workingHours" [ngValue]="o.value">
+                  {{o.name}}
+                </option>
+              </select>
+              <div
+                *ngIf="workingHoursSelect.invalid && (workingHoursSelect.dirty || workingHoursSelect.touched || submitted)"
+                class="invalid-feedback d-block">
+                <span>Working Hours is required field.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="workingDaysSelect" class="col-12 col-form-label">Working Days</label>
+            <div class="col-12">
+              <select [(ngModel)]="employee.workingDays"
+                      name="workingDaysSelect"
+                      id="workingDaysSelect"
+                      class="custom-select"
+                      required
+                      #workingDaysSelect="ngModel"
+                      [ngClass]="{ 'is-invalid': workingDaysSelect.invalid && (workingDaysSelect.dirty || workingDaysSelect.touched || submitted) }">
+                <option *ngFor="let o of workingDays" [value]="o.value">
+                  {{o.name}}
+                </option>
+              </select>
+              <div
+                *ngIf="workingDaysSelect.invalid && (workingDaysSelect.dirty || workingDaysSelect.touched || submitted)"
+                class="invalid-feedback d-block">
+                <span>Working Days is required field.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row m-2"></div>
+
+        <div class="row float-right">
+          <button type="button" class="btn btn-primary m-2" routerLink="/hr/hire">
+            Back
+          </button>
+          <button type="button" class="btn btn-primary m-2" routerLink="/hr/sensitive-info" (click)="process()">Next
+          </button>
+        </div>
+
+    </div>
+  </div>
+</div>
+

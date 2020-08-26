@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Employee, IEmployee} from "../../model/employee.model";
+import {SecurityDataModel} from "../../model/security-data.model";
 
 @Component({
-  selector: 'app-hire-employee-details',
-  templateUrl: './hire-employee-details.component.html',
-  styleUrls: ['./hire-employee-details.component.css']
+  selector: 'app-hire-sensitive-info',
+  templateUrl: './hire-sensitive-info.component.html',
+  styleUrls: ['./hire-sensitive-info.component.css']
 })
-export class HireEmployeeDetailsComponent implements OnInit {
-  employee?: IEmployee;
+export class HireSensitiveInfoComponent implements OnInit {
+  security?: SecurityDataModel;
   jobs?: string[];
   submitted?: Boolean;
   dropdownSettings = {};

@@ -10,6 +10,7 @@ import {ArchiveComponent} from "./components/archive/archive.component";
 import {VacationComponent} from "./components/vacation/vacation.component";
 import {TimeCardComponent} from "./components/time-card/time-card.component";
 import {HireEmployeeDetailsComponent} from "./components/hire-employee-details/hire-employee-details.component";
+import {HireSensitiveInfoComponent} from "./components/hire-sensitive-info/hire-sensitive-info.component";
 
 
 export class HrRoutes {
@@ -31,6 +32,13 @@ export class HrRoutes {
     {
       path: 'employee-details',
       component: HireEmployeeDetailsComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
+      path: 'sensitive-info',
+      component: HireSensitiveInfoComponent,
       children: [
         {path: 'hr', component: HrmsComponent}
       ],

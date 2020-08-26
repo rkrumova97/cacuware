@@ -1,0 +1,41 @@
+<div class="container-fluid ">
+
+  <div class="row  justify-content-sm-center">
+    <div class="col-12 ">
+      <h1 class="headerTitle text-center">Hire Employee</h1>
+    </div>
+    <div class="col-12 ">
+      <h2 class="headerTitle text-center">2) Employee information</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="col-12 col-form-label">Job</label>
+          <div class="col-12">
+            <ng-container *ngFor="let job of jobs">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="{{job}}" name="jj" class="custom-control-input"
+                       [value]="job" [(ngModel)]="security.">
+                <label class="custom-control-label" for="{{job}}">{{job}}</label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+
+      <div class="row m-2"></div>
+
+      <div class="row float-right">
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr/hire">
+          Back
+        </button>
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr/sensitive-info" (click)="process()">Next
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+

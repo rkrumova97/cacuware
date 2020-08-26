@@ -73,8 +73,6 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
-
-*.iml
 /.idea/compiler.xml
 /.idea/encodings.xml
 /.idea/jarRepositories.xml
@@ -90,3 +88,4 @@ fabric.properties
 /customer/target/classes/com/cacuware/file/exception/MyFileNotFoundException.class
 /customer/target/classes/com/cacuware/file/model/Type.class
 /customer/target/classes/com/cacuware/file/api/dto/UploadFileResponse.class
+/.idea/inspectionProfiles/Project_Default.xml
