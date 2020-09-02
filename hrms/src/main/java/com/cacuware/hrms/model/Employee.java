@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @Data
 @Entity
+@Builder
 @Table(name = "employee")
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -66,16 +67,6 @@ public class Employee {
 //            joinColumns = { @JoinColumn(name = "employee_id",nullable = false)},
 //            inverseJoinColumns = { @JoinColumn(name = "file_id")})
 //    private List<UUID> fileIDs;
-
-    @Builder(builderMethodName = "employeeBuilder")
-    public Employee(String email, String startDate, Integer vacationDays,
-                    Integer workingHours, Integer workingDays, JobType jobNumber) {
-        this.startDate = LocalDate.parse(startDate);
-        this.vacationDays = vacationDays;
-        this.workingDays = workingDays;
-        this.workingHours = workingHours;
-        this.jobNumber = jobNumber;
-    }
 
     @Override
     public String toString() {

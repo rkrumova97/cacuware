@@ -89,3 +89,4 @@ fabric.properties
 /customer/target/classes/com/cacuware/file/model/Type.class
 /customer/target/classes/com/cacuware/file/api/dto/UploadFileResponse.class
 /.idea/inspectionProfiles/Project_Default.xml
+/cacuware.iml

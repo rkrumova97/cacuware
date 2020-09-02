@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
+@Builder
 @Entity(name = "person")
 @NoArgsConstructor
 @ToString
@@ -58,13 +59,13 @@ public class Person {
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
-
-    @Builder
-    public Person(String firstName, String middleName, String lastName, String gender, String address, String email) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.address = address;
-    }
+//
+//    @Builder
+//    public Person(String firstName, String middleName, String lastName, String gender, String address, String email) {
+//        this.firstName = firstName;
+//        this.middleName = middleName;
+//        this.lastName = lastName;
+//        this.gender = gender;
+//        this.address = address;
+//    }
 }
