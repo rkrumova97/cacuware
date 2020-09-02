@@ -1,0 +1,98 @@
+<div class="container-fluid ">
+
+  <div class="row  justify-content-sm-center">
+    <div class="col-12 ">
+      <h1 class="headerTitle text-center">Hire Employee</h1>
+    </div>
+    <div class="col-12 ">
+      <h2 class="headerTitle text-center">4) Files</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="form-row">
+        <form>
+          <div class="form-group">
+            <label for="photo">Photo</label>
+            <input type="file" class="form-control-file" id="photo">
+          </div>
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="noi">NOI</label>
+            <input type="file" class="form-control-file" id="noi">
+          </div>
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="medicine">Medicine</label>
+            <input type="file" class="form-control-file" id="medicine">
+          </div>
+        </form>
+      </div>
+      <div class="row m-4"></div>
+      <div class="form-row">
+        <form>
+          <div class="form-group">
+            <label for="protokol">Instructions protocol</label>
+            <input type="file" class="form-control-file" id="protokol">
+          </div>
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="jd">Job description</label>
+            <input type="file" class="form-control-file" id="jd">
+          </div>
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="id_card">ID card</label>
+            <input type="file" class="form-control-file" id="id_card">
+          </div>
+        </form>
+      </div>
+
+      <div class="row m-4"></div>
+
+      <div class="form-row">
+        <form>
+          <div class="form-group">
+            <label for="certificate">Diplomas / Certificate</label>
+            <input type="file" class="form-control-file" id="certificate">
+          </div>
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="lps">LPS Cards</label>
+            <input type="file" class="form-control-file" id="lps">
+          </div>
+        </form>
+
+        <form>
+          <div class="form-group">
+            <label for="other">Other</label>
+            <input type="file" class="form-control-file" id="other">
+          </div>
+        </form>
+      </div>
+
+      <div class="row float-right">
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr/employee-details">
+          Back
+        </button>
+        <button type="button" class="btn btn-primary m-2">
+          Generate contract
+        </button>
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr" (click)="process()">
+          Finish
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

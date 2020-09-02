@@ -1,27 +1,29 @@
 export interface ISecurityData {
   id?: string;
-  firstName?: string;
-  middleName?: string;
-  lastName?: string;
-  gender?: string;
-  area?: string;
-  city?: number;
-  address?: number;
-  status?: string;
-  birthday?: Date;
+  idCardNumber?: string;
+  idCardIssuedDate?: string;
+  idCardAuthority?: string;
+  egn?: string;
+  yearsOfLabour?: number;
+  monthsOfLabour?: number;
+  daysOfLabour?: number;
+  salary?: string;
+  iban?: string;
+  email?: string;
 }
 
 export class SecurityDataModel implements ISecurityData {
   constructor(
     public id?: string,
-    public firstName?: string,
-    public middleName?: string,
-    public lastName?: string,
-    public gender?: string,
-    public area?: string,
-    public city?: number,
-    public address?: number,
-    public status?: string,
-    public birthday?: Date
+    public idCardNumber?: string,
+    public idCardIssuedDate?: string,
+    public idCardAuthority?: string,
+    public egn?: string,
+    public yearsOfLabour?: number,
+    public monthsOfLabour?: number,
+    public daysOfLabour?: number,
+    public salary?: string,
+    public iban?: string,
+    public email?: string
   ) {}
 }

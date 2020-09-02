@@ -1,0 +1,79 @@
+<div class="container-fluid ">
+
+  <div class="row  justify-content-sm-center">
+    <div class="col-12 ">
+      <h1 class="headerTitle text-center">Hire Employee</h1>
+    </div>
+    <div class="col-12 ">
+      <h2 class="headerTitle text-center">3) Sensitive information</h2>
+      <h5 class="headerTitle text-center alert-info">You can skip this page if you want</h5>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label class="form-control-label" for="field_id_card">Id Card Number</label>
+          <input type="text" class="form-control" name="idCardNumber" id="field_id_card"
+                 placeholder="Id card number of the employee"
+                 required
+                 [(ngModel)]="security.idCardNumber"/>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-control-label" for="field_id_card_date">Id Card Issued Date</label>
+          <input type="date" class="form-control" name="idCardDate" id="field_id_card_date"
+                 placeholder="Id card issued date of the employee"
+                 required
+                 [(ngModel)]="security.idCardIssuedDate"/>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-control-label" for="field_id_card_authority">Id Card Issued Authority</label>
+          <input type="text" class="form-control" name="idCardDate" id="field_id_card_authority"
+                 placeholder="Id card issued authority of the employee"
+                 required
+                 [(ngModel)]="security.idCardAuthority"/>
+        </div>
+      </div>
+      <div class="row m-4"></div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label class="form-control-label" for="field_years_labour">Years of labour</label>
+          <input type="number" class="form-control" name="idCardNumber" id="field_years_labour"
+                 placeholder="Years of labour of the employee"
+                 required
+                 [(ngModel)]="security.yearsOfLabour"/>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-control-label" for="field_months_labour">Months of labour</label>
+          <input type="number" class="form-control" name="idCardDate" id="field_months_labour"
+                 placeholder="Months of labour of the employee"
+                 required
+                 [(ngModel)]="security.monthsOfLabour"/>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label class="form-control-label" for="field_days_labour">Days of labour</label>
+          <input type="number" class="form-control" name="idCardDate" id="field_days_labour"
+                 placeholder="Days of labour of the employee"
+                 required
+                 [(ngModel)]="security.idCardAuthority"/>
+        </div>
+      </div>
+
+
+      <div class="row m-2"></div>
+
+      <div class="row float-right">
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr/employee-details">
+          Back
+        </button>
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr/documents" (click)="process()">Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

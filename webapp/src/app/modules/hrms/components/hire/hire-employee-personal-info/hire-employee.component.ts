@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {Person} from "../../model/person.model";
-import {PersonService} from "../../service/person.service";
+import {Person} from "../../../model/person.model";
+import {PersonService} from "../../../service/person.service";
+
 
 @Component({
   selector: 'app-hire-employee',

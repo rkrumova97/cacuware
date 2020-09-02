@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HrmsComponent} from "./hrms.component";
 import {RouterModule, Routes} from "@angular/router";
-import {HireEmployeeComponent} from "./components/hire-employee-personal-info/hire-employee.component";
 import {FireEmployeeComponent} from "./components/fire-employee/fire-employee.component";
 import {ListEmployeesComponent} from "./components/list-employees/list-employees.component";
 import {GiveSalaryComponent} from "./components/give-salary/give-salary.component";
@@ -9,8 +8,11 @@ import {EmployeeProfileComponent} from "./components/employee-profile/employee-p
 import {ArchiveComponent} from "./components/archive/archive.component";
 import {VacationComponent} from "./components/vacation/vacation.component";
 import {TimeCardComponent} from "./components/time-card/time-card.component";
-import {HireEmployeeDetailsComponent} from "./components/hire-employee-details/hire-employee-details.component";
-import {HireSensitiveInfoComponent} from "./components/hire-sensitive-info/hire-sensitive-info.component";
+import {HireEmployeeComponent} from "./components/hire/hire-employee-personal-info/hire-employee.component";
+import {HireEmployeeDetailsComponent} from "./components/hire/hire-employee-details/hire-employee-details.component";
+import {HireSensitiveInfoComponent} from "./components/hire/hire-sensitive-info/hire-sensitive-info.component";
+import {HireFilesComponent} from "./components/hire/hire-files/hire-files.component";
+
 
 
 export class HrRoutes {
@@ -39,6 +41,13 @@ export class HrRoutes {
     {
       path: 'sensitive-info',
       component: HireSensitiveInfoComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
+      path: 'documents',
+      component: HireFilesComponent,
       children: [
         {path: 'hr', component: HrmsComponent}
       ],

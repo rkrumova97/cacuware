@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Employee, IEmployee} from "../../model/employee.model";
+import {Component, OnInit} from '@angular/core';
+import {Employee} from "../../../model/employee.model";
 
 @Component({
   selector: 'app-hire-employee-details',
@@ -7,24 +7,25 @@ import {Employee, IEmployee} from "../../model/employee.model";
   styleUrls: ['./hire-employee-details.component.css']
 })
 export class HireEmployeeDetailsComponent implements OnInit {
-  employee?: IEmployee;
+  employee!: Employee;
   jobs?: string[];
   submitted?: Boolean;
   dropdownSettings = {};
 
 
   workingDays = [
-    { name: 'Three days a week', value: 3 },
-    { name: 'Four days a week', value: 4 },
-    { name: 'Five days a week', value: 5 }
+    {name: 'Three days a week', value: 3},
+    {name: 'Four days a week', value: 4},
+    {name: 'Five days a week', value: 5}
   ];
   workingHours = [
-    { name: 'Four hours a day', value: 4 },
-    { name: 'Six hours a day', value: 6 },
-    { name: 'Eight hours a day', value: 8 }
+    {name: 'Four hours a day', value: 4},
+    {name: 'Six hours a day', value: 6},
+    {name: 'Eight hours a day', value: 8}
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.employee = new Employee();
