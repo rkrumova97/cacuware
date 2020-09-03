@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {IPerson} from "../model/person.model";
+import {CookieService} from "ngx-cookie-service";
 
 type EntityResponseType = HttpResponse<IPerson[]>;
 
@@ -9,29 +10,77 @@ type EntityResponseType = HttpResponse<IPerson[]>;
   providedIn: 'root'
 })
 export class PersonService {
+  public clientId = 'hrms-service';
+  public redirectUri = 'http://localhost:8089/';
+  public resourceUrl = 'http://localhost:8084/api/hrms/persons';
 
-  public resourceUrl = 'http://localhost:8084/api/hrms';
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient, private cookieService: CookieService) {
   }
 
-  find(): Observable<EntityResponseType> {
-    return this.http
-      .get<IPerson[]>(`${this.resourceUrl}`, {observe: 'response'});
+  retrieveToken = (code: string) => {
+    let params = new URLSearchParams();
+    params.append('grant_type', 'password');
+    params.append('client_id', this.clientId);
+    params.append('client_secret', 'secret');
+    params.append('code', code);
+
+    let headers =
+      new HttpHeaders({'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'});
+
+    this.http.post("http://localhost:9999/" + 'oauth/token',
+      params.toString(), {headers: headers})
+      .subscribe(
+        data => this.saveToken(data),
+        err => alert('Invalid Credentials'));
+  };
+  private item: string ="";
+
+  saveToken(token: any) {
+    const expireDate = new Date().getTime() + (1000 * token.expires_in);
+    this.cookieService.set("access_token", token.access_token, expireDate);
+    console.log('Obtained Access token');
+    window.location.href = 'http://localhost:8084';
   }
 
-  delete(id: string): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.resourceUrl}/${id}`, {observe: 'response'});
+  getResource(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Authorization': 'Bearer ' + this.cookieService.get('access_token')
+    });
+    return this.http.get(this.resourceUrl, {headers: headers});
   }
 
-  create(person?: IPerson): Observable<HttpResponse<IPerson>> {
-    return this.http
-      .post<IPerson>(this.resourceUrl, person, {observe: 'response'});
+  postResource(object: any): Observable<any> {
+     this.item = <string> window.sessionStorage.getItem('token') ;
+    let keys = this.item.split(":");
+    let token = keys[1].split(",");
+     console.log(token[0])
+    const headers = new HttpHeaders({
+
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer '+ token[0].substring(1, token[0].length-1)
+    });
+    return this.http.post(this.resourceUrl, object, {headers: headers});
   }
 
-  update(person?: IPerson): Observable<HttpResponse<IPerson>> {
-    return this.http
-      .put<IPerson>(this.resourceUrl, person, {observe: 'response'});
+  deleteResource( id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Authorization': 'Bearer ' + this.cookieService.get('access_token'),
+      'id': id
+    });
+    return this.http.delete(this.resourceUrl, {headers: headers});
   }
+
+  checkCredentials() {
+    return this.cookieService.check('access_token');
+  }
+
+  logout() {
+    this.cookieService.delete('access_token');
+    window.location.reload();
+  }
+
 
 }

@@ -1,9 +1,6 @@
 package com.cacuware.hrms.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 
@@ -19,6 +16,7 @@ import java.util.UUID;
 @Table(name = "employee")
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
     @Id
     @GeneratedValue(generator = "UUID")

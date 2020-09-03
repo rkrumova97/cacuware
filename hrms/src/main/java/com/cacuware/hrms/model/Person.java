@@ -1,21 +1,21 @@
 package com.cacuware.hrms.model;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 @Data
 @Builder
 @Entity(name = "person")
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString
 public class Person {
     @Id
@@ -40,7 +40,6 @@ public class Person {
     private String lastName;
 
     @Column
-    @NotNull
     private String gender;
 
     @Column
@@ -53,6 +52,7 @@ public class Person {
     private String address;
 
     @Column(columnDefinition = "DATE")
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate birthday;
 
     @Column

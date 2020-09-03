@@ -9,7 +9,7 @@ import {Employee} from "../../../model/employee.model";
 export class HireEmployeeDetailsComponent implements OnInit {
   employee!: Employee;
   jobs?: string[];
-  submitted?: Boolean;
+  submitted = false;
   dropdownSettings = {};
 
 
@@ -39,6 +39,8 @@ export class HireEmployeeDetailsComponent implements OnInit {
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
+
+
   }
 
   process() {

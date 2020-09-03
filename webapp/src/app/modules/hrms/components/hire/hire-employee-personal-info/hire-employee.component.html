@@ -127,10 +127,10 @@
             <label for="gender">Gender</label>
             <div id="gender">
               <label>
-                <input class="m-1" type="radio" value="male" name="gender">Male
+                <input class="m-1" [(ngModel)]="person.gender" type="radio" value="male" name="gender">Male
               </label>
               <label>
-                <input class="m-1" type="radio" value="female" name="gender">Female
+                <input class="m-1" [(ngModel)]="person.gender" type="radio" value="female" name="gender">Female
               </label>
             </div>
           </div>

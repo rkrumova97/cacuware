@@ -1,8 +1,11 @@
-package com.cacuware.auth.security;
+package com.cacuware.hrms;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +14,7 @@ import java.io.IOException;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-
-public class CORSFilter implements Filter {
+public class SimpleCORSFilter implements Filter {
 
     @Override
     public void init(FilterConfig fc) throws ServletException {

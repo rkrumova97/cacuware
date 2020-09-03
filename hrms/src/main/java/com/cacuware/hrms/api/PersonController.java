@@ -1,31 +1,57 @@
 package com.cacuware.hrms.api;
 
-import com.cacuware.hrms.model.Account;
+import com.cacuware.hrms.api.dto.PersonDto;
+import com.cacuware.hrms.model.Person;
+import com.cacuware.hrms.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
-@CrossOrigin
-@RestController(value = "/person")
+@RestController
+@RequestMapping("/api/hrms")
 public class PersonController {
+    @Autowired
+    private PersonService personService;
 
-        @GetMapping("/{id}")
-        @PreAuthorize("#oauth2.hasScope('read')")
-        public Account findPerson(@PathVariable("id") Integer id) {
-            return new Account(id, 1, "123456789", 1234);
-        }
+    @GetMapping("/persons/{id}")
+    public Person findPerson(@PathVariable("id") UUID id) {
+        return personService.getOneById(id);
+    }
 
-        @GetMapping("/")
-        @PreAuthorize("#oauth2.hasScope('read')")
-        public List<Account> findAccounts() {
-            return Arrays.asList(new Account(1, 1, "123456789", 1234), new Account(2, 1, "123456780", 2500),
-                    new Account(3, 1, "123456781", 10000));
-        }
+    @GetMapping(value = "/persons")
+    public ResponseEntity<List<Person>> getAllPeople(Pageable pageable) {
+        List<Person> people = personService.findAllPerson(pageable.getSort());
+        return ResponseEntity.ok().body(people);
+    }
 
+    @PostMapping("/persons")
+    public ResponseEntity<Person> create(@RequestBody PersonDto personDto) throws URISyntaxException {
+        Person person = personService.savePerson(personDto);
+        return ResponseEntity.created(new URI("/api/" + person.getId()))
+                .body(person);
+    }
+
+    @PutMapping("/persons")
+    public ResponseEntity<Person> update(@RequestBody PersonDto personDto) {
+        Person person = personService.updatePerson(personDto);
+        if (Objects.nonNull(person)) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                    .body(person);
+        } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @DeleteMapping(value = "/persons/{uuid}")
+    public ResponseEntity<?> delete(@PathVariable UUID uuid) {
+        personService.deletePerson(uuid);
+        return ResponseEntity.noContent().build();
+    }
 }

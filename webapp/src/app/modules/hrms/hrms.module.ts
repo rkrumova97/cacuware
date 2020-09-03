@@ -15,6 +15,7 @@ import {HireEmployeeDetailsComponent} from "./components/hire/hire-employee-deta
 import {HireSensitiveInfoComponent} from "./components/hire/hire-sensitive-info/hire-sensitive-info.component";
 import {HireEmployeeComponent} from "./components/hire/hire-employee-personal-info/hire-employee.component";
 import { HireFilesComponent } from './components/hire/hire-files/hire-files.component';
+import {CookieService} from "ngx-cookie-service";
 
 
 
@@ -24,7 +25,8 @@ import { HireFilesComponent } from './components/hire/hire-files/hire-files.comp
     CommonModule,
     HrmsRoutingModule,
     FormsModule
-  ]
+  ],
+  providers: [CookieService]
 })
 export class HrmsModule {
 }

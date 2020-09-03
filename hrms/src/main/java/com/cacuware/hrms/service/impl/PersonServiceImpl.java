@@ -8,11 +8,13 @@ import com.cacuware.hrms.repository.PersonRepository;
 import com.cacuware.hrms.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Service
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;

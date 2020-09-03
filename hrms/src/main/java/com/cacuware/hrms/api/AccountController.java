@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @CrossOrigin
-@RestController
+@RestController(value = "api/hrms/account")
 public class AccountController {
 
 	@GetMapping("/{id}")
