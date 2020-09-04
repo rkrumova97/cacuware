@@ -3,6 +3,7 @@ package com.cacuware.hrms.model;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -28,24 +29,23 @@ public class Employee {
     private UUID id;
 
     @Column(columnDefinition = "DATE", name = "start_date")
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate startDate;
 
     @Column(columnDefinition = "DATE", name = "end_date")
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate endDate;
 
     @Column(name = "vacation_days")
     private Integer vacationDays;
 
     @Column(name = "job_number")
-    @NotNull
     private JobType jobNumber;
 
     @Column(name = "working_hours")
-    @NotNull
     private Integer workingHours;
 
     @Column(name = "working_days")
-    @NotNull
     private Integer workingDays;
 
     @Column(name = "is_fired")

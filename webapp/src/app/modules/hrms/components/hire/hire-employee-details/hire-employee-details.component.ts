@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../../model/employee.model";
+import {HrmsService} from "../../../service/hrms.service";
+import {DataService} from "../../../service/data.service";
 
 @Component({
   selector: 'app-hire-employee-details',
@@ -24,12 +26,13 @@ export class HireEmployeeDetailsComponent implements OnInit {
     {name: 'Eight hours a day', value: 8}
   ];
 
-  constructor() {
+  constructor(private hrmsService:HrmsService, private dataService: DataService) {
+
   }
 
   ngOnInit(): void {
     this.employee = new Employee();
-
+    this.employee.person = this.dataService.person;
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',
@@ -44,6 +47,7 @@ export class HireEmployeeDetailsComponent implements OnInit {
   }
 
   process() {
-
+    this.hrmsService.postResource("/employees", this.employee).subscribe();
+    this.dataService.employee = this.employee;
   }
 }

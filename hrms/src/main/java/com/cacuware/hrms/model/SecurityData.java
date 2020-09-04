@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -37,6 +38,7 @@ public class SecurityData {
     private Short idNumber;
 
     @Column(columnDefinition = "DATE", name = "issued_date")
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate issuedDate;
 
     @Column

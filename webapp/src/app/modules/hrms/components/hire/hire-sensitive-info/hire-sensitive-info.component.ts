@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ISecurityData, SecurityDataModel} from "../../../model/security-data.model";
+import {SecurityDataModel} from "../../../model/security-data.model";
+import {HrmsService} from "../../../service/hrms.service";
+import {DataService} from "../../../service/data.service";
+import {Employee} from "../../../model/employee.model";
 
 @Component({
   selector: 'app-hire-sensitive-info',
@@ -8,19 +11,19 @@ import {ISecurityData, SecurityDataModel} from "../../../model/security-data.mod
 })
 export class HireSensitiveInfoComponent implements OnInit {
   security!: SecurityDataModel;
-  jobs?: string[];
   submitted?: Boolean;
-  dropdownSettings = {};
 
-  constructor() {
+  constructor(private hrmsService: HrmsService, private dataService: DataService) {
   }
 
   ngOnInit(): void {
     this.security = new SecurityDataModel();
-
   }
 
   process() {
-
+    this.hrmsService.postResource("/securityData", this.security).subscribe();
+    let employee = this.dataService.employee ? this.dataService.employee : new Employee();
+    employee.securityData = this.security;
+    this.hrmsService.updateResource("/employees", employee).subscribe();
   }
 }

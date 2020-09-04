@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Person} from "../../../model/person.model";
-import {PersonService} from "../../../service/person.service";
+import {HrmsService} from "../../../service/hrms.service";
 import {SecurityService} from "../../../../security/security.service";
+import {DataService} from "../../../service/data.service";
 
 
 @Component({
@@ -24,7 +25,7 @@ export class HireEmployeeComponent implements OnInit {
   submitted = false;
   isAdding = false;
 
-  constructor(http: HttpClient, router: Router, private personService: PersonService, private securityService: SecurityService) {
+  constructor(http: HttpClient, router: Router, private hrmsService: HrmsService, private dataService: DataService) {
     this.http = http;
     this.router = router;
   }
@@ -34,6 +35,7 @@ export class HireEmployeeComponent implements OnInit {
   }
 
   process(): void {
-      this.personService.postResource(this.person).subscribe(r => console.log("works"));
+      this.hrmsService.postResource("/persons", this.person).subscribe(r => console.log("works"));
+      this.dataService.person = this.person;
   }
 }
