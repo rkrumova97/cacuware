@@ -20,7 +20,7 @@ public class EmployeeMapper {
                 .build();
     }
 
-    public EmployeeDto toDto(Employee employee) {
+    public static EmployeeDto toDto(Employee employee) {
         return EmployeeDto.builder()
                 .endDate(employee.getEndDate())
                 .isFired(employee.getIsFired())

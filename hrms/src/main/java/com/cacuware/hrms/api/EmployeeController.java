@@ -1,6 +1,7 @@
 package com.cacuware.hrms.api;
 
 import com.cacuware.hrms.api.dto.EmployeeDto;
+import com.cacuware.hrms.mapper.EmployeeMapper;
 import com.cacuware.hrms.model.Employee;
 import com.cacuware.hrms.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees/{id}")
-    public Employee findEmployee(@PathVariable("id") UUID id) {
-        return employeeService.getOneById(id);
+    public EmployeeDto findEmployee(@PathVariable("id") UUID id) {
+        return EmployeeMapper.toDto(employeeService.getOneById(id));
     }
 
     @GetMapping(value = "/employees")

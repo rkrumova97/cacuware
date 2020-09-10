@@ -21,12 +21,14 @@ export interface IEmployee {
   leavingDate?: Date;
   leavingNoticeSubmissionDate?: Date;
   skill?: string;
-  person?: Person;
+  person: Person;
   securityData?: SecurityDataModel;
+  show?: any;
 }
 
 export class Employee implements IEmployee {
   constructor(
+    public person: Person,
     public id?: string,
     public idCardNumber?: string,
     public idCardIssuedDate?: string,
@@ -46,8 +48,8 @@ export class Employee implements IEmployee {
     public leavingDate?: Date,
     public leavingNoticeSubmissionDate?: Date,
     public skill?: string,
-    public person?: Person,
-    public securityData?: SecurityDataModel
+    public securityData?: SecurityDataModel,
+    public show?: any,
   ) {
   }
 }

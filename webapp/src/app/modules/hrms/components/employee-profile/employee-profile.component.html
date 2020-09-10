@@ -1,1 +1,147 @@
-<p>employee-profile works!</p>
+<html>
+<head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <title>Profile</title>
+</head>
+<body>
+<div class="emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+            alt=""/>
+          <div class="file btn btn-lg btn-primary">
+            Change Photo
+            <input type="file" name="fileToUpload" id="fileToUpload">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            {{employee.person.firstName +  " " + employee.person.middleName + " " + employee.person.lastName}}
+          </h5>
+          <h6>
+            {{employee.jobNumber}}
+          </h6>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <div class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home"
+                   aria-selected="true">About</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="profile-work">
+          <p>SKILLS </p>
+          <div *ngFor="let skill of employee.skill">
+            {{skill}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content profile-tab" id="myTabContent">
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="row">
+              <div class="col-md-6">
+                <label>Name</label>
+              </div>
+              <div class="col-md-6">
+                <p> {{employee.person.firstName + " " + employee.person.lastName}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Email</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.email}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Age</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.person.birthday}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Gender</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.person.gender}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Address</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.person.address}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Salary</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.salary}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Start date</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.startDate}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Vacation days</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.vacationDays}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Working hours</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.workingHours}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Working days</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.workingDays}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label>Working hours</label>
+              </div>
+              <div class="col-md-6">
+                <p>{{employee.workingHours}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
+</html>

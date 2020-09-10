@@ -1,1 +1,107 @@
-<p>archive works!</p>
+<html>
+<head>
+  <title>Archived employees</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+</head>
+<body>
+<div class="container-fluid">
+
+  <!-- All employees view - button -->
+  <div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
+      <a href="/hr/list" class="link">
+        <div class="button mt-2 mb-2">
+          <p class="btnText">All employees</p>
+          <div class="btnTwo">
+            <p class="btnText2"><</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <!-- Closing all employees view - button -->
+
+  <!-- Title of the page -->
+  <div class="row" id="titleContainer">
+    <div class="col-sm-12">
+      <div class="title text-center mt-2 mb-2">
+        <h3 class="titleDecoration">Archived employees</h3>
+      </div>
+    </div>
+  </div>
+  <!-- Closing title of the page -->
+
+  <!-- Table of all fired employees -->
+  <div class="row">
+    <div class="table-responsive m-3">
+      <table class="table table-hover table-striped">
+        <thead class="bg-warning text-danger text-center">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Job Position</th>
+          <th>Since</th>
+          <th>Salary</th>
+          <th>Vacation days</th>
+          <th>Working hours</th>
+          <th>Working days</th>
+          <th>Skills</th>
+        </tr>
+        </thead>
+        <tbody class="bg-light text-center">
+        <tr *ngFor="let employee of employees" [attr.data-index]="0">
+          <td> {{employee.id}} </td>
+          <td>{{employee.person.firstName + " " + employee.person.middleName + " " + employee.person.lastName}}</td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.jobNumber}}</span>
+          </td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.startDate}}</span>
+          </td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.salary}}</span>
+          </td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.vacationDays}}</span>
+          </td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.workingHours}}</span>
+          </td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.workingDays}}</span>
+          </td>
+          <td>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.skill}}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Closing Table of all fired employees -->
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

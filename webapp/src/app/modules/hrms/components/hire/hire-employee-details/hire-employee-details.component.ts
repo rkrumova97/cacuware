@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../../model/employee.model";
 import {HrmsService} from "../../../service/hrms.service";
 import {DataService} from "../../../service/data.service";
+import {Person} from "../../../model/person.model";
 
 @Component({
   selector: 'app-hire-employee-details',
@@ -31,8 +32,8 @@ export class HireEmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employee = new Employee();
-    this.employee.person = this.dataService.person;
+    this.employee = new Employee(new Person());
+    this.employee.person = this.dataService.person!;
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'item_id',

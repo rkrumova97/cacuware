@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Employee} from "../../model/employee.model";
+import {HrmsService} from "../../service/hrms.service";
+import {ActivatedRoute} from "@angular/router";
+import {Person} from "../../model/person.model";
 
 @Component({
   selector: 'app-employee-profile',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeProfileComponent implements OnInit {
 
-  constructor() { }
+  id?: string | null;
+  employee!: Employee;
+  http: HrmsService;
 
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute, http: HrmsService) {
+    this.http = http;
   }
+
+  ngOnInit() {
+    this.employee = new Employee(new Person());
+
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.http.getOneResource('/employees/' + this.id).subscribe(res => {
+      this.employee = res;
+      console.log(this.employee);
+    });
+  }
+
 
 }

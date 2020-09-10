@@ -36,6 +36,6 @@ export class HireEmployeeComponent implements OnInit {
 
   process(): void {
       this.hrmsService.postResource("/persons", this.person).subscribe(r => console.log("works"));
-      this.dataService.person = this.person;
+      this.dataService.person = this.person!;
   }
 }

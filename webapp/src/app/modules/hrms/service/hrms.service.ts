@@ -55,13 +55,22 @@ export class HrmsService {
     return this.http.delete(this.resourceUrl + resource, {headers: headers});
   }
 
-  getOneResource(resource: string, id: any): Observable<any> {
+  getOneResource(resource: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-type': 'application/json',
       'Authorization': 'Bearer ' + this.token,
-      'id': id
     });
     return this.http.get(this.resourceUrl + resource, {headers: headers});
   }
 
+  postFile(resource:string, fileToUpload: File): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    return this.http
+      .post(this.resourceUrl + resource, formData, { headers: headers });
+  }
 }

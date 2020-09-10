@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Employee} from "../../model/employee.model";
+import {HrmsService} from "../../service/hrms.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-archive',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArchiveComponent implements OnInit {
 
-  constructor() { }
+  employees?: Employee[];
+  hrmsService: HrmsService;
+  isClicked?: boolean;
+  router: Router;
 
-  ngOnInit(): void {
+  constructor(hrmsService:HrmsService, router: Router) {
+    this.hrmsService = hrmsService;
+    this.router = router;
   }
 
+  ngOnInit() {
+    this.isClicked = true;
+    this.hrmsService.getResource("/employees/archive").subscribe(res => {
+      this.employees = res;
+    });
+  }
 }

@@ -67,7 +67,7 @@ export class HrRoutes {
       ],
     },
     {
-      path: 'salary',
+      path: 'salary?',
       component: GiveSalaryComponent,
       children: [
         {path: 'hr', component: HrmsComponent}
