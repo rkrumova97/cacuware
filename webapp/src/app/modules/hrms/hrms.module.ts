@@ -10,12 +10,13 @@ import {VacationComponent} from "./components/vacation/vacation.component";
 import {ArchiveComponent} from "./components/archive/archive.component";
 import {FireEmployeeComponent} from "./components/fire-employee/fire-employee.component";
 import {ListEmployeesComponent} from "./components/list-employees/list-employees.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HireEmployeeDetailsComponent} from "./components/hire/hire-employee-details/hire-employee-details.component";
 import {HireSensitiveInfoComponent} from "./components/hire/hire-sensitive-info/hire-sensitive-info.component";
 import {HireEmployeeComponent} from "./components/hire/hire-employee-personal-info/hire-employee.component";
 import { HireFilesComponent } from './components/hire/hire-files/hire-files.component';
 import {CookieService} from "ngx-cookie-service";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 
@@ -24,7 +25,9 @@ import {CookieService} from "ngx-cookie-service";
   imports: [
     CommonModule,
     HrmsRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [CookieService]
 })

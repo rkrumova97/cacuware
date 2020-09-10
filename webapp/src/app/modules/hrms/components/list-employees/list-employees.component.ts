@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../model/employee.model";
 import {Router} from "@angular/router";
 import {HrmsService} from "../../service/hrms.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-list-employees',
@@ -15,11 +16,12 @@ export class ListEmployeesComponent implements OnInit {
   employee?: Employee;
   isClicked?: boolean;
   router: Router;
+  modalService: NgbModal;
 
-  constructor(hrmsService: HrmsService, router: Router) {
+  constructor(hrmsService: HrmsService, router: Router, modalService: NgbModal) {
     this.hrmsService = hrmsService;
     this.router = router;
-
+    this.modalService = modalService;
   }
 
   ngOnInit() {
@@ -45,11 +47,6 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   open(firstName: string, middleName: string, lastName: string, id: string) {
-    const modalRef = null;
-    // modalRef.componentInstance.firstName = firstName;
-    // modalRef.componentInstance.middleName = middleName;
-    // modalRef.componentInstance.lastName = lastName;
-    // modalRef.componentInstance.id = id;
-  }
 
+  }
 }

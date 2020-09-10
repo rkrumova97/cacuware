@@ -115,7 +115,7 @@
               <i class="material-icons">edit</i>
             </a>
             &nbsp;
-            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm"  (click)="open(employee.person.firstName, employee.person.middleName,employee.person.lastName,employee.id)">
+            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm"  href="/hr/fire/{{employee.id}}">
               <i class="material-icons">close</i>
             </a>
           </td>
@@ -128,10 +128,6 @@
   </div>
 </div>
 
-
-<ng-template>
-  <app-popup></app-popup>
-</ng-template>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

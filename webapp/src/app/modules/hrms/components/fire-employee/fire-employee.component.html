@@ -1,1 +1,62 @@
-<p>fire-employee works!</p>
+<section class="hero d-flex align-items-center">
+  <div class="container-fluid">
+    <h1><span class="text-primary">Search an employee</span></h1>
+    <div class="search-bar ">
+      <div class="row-cols-8 ">
+        <label>
+          <input class="form-control container-fluid" type="text" [formControl]="filter"
+                 placeholder="Who do you search?"/>
+        </label>
+      </div>
+    </div>
+    <table class="table table-striped mt-5" style="color: #2C93FF" *ngIf="filter.value">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First name</th>
+        <th scope="col">Middle name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Salary</th>
+        <th scope="col">IBAN</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employees$ | async">
+        <td>
+          <ngb-highlight [result]="employee.id  | number" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="employee.person.firstName" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="employee.person.middleName" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="employee.person.lastName" [term]="filter.value"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="employee.salary" [term]="filter.value" contenteditable="true"
+                         (click)="updateList(employee, 'salary', $event)"></ngb-highlight>
+        </td>
+        <td>
+          <ngb-highlight [result]="employee.iban" [term]="filter.value" contenteditable="true"
+                         (click)="updateList(employee, 'iban', $event)"></ngb-highlight>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
+        <a href="/hr" class="link" (click)="excel()">
+          <div class="button mt-2 mb-2">
+            <p class="btnText">Pay salaries</p>
+            <div class="btnTwo">
+              <p class="btnText2">$</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+

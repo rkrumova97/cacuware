@@ -60,6 +60,13 @@ export class HrRoutes {
       ],
     },
     {
+      path: 'fire/:id',
+      component: FireEmployeeComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
       path: 'list',
       component: ListEmployeesComponent,
       children: [
