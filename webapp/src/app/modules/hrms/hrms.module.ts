@@ -17,11 +17,12 @@ import {HireEmployeeComponent} from "./components/hire/hire-employee-personal-in
 import { HireFilesComponent } from './components/hire/hire-files/hire-files.component';
 import {CookieService} from "ngx-cookie-service";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import { PopupComponent } from './components/popup/popup.component';
 
 
 
 @NgModule({
-  declarations: [HrmsComponent, HireEmployeeComponent, ListEmployeesComponent, GiveSalaryComponent, EmployeeProfileComponent, ArchiveComponent, VacationComponent, FireEmployeeComponent, TimeCardComponent, HireEmployeeDetailsComponent, HireSensitiveInfoComponent, HireFilesComponent],
+  declarations: [HrmsComponent, HireEmployeeComponent, ListEmployeesComponent, GiveSalaryComponent, EmployeeProfileComponent, ArchiveComponent, VacationComponent, FireEmployeeComponent, TimeCardComponent, HireEmployeeDetailsComponent, HireSensitiveInfoComponent, HireFilesComponent, PopupComponent],
   imports: [
     CommonModule,
     HrmsRoutingModule,

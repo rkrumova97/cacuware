@@ -17,30 +17,30 @@ import java.util.Objects;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/hrms")
+@RequestMapping("/api/hrms/employees")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/employees/{id}")
+    @GetMapping("/{id}")
     public EmployeeDto findEmployee(@PathVariable("id") UUID id) {
         return EmployeeMapper.toDto(employeeService.getOneById(id));
     }
 
-    @GetMapping(value = "/employees")
-    public ResponseEntity<List<Employee>> getAllEmployees(Pageable pageable) {
-        List<Employee> employees = employeeService.findAllEmployee(pageable.getSort());
+    @GetMapping
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = employeeService.findAllEmployees();
         return ResponseEntity.ok().body(employees);
     }
 
-    @PostMapping("/employees")
+    @PostMapping
     public ResponseEntity<Employee> create(@RequestBody EmployeeDto employeeDto) throws URISyntaxException {
         Employee employee = employeeService.saveEmployee(employeeDto);
         return ResponseEntity.created(new URI("/api/" + employee.getId()))
                 .body(employee);
     }
 
-    @PutMapping("/employees")
+    @PutMapping
     public ResponseEntity<Employee> update(@RequestBody EmployeeDto employeeDto) {
         Employee employee = employeeService.updateEmployee(employeeDto);
         if (Objects.nonNull(employee)) {
@@ -49,10 +49,22 @@ public class EmployeeController {
         } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @DeleteMapping(value = "/employees/{uuid}")
+    @DeleteMapping(value = "/{uuid}")
     public ResponseEntity<?> delete(@PathVariable UUID uuid) {
         employeeService.deleteEmployee(uuid);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/fire/{uuid}")
+    public ResponseEntity<Employee> fire(@PathVariable UUID uuid) {
+        Employee employee = employeeService.fireEmployee(uuid);
+        return ResponseEntity.ok().body(employee);
+    }
+
+    @GetMapping(value = "/archive")
+    public ResponseEntity<List<Employee>> archive() {
+        List<Employee> employees = employeeService.findAllFiredEmployees();
+        return ResponseEntity.ok().body(employees);
     }
 }
 

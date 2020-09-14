@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,8 +35,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> findAllEmployee(Sort sort) {
-        return employeeRepository.findAll(sort);
+    public List<Employee> findAllEmployees() {
+        return employeeRepository.findAllByIsFiredFalseOrIsFiredIsNull();
+    }
+
+    @Override
+    public List<Employee> findAllFiredEmployees() {
+        return employeeRepository.findAllByIsFiredTrue();
     }
 
     @Override
@@ -54,5 +60,13 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setWorkingHours(employeeDto.getWorkingHours());
             return employeeRepository.save(employee);
         } else return null;
+    }
+
+    @Override
+    public Employee fireEmployee(UUID id) {
+        Employee employee = getOneById(id);
+        employee.setIsFired(true);
+        employee.setEndDate(LocalDate.now());
+        return employeeRepository.save(employee);
     }
 }

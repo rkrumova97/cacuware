@@ -3,6 +3,7 @@ import {Employee} from "../../model/employee.model";
 import {Router} from "@angular/router";
 import {HrmsService} from "../../service/hrms.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {PopupComponent} from "../popup/popup.component";
 
 @Component({
   selector: 'app-list-employees',
@@ -46,7 +47,8 @@ export class ListEmployeesComponent implements OnInit {
       });
   }
 
-  open(firstName: string, middleName: string, lastName: string, id: string) {
-
+  open(employee: Employee) {
+    const modalRef = this.modalService.open(PopupComponent, {centered: true});
+    modalRef.componentInstance.employee = employee;
   }
 }

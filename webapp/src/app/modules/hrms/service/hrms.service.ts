@@ -50,7 +50,6 @@ export class HrmsService {
     const headers = new HttpHeaders({
       'Content-type': 'application/json',
       'Authorization': 'Bearer ' + this.token,
-      'id': id
     });
     return this.http.delete(this.resourceUrl + resource, {headers: headers});
   }

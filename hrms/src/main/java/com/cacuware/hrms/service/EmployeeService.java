@@ -14,8 +14,12 @@ public interface EmployeeService {
 
     public void deleteEmployee(UUID uuid);
 
-    public List<Employee> findAllEmployee(Sort sort);
+    List<Employee> findAllEmployees();
+
+    List<Employee> findAllFiredEmployees();
 
     Employee updateEmployee(EmployeeDto EmployeeDto);
+
+    Employee fireEmployee(UUID id);
 }
 
