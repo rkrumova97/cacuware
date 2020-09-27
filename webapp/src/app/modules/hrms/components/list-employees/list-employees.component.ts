@@ -4,11 +4,13 @@ import {Router} from "@angular/router";
 import {HrmsService} from "../../service/hrms.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PopupComponent} from "../popup/popup.component";
+import {DatePipe, formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
-  styleUrls: ['./list-employees.component.css']
+  styleUrls: ['./list-employees.component.css'],
+  providers:[DatePipe]
 })
 export class ListEmployeesComponent implements OnInit {
 
@@ -19,7 +21,7 @@ export class ListEmployeesComponent implements OnInit {
   router: Router;
   modalService: NgbModal;
 
-  constructor(hrmsService: HrmsService, router: Router, modalService: NgbModal) {
+  constructor(hrmsService: HrmsService, router: Router, modalService: NgbModal, public datepipe: DatePipe) {
     this.hrmsService = hrmsService;
     this.router = router;
     this.modalService = modalService;

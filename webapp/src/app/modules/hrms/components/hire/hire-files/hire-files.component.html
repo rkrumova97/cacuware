@@ -8,6 +8,11 @@
       <h2 class="headerTitle text-center">4) Files</h2>
     </div>
   </div>
+
+
+  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>
+
+
   <div class="row justify-content-center">
     <div class="col-md-8">
 
@@ -16,6 +21,9 @@
           <div class="form-group">
             <label for="photo">Photo</label>
             <input type="file" class="form-control-file" id="photo">
+            <div class="progress">
+              <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:100%"></div>
+            </div>
           </div>
         </form>
 
@@ -23,6 +31,9 @@
           <div class="form-group">
             <label for="noi">NOI</label>
             <input type="file" class="form-control-file" id="noi">
+            <div class="progress">
+              <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:100%"></div>
+            </div>
           </div>
         </form>
 
@@ -89,7 +100,7 @@
         <button type="button" class="btn btn-primary m-2">
           Generate contract
         </button>
-        <button type="button" class="btn btn-primary m-2" routerLink="/hr" (click)="process()">
+        <button type="button" class="btn btn-primary m-2" routerLink="/hr/profile/" (click)="process()">
           Finish
         </button>
       </div>

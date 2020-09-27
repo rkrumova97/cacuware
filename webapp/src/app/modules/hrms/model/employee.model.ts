@@ -20,7 +20,6 @@ export interface IEmployee {
   startDate?: Date;
   leavingDate?: Date;
   leavingNoticeSubmissionDate?: Date;
-  skill?: string;
   person: Person;
   securityData?: SecurityDataModel;
   show?: any;
@@ -47,7 +46,6 @@ export class Employee implements IEmployee {
     public startDate?: Date,
     public leavingDate?: Date,
     public leavingNoticeSubmissionDate?: Date,
-    public skill?: string,
     public securityData?: SecurityDataModel,
     public show?: any,
   ) {

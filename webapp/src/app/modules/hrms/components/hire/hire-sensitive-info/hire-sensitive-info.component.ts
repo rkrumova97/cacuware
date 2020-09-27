@@ -4,6 +4,7 @@ import {HrmsService} from "../../../service/hrms.service";
 import {DataService} from "../../../service/data.service";
 import {Employee} from "../../../model/employee.model";
 import {Person} from "../../../model/person.model";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-hire-sensitive-info',
@@ -13,8 +14,10 @@ import {Person} from "../../../model/person.model";
 export class HireSensitiveInfoComponent implements OnInit {
   security!: SecurityDataModel;
   submitted?: Boolean;
+  success: boolean = true;
 
-  constructor(private hrmsService: HrmsService, private dataService: DataService) {
+
+  constructor(private hrmsService: HrmsService, private dataService: DataService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -22,9 +25,16 @@ export class HireSensitiveInfoComponent implements OnInit {
   }
 
   process() {
-    this.hrmsService.postResource("/securityData", this.security).subscribe();
+    this.hrmsService.postResource("/securityData", this.security).subscribe(r => {
+      this.router.navigate(['/hr/documents']);
+      this.success = true;
+    }, error => this.success = false);
     let employee = this.dataService.employee ? this.dataService.employee : new Employee(new Person());
     employee.securityData = this.security;
     this.hrmsService.updateResource("/employees", employee).subscribe();
+  }
+
+  close() {
+    this.success = true;
   }
 }

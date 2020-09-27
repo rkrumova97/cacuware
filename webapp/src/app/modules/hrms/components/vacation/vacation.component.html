@@ -1,1 +1,23 @@
-<p>vacation works!</p>
+<form method="post" class="needs-validation" novalidate>
+
+  <div class="form-group col-md-6">
+    <label for="vacation-days-input" class="col-12 col-form-label">Vacation Days</label>
+    <div class="col-12">
+      <input class="form-control" type="number" id="vacation-days-input" placeholder="Vacation days" min="0"
+             max="25" required="required" [(ngModel)]="application.vacationDays"
+             name="vacation">
+    </div>
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="starting-date" class="col-12 col-form-label">Starting Date</label>
+    <div class="col-12">
+      <input class="form-control" placeholder="First working day" type="date" id="starting-date"
+             [(ngModel)]="application.startDate"
+             name="startDate">
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit application</button>
+</form>

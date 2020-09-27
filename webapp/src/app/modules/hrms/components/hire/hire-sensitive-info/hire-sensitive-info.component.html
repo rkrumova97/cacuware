@@ -9,6 +9,9 @@
       <h5 class="headerTitle text-center alert-info">You can skip this page if you want</h5>
     </div>
   </div>
+
+  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>
+
   <div class="row justify-content-center">
     <div class="col-md-8">
 

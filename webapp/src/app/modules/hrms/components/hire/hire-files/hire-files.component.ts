@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./hire-files.component.css']
 })
 export class HireFilesComponent implements OnInit {
+  success: boolean = true;
 
   constructor() { }
 
@@ -14,5 +15,9 @@ export class HireFilesComponent implements OnInit {
 
   process() {
 
+  }
+
+  close() {
+    this.success = true;
   }
 }

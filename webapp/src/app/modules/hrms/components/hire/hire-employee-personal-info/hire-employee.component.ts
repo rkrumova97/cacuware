@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Person} from "../../../model/person.model";
 import {HrmsService} from "../../../service/hrms.service";
-import {SecurityService} from "../../../../security/security.service";
 import {DataService} from "../../../service/data.service";
 
 
@@ -16,14 +15,13 @@ export class HireEmployeeComponent implements OnInit {
 
   grades?: string[];
   http: HttpClient;
-  skills?: string[];
   person?: Person;
   genders = ['Male', 'Female', 'Other'];
   router: Router;
   dropdownSettings = {};
 
   submitted = false;
-  isAdding = false;
+  success: boolean = true;
 
   constructor(http: HttpClient, router: Router, private hrmsService: HrmsService, private dataService: DataService) {
     this.http = http;
@@ -35,7 +33,14 @@ export class HireEmployeeComponent implements OnInit {
   }
 
   process(): void {
-      this.hrmsService.postResource("/persons", this.person).subscribe(r => console.log("works"));
-      this.dataService.person = this.person!;
+    this.dataService.person = this.person!;
+    this.hrmsService.postResource("/persons", this.person).subscribe(r => {
+      this.router.navigate(['/hr/employee-details']);
+      this.success = true;
+    }, error => this.success = false);
+  }
+
+  close() {
+    this.success = true;
   }
 }

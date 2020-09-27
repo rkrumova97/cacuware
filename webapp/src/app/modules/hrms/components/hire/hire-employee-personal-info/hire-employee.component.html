@@ -8,6 +8,9 @@
       <h2 class="headerTitle text-center">1) Personal information</h2>
     </div>
   </div>
+
+  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>
+
   <div class="row justify-content-center">
     <div class="col-md-8">
       <form *ngIf="person">
@@ -142,7 +145,7 @@
           <button type="button" class="btn btn-primary m-2" routerLink="/hr">
             Back
           </button>
-          <button type="button" class="btn btn-primary m-2" routerLink="/hr/employee-details" (click)="process()">Next</button>
+          <button type="button" class="btn btn-primary m-2" (click)="process()">Next</button>
         </div>
 
       </form>

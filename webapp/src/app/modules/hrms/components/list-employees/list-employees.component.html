@@ -55,7 +55,7 @@
           <th>Vacation days</th>
           <th>Working hours</th>
           <th>Working days</th>
-          <th>Skill</th>
+
           <th>Actions</th>
         </tr>
         </thead>
@@ -70,7 +70,7 @@
               </span>
           </td>
           <td>
-            <span *ngIf="!employee.show" contenteditable="false">{{employee.startDate}}</span>
+            <span *ngIf="!employee.show" contenteditable="false">{{employee.startDate | date: 'yyyy-MM-dd'}}</span>
             <span *ngIf="employee.show" contenteditable="true" (input)="updateList(employee, 'startDate', $event)">
                   {{employee.startDate}}
               </span>
@@ -97,12 +97,6 @@
             <span *ngIf="!employee.show" contenteditable="false">{{employee.workingDays}}</span>
             <span *ngIf="employee.show" contenteditable="true" (input)="updateList(employee, 'workingDays', $event)">
                   {{employee.workingDays}}
-              </span>
-          </td>
-          <td>
-            <span *ngIf="!employee.show" contenteditable="false">{{employee.skill}}</span>
-            <span *ngIf="employee.show" contenteditable="true" (input)="updateList(employee, 'skill', $event)">
-                  {{employee.skill}}
               </span>
           </td>
           <td class="td-actions">

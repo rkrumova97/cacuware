@@ -3,6 +3,7 @@ import {Employee} from "../../../model/employee.model";
 import {HrmsService} from "../../../service/hrms.service";
 import {DataService} from "../../../service/data.service";
 import {Person} from "../../../model/person.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-hire-employee-details',
@@ -14,6 +15,7 @@ export class HireEmployeeDetailsComponent implements OnInit {
   jobs?: string[];
   submitted = false;
   dropdownSettings = {};
+  success: boolean = true;
 
 
   workingDays = [
@@ -27,7 +29,7 @@ export class HireEmployeeDetailsComponent implements OnInit {
     {name: 'Eight hours a day', value: 8}
   ];
 
-  constructor(private hrmsService:HrmsService, private dataService: DataService) {
+  constructor(private hrmsService:HrmsService, private dataService: DataService, private router: Router) {
 
   }
 
@@ -48,7 +50,14 @@ export class HireEmployeeDetailsComponent implements OnInit {
   }
 
   process() {
-    this.hrmsService.postResource("/employees", this.employee).subscribe();
+    this.hrmsService.postResource("/employees", this.employee).subscribe(r => {
+      this.router.navigate(['/hr/sensitive-info']);
+      this.success = true;
+    }, error => this.success = false);
     this.dataService.employee = this.employee;
+  }
+
+  close() {
+    this.success = true;
   }
 }
