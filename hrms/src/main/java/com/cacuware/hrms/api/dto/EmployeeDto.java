@@ -21,7 +21,9 @@ public class EmployeeDto {
 
     private LocalDate startDate;
 
-    private LocalDate endDate;
+    private LocalDate leavingDate;
+
+    private LocalDate leavingNoticeSubmissionDate;
 
     private Integer vacationDays;
 
@@ -36,4 +38,7 @@ public class EmployeeDto {
     private Person person;
 
     private SecurityData securityData;
+
+    private String education;
+
 }

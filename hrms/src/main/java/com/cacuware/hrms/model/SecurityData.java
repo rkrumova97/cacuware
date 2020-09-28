@@ -56,6 +56,17 @@ public class SecurityData {
     private Integer daysOfLabour;
 
     @Column
+    @Max(value = 2)
+    private Integer professionalYearsOfLabour;
+
+    @Column
+    @Max(value = 2)
+    private Integer professionalMonthsOfLabour;
+
+    @Column
+    private Integer professionalDaysOfLabour;
+
+    @Column
     private Float salary;
 
     @Column

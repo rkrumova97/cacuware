@@ -19,6 +19,7 @@ public class SecurityDataMapper {
                 .monthsOfLabour(securityDataDto.getMonthsOfLabour())
                 .salary(securityDataDto.getSalary())
                 .yearsOfLabour(securityDataDto.getYearsOfLabour())
+
                 .build();
     }
 

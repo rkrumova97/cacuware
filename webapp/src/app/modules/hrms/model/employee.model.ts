@@ -23,6 +23,10 @@ export interface IEmployee {
   person: Person;
   securityData?: SecurityDataModel;
   show?: any;
+  education?: string;
+  professionYearsOfLabour?: string;
+  professionMonthsOfLabour?: string;
+  professionDaysOfLabour?: string;
 }
 
 export class Employee implements IEmployee {
@@ -48,6 +52,10 @@ export class Employee implements IEmployee {
     public leavingNoticeSubmissionDate?: Date,
     public securityData?: SecurityDataModel,
     public show?: any,
+    public education?: string,
+    public professionYearsOfLabour?: string,
+    public professionMonthsOfLabour?: string,
+    public professionDaysOfLabour?: string,
   ) {
   }
 }

@@ -1,18 +1,17 @@
-body{
-}
+
 .emp-profile{
-  size: auto;
+  height: 100vh;
   padding: 3%;
-  border-radius: 0.5rem;
-  background: -webkit-linear-gradient(left, #ffeeb0, #96cfb9);
   color: 	#005073;
 }
 .profile-img{
   text-align: center;
 }
 .profile-img img{
-  width: 70%;
+  width:auto;/*maintain aspect ratio*/
+  max-width:300px;
   height: 100%;
+  max-height: 200px;
 }
 .profile-img .file {
   position: relative;
@@ -39,46 +38,10 @@ body{
   font-weight: 700;
   cursor: pointer;
 }
-.proile-rating{
-  font-size: 12px;
-  margin-top: 5%;
-}
-.proile-rating span{
-  font-size: 15px;
+
+.tab label{
   font-weight: 700;
 }
-.profile-head .nav-tabs{
-  margin-top: 10%;
-  margin-bottom: 10%;
-}
-.profile-head .nav-tabs .nav-link{
-  font-weight:700;
-  border: none;
-}
-.profile-head .nav-tabs .nav-link.active{
-  border: none;
-  border-bottom:2px solid #0062cc;
-}
-.profile-work{
-  padding: 14%;
-  margin-top: -15%;
-}
-.profile-work p{
-  font-size: 12px;
-  font-weight: 700;
-//margin-top: 10%;
-}
-.profile-work a{
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 14px;
-}
-.profile-work ul{
-  list-style: none;
-}
-.profile-tab label{
-  font-weight: 700;
-}
-.profile-tab p{
+.tab p{
   font-weight: 700;
 }

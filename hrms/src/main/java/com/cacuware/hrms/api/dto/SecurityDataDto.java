@@ -35,4 +35,10 @@ public class SecurityDataDto {
     private String IBAN;
 
     private String email;
+
+    private Integer professionYearsOfLabour;
+
+    private Integer professionMonthsOfLabour;
+
+    private Integer professionDaysOfLabour;
 }

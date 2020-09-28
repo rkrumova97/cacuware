@@ -36,6 +36,10 @@ public class Employee {
     @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate endDate;
 
+    @Column(columnDefinition = "DATE", name = "end_date")
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
+    private LocalDate leavingNoticeSubmissionDate;
+
     @Column(name = "vacation_days")
     private Integer vacationDays;
 
@@ -50,6 +54,9 @@ public class Employee {
 
     @Column(name = "is_fired")
     private Boolean isFired;
+
+    @Column(name = "education")
+    private Education education;
 
     @OneToOne
     @JoinColumn(name = "id")
