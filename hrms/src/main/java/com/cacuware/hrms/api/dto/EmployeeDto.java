@@ -27,7 +27,7 @@ public class EmployeeDto {
 
     private Integer vacationDays;
 
-    private JobType jobNumber;
+    private String jobNumber;
 
     private Integer workingHours;
 

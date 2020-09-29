@@ -2,13 +2,10 @@ package com.cacuware.hrms.model;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.Email;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -36,7 +33,7 @@ public class Employee {
     @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate endDate;
 
-    @Column(columnDefinition = "DATE", name = "end_date")
+    @Column(columnDefinition = "DATE", name = "leaving_notice_submission_date")
     @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
     private LocalDate leavingNoticeSubmissionDate;
 
@@ -56,6 +53,7 @@ public class Employee {
     private Boolean isFired;
 
     @Column(name = "education")
+    @Enumerated(value = EnumType.STRING)
     private Education education;
 
     @OneToOne

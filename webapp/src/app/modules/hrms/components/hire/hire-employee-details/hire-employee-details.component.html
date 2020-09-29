@@ -117,6 +117,32 @@
           </div>
         </div>
 
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="education" class="col-12 col-form-label">Education</label>
+          <div class="col-12">
+            <select
+              [(ngModel)]="employee.education"
+              name="education"
+              id="education"
+              class="custom-select"
+              required
+              #education="ngModel"
+              [ngClass]="{ 'is-invalid': education.invalid && (education.dirty || education.touched || submitted) }">
+              <option *ngFor="let o of education" [ngValue]="o.value">
+                {{o.name}}
+              </option>
+            </select>
+            <div
+              *ngIf="workingHoursSelect.invalid && (workingHoursSelect.dirty || workingHoursSelect.touched || submitted)"
+              class="invalid-feedback d-block">
+              <span>Working Hours is required field.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
         <div class="row m-2"></div>
 
         <div class="row float-right">

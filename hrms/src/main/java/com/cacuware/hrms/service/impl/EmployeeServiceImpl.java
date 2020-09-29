@@ -3,6 +3,7 @@ package com.cacuware.hrms.service.impl;
 import com.cacuware.hrms.api.dto.EmployeeDto;
 import com.cacuware.hrms.mapper.EmployeeMapper;
 import com.cacuware.hrms.model.Employee;
+import com.cacuware.hrms.model.JobType;
 import com.cacuware.hrms.model.SecurityData;
 import com.cacuware.hrms.repository.EmployeeRepository;
 import com.cacuware.hrms.service.EmployeeService;
@@ -51,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             Employee employee = optionalEmployee.get();
             employee.setEndDate(employeeDto.getLeavingDate());
             employee.setIsFired(employeeDto.getIsFired());
-            employee.setJobNumber(employeeDto.getJobNumber());
+            employee.setJobNumber(JobType.getByText(employeeDto.getJobNumber()));
             employee.setPerson(employeeDto.getPerson());
             employee.setSecurityData(employeeDto.getSecurityData());
             employee.setStartDate(employeeDto.getStartDate());

@@ -1,6 +1,10 @@
 package com.cacuware.hrms.model;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public enum JobType {
@@ -37,10 +41,44 @@ public enum JobType {
         this.text = text;
     }
 
-    public static JobType findByJobId(int jobId) {
-        return Arrays.stream(JobType.values())
-                .filter(e -> e.getJobId().equals(jobId))
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException(String.format("Unsupported type %s.", jobId)));
+
+    private static final Map<Integer, JobType> BY_LABEL = new HashMap<>();
+    private static final Map<String, JobType> BY_NAME = new HashMap<>();
+
+    static {
+        for (JobType e : values()) {
+            BY_LABEL.put(e.jobId, e);
+            BY_NAME.put(e.text, e);
+        }
+    }
+
+    public static JobType getByNumber(int label) {
+        return BY_LABEL.get(label);
+    }
+    public static JobType getByText(String text) {
+        return BY_NAME.get(text);
+    }
+
+    public static Map<Integer, JobType> getAll() {
+        return BY_LABEL;
+    }
+
+    public int getValue() {
+        return jobId;
+    }
+
+    public void setValue(int value) {
+        this.jobId = value;
+    }
+
+    public static List<String> getAllNames(){
+        return BY_LABEL.values().stream().map(JobType::getText).collect(Collectors.toList());
+    }
+
+    @Override
+    public String toString() {
+        return "UserType{" +
+                "value =" + jobId +
+                "; name =" + name() + "}";
     }
 }

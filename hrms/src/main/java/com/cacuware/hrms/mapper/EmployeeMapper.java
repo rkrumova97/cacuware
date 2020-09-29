@@ -2,6 +2,7 @@ package com.cacuware.hrms.mapper;
 
 import com.cacuware.hrms.api.dto.EmployeeDto;
 import com.cacuware.hrms.model.Employee;
+import com.cacuware.hrms.model.JobType;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,7 +11,7 @@ public class EmployeeMapper {
         return Employee.builder()
                 .endDate(employee.getLeavingDate())
                 .isFired(employee.getIsFired())
-                .jobNumber(employee.getJobNumber())
+                .jobNumber(JobType.getByText(employee.getJobNumber()))
                 .person(employee.getPerson())
                 .securityData(employee.getSecurityData())
                 .startDate(employee.getStartDate())
@@ -26,7 +27,7 @@ public class EmployeeMapper {
                 .leavingDate(employee.getEndDate())
                 .leavingNoticeSubmissionDate(employee.getLeavingNoticeSubmissionDate())
                 .isFired(employee.getIsFired())
-                .jobNumber(employee.getJobNumber())
+                .jobNumber(employee.getJobNumber().getText())
                 .person(employee.getPerson())
                 .securityData(employee.getSecurityData())
                 .startDate(employee.getStartDate())

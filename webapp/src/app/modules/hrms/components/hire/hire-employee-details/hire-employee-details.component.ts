@@ -46,7 +46,9 @@ export class HireEmployeeDetailsComponent implements OnInit {
       allowSearchFilter: true
     };
 
-
+    this.hrmsService.getResource("/jobs").subscribe(res => {
+      this.jobs = res;
+    });
   }
 
   process() {

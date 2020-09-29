@@ -35,9 +35,11 @@
             </column>
             <column name="start_date" type="DATE"/>
             <column name="end_date" type="DATE"/>
+            <column name="leaving_notice_submission_date" type="DATE"/>
             <column name="vacation_days" type="int"/>
             <column name="job_number" type="int"/>
             <column name="status" type="varchar"/>
+            <column name="education" type="varchar"/>
             <column name="working_hours" type="int"/>
             <column name="working_days" type="int"/>
             <column name="is_fired" type="boolean"/>
@@ -63,6 +65,9 @@
             <column name="years_of_labour" type="int"/>
             <column name="months_of_labour" type="int"/>
             <column name="days_of_labour" type="int"/>
+            <column name="professional_years_of_labour" type="int"/>
+            <column name="professional_months_of_labour" type="int"/>
+            <column name="professional_days_of_labour" type="int"/>
             <column name="salary" type="real"/>
             <column name="IBAN" type="varchar"/>
             <column name="email" type="varchar"/>

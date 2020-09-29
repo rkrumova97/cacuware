@@ -41,7 +41,7 @@
                         <label>Birthday</label>
                       </div>
                       <div class="col-md-6">
-                        <p>{{employee.person.birthday}}</p>
+                        <p>{{employee.person.birthday | date: 'yyyy-MM-dd'}}</p>
                       </div>
                     </div>
                     <div class="row">
@@ -94,28 +94,12 @@
           <ng-template ngbNavContent>
             <div class="row">
               <div class="col-md-8 tab">
-                <div class="row ">
-                  <div class="col-md-6">
-                    <label>Email</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{employee.email}}</p>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label>Salary</label>
-                  </div>
-                  <div class="col-md-6">
-                    <p>{{employee.salary}}</p>
-                  </div>
-                </div>
                 <div class="row">
                   <div class="col-md-6">
                     <label>Start date</label>
                   </div>
                   <div class="col-md-6">
-                    <p>{{employee.startDate}}</p>
+                    <p>{{employee.startDate | date: 'yyyy-MM-dd'}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -163,7 +147,7 @@
                     <label>Notice of leave submission date</label>
                   </div>
                   <div class="col-md-6">
-                    <p>{{employee.leavingNoticeSubmissionDate}}</p>
+                    <p>{{employee.leavingNoticeSubmissionDate | date: 'yyyy-MM-dd'}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -171,7 +155,7 @@
                     <label>End date</label>
                   </div>
                   <div class="col-md-6">
-                    <p>{{employee.leavingDate}}</p>
+                    <p>{{employee.leavingDate | date: 'yyyy-MM-dd'}}</p>
                   </div>
                 </div>
               </div>
@@ -185,6 +169,14 @@
               <div class="col-md-8 tab">
                 <div class="row ">
                   <div class="col-md-6">
+                    <label>Email</label>
+                  </div>
+                  <div class="col-md-6">
+                    <p>{{employee.email}}</p>
+                  </div>
+                </div>
+                <div class="row ">
+                  <div class="col-md-6">
                     <label>Id Card Number</label>
                   </div>
                   <div class="col-md-6">
@@ -196,7 +188,7 @@
                     <label>Id Card Issued Date</label>
                   </div>
                   <div class="col-md-6">
-                    <p>{{employee.idCardIssuedDate}}</p>
+                    <p>{{employee.idCardIssuedDate | date: 'yyyy-MM-dd'}}</p>
                   </div>
                 </div>
                 <div class="row">

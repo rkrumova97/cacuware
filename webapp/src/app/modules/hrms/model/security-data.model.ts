@@ -7,6 +7,9 @@ export interface ISecurityData {
   yearsOfLabour?: number;
   monthsOfLabour?: number;
   daysOfLabour?: number;
+  professionYearsOfLabour?: number;
+  professionMonthsOfLabour?: number;
+  professionDaysOfLabour?: number;
   salary?: string;
   iban?: string;
   email?: string;
@@ -24,6 +27,9 @@ export class SecurityDataModel implements ISecurityData {
     public daysOfLabour?: number,
     public salary?: string,
     public iban?: string,
-    public email?: string
+    public email?: string,
+    public professionYearsOfLabour?: number,
+    public professionMonthsOfLabour?: number,
+    public professionDaysOfLabour?: number,
   ) {}
 }
