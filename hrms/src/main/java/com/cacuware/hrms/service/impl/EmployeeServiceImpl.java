@@ -49,7 +49,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeDto.getId());
         if (optionalEmployee.isPresent()) {
             Employee employee = optionalEmployee.get();
-            employee.setEndDate(employeeDto.getEndDate());
+            employee.setEndDate(employeeDto.getLeavingDate());
             employee.setIsFired(employeeDto.getIsFired());
             employee.setJobNumber(employeeDto.getJobNumber());
             employee.setPerson(employeeDto.getPerson());
