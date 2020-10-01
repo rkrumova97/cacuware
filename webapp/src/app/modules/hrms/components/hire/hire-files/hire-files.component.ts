@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from "../../../service/data.service";
 
 @Component({
   selector: 'app-hire-files',
@@ -7,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HireFilesComponent implements OnInit {
   success: boolean = true;
+  id?: string;
 
-  constructor() { }
+  constructor( private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.id = this.dataService.employee?.id;
   }
 
   process() {

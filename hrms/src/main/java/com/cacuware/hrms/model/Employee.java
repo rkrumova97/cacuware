@@ -1,5 +1,6 @@
 package com.cacuware.hrms.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
@@ -58,10 +59,12 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @MapsId
     private Person person;
 
     @OneToOne
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JoinColumn(name = "security_data_id")
     private SecurityData securityData;
 

@@ -1,6 +1,5 @@
 package com.cacuware.hrms.model;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +54,7 @@ public enum JobType {
     public static JobType getByNumber(int label) {
         return BY_LABEL.get(label);
     }
+
     public static JobType getByText(String text) {
         return BY_NAME.get(text);
     }
@@ -71,7 +71,7 @@ public enum JobType {
         this.jobId = value;
     }
 
-    public static List<String> getAllNames(){
+    public static List<String> getAllNames() {
         return BY_LABEL.values().stream().map(JobType::getText).collect(Collectors.toList());
     }
 

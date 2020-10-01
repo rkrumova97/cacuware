@@ -5,6 +5,7 @@ import {DataService} from "../../../service/data.service";
 import {Employee} from "../../../model/employee.model";
 import {Person} from "../../../model/person.model";
 import {Route, Router} from "@angular/router";
+import {HttpHandler} from "@angular/common/http";
 
 @Component({
   selector: 'app-hire-sensitive-info',
@@ -26,12 +27,15 @@ export class HireSensitiveInfoComponent implements OnInit {
 
   process() {
     this.hrmsService.postResource("/securityData", this.security).subscribe(r => {
-      this.router.navigate(['/hr/documents']);
       this.success = true;
+      this.security = r;
+      this.router.navigate(['/hr/documents']);
+      let employee = this.dataService.employee ? this.dataService.employee : new Employee(new Person());
+      employee.securityData = this.security;
+      console.log(employee);
+      this.hrmsService.updateResource("/employees", employee).subscribe()
     }, error => this.success = false);
-    let employee = this.dataService.employee ? this.dataService.employee : new Employee(new Person());
-    employee.securityData = this.security;
-    this.hrmsService.updateResource("/employees", employee).subscribe();
+;
   }
 
   close() {

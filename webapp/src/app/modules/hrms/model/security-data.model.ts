@@ -1,8 +1,8 @@
 export interface ISecurityData {
   id?: string;
-  idCardNumber?: number;
-  idCardIssuedDate?: string;
-  idCardAuthority?: string;
+  idNumber?: number;
+  issuedDate?: string;
+  authority?: string;
   egn?: string;
   yearsOfLabour?: number;
   monthsOfLabour?: number;
@@ -18,9 +18,9 @@ export interface ISecurityData {
 export class SecurityDataModel implements ISecurityData {
   constructor(
     public id?: string,
-    public idCardNumber?: number,
-    public idCardIssuedDate?: string,
-    public idCardAuthority?: string,
+    public idNumber?: number,
+    public issuedDate?: string,
+    public authority?: string,
     public egn?: string,
     public yearsOfLabour?: number,
     public monthsOfLabour?: number,

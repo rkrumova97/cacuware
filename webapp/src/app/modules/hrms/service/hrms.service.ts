@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Employee} from "../model/employee.model";
 
 
 @Injectable({
@@ -43,6 +44,7 @@ export class HrmsService {
       'Content-type': 'application/json',
       'Authorization': 'Bearer ' + this.token
     });
+
     return this.http.put(this.resourceUrl + resource, object, {headers: headers});
   }
 

@@ -30,7 +30,6 @@ public class SecurityData {
     private UUID id;
 
     @Column
-    @Max(value = 9)
     private Short egn;
 
     @Column

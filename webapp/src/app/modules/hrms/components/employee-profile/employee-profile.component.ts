@@ -3,6 +3,7 @@ import {Employee} from "../../model/employee.model";
 import {HrmsService} from "../../service/hrms.service";
 import {ActivatedRoute} from "@angular/router";
 import {Person} from "../../model/person.model";
+import {SecurityDataModel} from "../../model/security-data.model";
 
 @Component({
   selector: 'app-employee-profile',
@@ -20,7 +21,7 @@ export class EmployeeProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employee = new Employee(new Person());
+    this.employee = new Employee(new Person(), new SecurityDataModel());
 
     this.id = this.route.snapshot.paramMap.get('id');
     this.http.getOneResource('/employees/' + this.id).subscribe(res => {

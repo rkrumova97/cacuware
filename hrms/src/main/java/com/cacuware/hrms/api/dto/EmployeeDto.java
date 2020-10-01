@@ -35,9 +35,9 @@ public class EmployeeDto {
 
     private Boolean isFired;
 
-    private Person person;
+    private PersonDto person;
 
-    private SecurityData securityData;
+    private SecurityDataDto securityData;
 
     private String education;
 

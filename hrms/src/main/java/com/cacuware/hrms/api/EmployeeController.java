@@ -41,12 +41,10 @@ public class EmployeeController {
     }
 
     @PutMapping
-    public ResponseEntity<Employee> update(@RequestBody EmployeeDto employeeDto) {
-        Employee employee = employeeService.updateEmployee(employeeDto);
-        if (Objects.nonNull(employee)) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT)
-                    .body(employee);
-        } else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<Employee> update(@RequestBody EmployeeDto employeeDto) throws URISyntaxException {
+        Employee employee = employeeService.saveEmployee(employeeDto);
+        return ResponseEntity.created(new URI("/api/" + employee.getId()))
+                .body(employee);
     }
 
     @DeleteMapping(value = "/{uuid}")

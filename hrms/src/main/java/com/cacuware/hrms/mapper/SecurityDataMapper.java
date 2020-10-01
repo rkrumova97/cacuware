@@ -19,23 +19,27 @@ public class SecurityDataMapper {
                 .monthsOfLabour(securityDataDto.getMonthsOfLabour())
                 .salary(securityDataDto.getSalary())
                 .yearsOfLabour(securityDataDto.getYearsOfLabour())
-
+                .professionalDaysOfLabour(securityDataDto.getProfessionDaysOfLabour())
+                .professionalMonthsOfLabour(securityDataDto.getProfessionMonthsOfLabour())
+                .professionalYearsOfLabour(securityDataDto.getProfessionYearsOfLabour())
                 .build();
     }
 
-    public SecurityDataDto toDto(SecurityData securityData) {
+    public static SecurityDataDto toDto(SecurityData securityData) {
         return SecurityDataDto.builder()
                 .id(securityData.getId())
                 .egn(securityData.getEgn())
                 .authority(securityData.getAuthority())
                 .daysOfLabour(securityData.getDaysOfLabour())
                 .email(securityData.getEmail())
-                .IBAN(securityData.getIBAN())
                 .idNumber(securityData.getIdNumber())
                 .issuedDate(securityData.getIssuedDate())
                 .monthsOfLabour(securityData.getMonthsOfLabour())
                 .salary(securityData.getSalary())
                 .yearsOfLabour(securityData.getYearsOfLabour())
+                .professionDaysOfLabour(securityData.getDaysOfLabour())
+                .professionMonthsOfLabour(securityData.getMonthsOfLabour())
+                .professionYearsOfLabour(securityData.getYearsOfLabour())
                 .build();
     }
 }

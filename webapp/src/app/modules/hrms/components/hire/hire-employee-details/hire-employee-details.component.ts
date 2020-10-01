@@ -52,11 +52,14 @@ export class HireEmployeeDetailsComponent implements OnInit {
   }
 
   process() {
-    this.hrmsService.postResource("/employees", this.employee).subscribe(r => {
-      this.router.navigate(['/hr/sensitive-info']);
+    this.hrmsService.postResource("/employees", this.employee).subscribe((r: Employee) => {
       this.success = true;
+      this.employee = r;
+      this.dataService.employee = this.employee;
+      this.dataService.employee.id = r.id;
+      console.log(r.id);
+      this.router.navigate(['/hr/sensitive-info']);
     }, error => this.success = false);
-    this.dataService.employee = this.employee;
   }
 
   close() {
