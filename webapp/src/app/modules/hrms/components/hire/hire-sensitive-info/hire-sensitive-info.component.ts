@@ -4,7 +4,7 @@ import {HrmsService} from "../../../service/hrms.service";
 import {DataService} from "../../../service/data.service";
 import {Employee} from "../../../model/employee.model";
 import {Person} from "../../../model/person.model";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {HttpHandler} from "@angular/common/http";
 
 @Component({
@@ -18,11 +18,17 @@ export class HireSensitiveInfoComponent implements OnInit {
   success: boolean = true;
 
 
-  constructor(private hrmsService: HrmsService, private dataService: DataService, private router:Router) {
+  constructor(private hrmsService: HrmsService, private dataService: DataService,
+              private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.security = new SecurityDataModel();
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.hrmsService.getOneResource("/securityData/" + this.route.snapshot.paramMap.get('id')).subscribe(res => {
+        this.security = res;
+      });
+    }
   }
 
   process() {
@@ -35,7 +41,7 @@ export class HireSensitiveInfoComponent implements OnInit {
       console.log(employee);
       this.hrmsService.updateResource("/employees", employee).subscribe()
     }, error => this.success = false);
-;
+    ;
   }
 
   close() {

@@ -32,6 +32,13 @@ export class HrRoutes {
       ],
     },
     {
+      path: 'hire/:id',
+      component: HireEmployeeComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
       path: 'employee-details',
       component: HireEmployeeDetailsComponent,
       children: [
@@ -39,7 +46,21 @@ export class HrRoutes {
       ],
     },
     {
+      path: 'employee-details/:id',
+      component: HireEmployeeDetailsComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
       path: 'sensitive-info',
+      component: HireSensitiveInfoComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
+      path: 'sensitive-info/:id',
       component: HireSensitiveInfoComponent,
       children: [
         {path: 'hr', component: HrmsComponent}

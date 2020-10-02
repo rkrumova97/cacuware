@@ -90,3 +90,5 @@ fabric.properties
 /customer/target/classes/com/cacuware/file/api/dto/UploadFileResponse.class
 /.idea/inspectionProfiles/Project_Default.xml
 /cacuware.iml
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/codeStyles/Project.xml

@@ -3,7 +3,7 @@ import {Employee} from "../../../model/employee.model";
 import {HrmsService} from "../../../service/hrms.service";
 import {DataService} from "../../../service/data.service";
 import {Person} from "../../../model/person.model";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-hire-employee-details',
@@ -29,22 +29,31 @@ export class HireEmployeeDetailsComponent implements OnInit {
     {name: 'Eight hours a day', value: 8}
   ];
 
-  constructor(private hrmsService:HrmsService, private dataService: DataService, private router: Router) {
+  constructor(private hrmsService:HrmsService, private dataService: DataService, private router: Router,
+              private route: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.employee = new Employee(new Person());
     this.employee.person = this.dataService.person!;
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
+    // this.dropdownSettings = {
+    //   singleSelection: false,
+    //   idField: 'item_id',
+    //   textField: 'item_text',
+    //   selectAllText: 'Select All',
+    //   unSelectAllText: 'UnSelect All',
+    //   itemsShowLimit: 3,
+    //   allowSearchFilter: true
+    // };
+
+    if(this.route.snapshot.paramMap.get('id')){
+      this.hrmsService.getOneResource("/employees/" + this.route.snapshot.paramMap.get('id')).subscribe(res =>{
+        this.employee = res;
+      });
+
+      console.log(this.employee);
+    }
 
     this.hrmsService.getResource("/jobs").subscribe(res => {
       this.jobs = res;
@@ -54,11 +63,15 @@ export class HireEmployeeDetailsComponent implements OnInit {
   process() {
     this.hrmsService.postResource("/employees", this.employee).subscribe((r: Employee) => {
       this.success = true;
+
+      if(this.employee.id){
+        this.router.navigate(['/hr/profile/'+this.employee.id]);
+      } else  this.router.navigate(['/hr/sensitive-info']);
+
       this.employee = r;
       this.dataService.employee = this.employee;
       this.dataService.employee.id = r.id;
       console.log(r.id);
-      this.router.navigate(['/hr/sensitive-info']);
     }, error => this.success = false);
   }
 

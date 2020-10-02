@@ -87,6 +87,11 @@
                   </div>
                 </div>
               </div>
+            <div class="row float-right">
+              <button type="button" class="btn btn-primary m-2" routerLink="/hr/hire/{{employee.person.id}}">
+                Edit
+              </button>
+            </div>
           </ng-template>
         </li>
         <li [ngbNavItem]="2">
@@ -159,6 +164,11 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="row float-right">
+              <button type="button" class="btn btn-primary m-2" routerLink="/hr/employee-details/{{id}}">
+                Edit
+              </button>
             </div>
           </ng-template>
         </li>
@@ -248,6 +258,11 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div class="row float-right">
+              <button type="button" class="btn btn-primary m-2" routerLink="/hr/sensitive-info/{{employee.securityData.id}}">
+                Edit
+              </button>
             </div>
           </ng-template>
         </li>

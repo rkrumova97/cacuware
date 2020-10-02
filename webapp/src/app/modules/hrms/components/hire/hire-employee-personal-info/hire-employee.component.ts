@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Person} from "../../../model/person.model";
 import {HrmsService} from "../../../service/hrms.service";
 import {DataService} from "../../../service/data.service";
@@ -23,13 +23,19 @@ export class HireEmployeeComponent implements OnInit {
   submitted = false;
   success: boolean = true;
 
-  constructor(http: HttpClient, router: Router, private hrmsService: HrmsService, private dataService: DataService) {
+  constructor(http: HttpClient, router: Router, private hrmsService: HrmsService,
+              private dataService: DataService, private route: ActivatedRoute) {
     this.http = http;
     this.router = router;
   }
 
   ngOnInit() {
     this.person = new Person();
+    if(this.route.snapshot.paramMap.get('id') !== undefined || this.route.snapshot.paramMap.get('id') !== undefined){
+       this.hrmsService.getOneResource("/persons/" + this.route.snapshot.paramMap.get('id')).subscribe(res =>{
+         this.person = res;
+       });
+    }
   }
 
   process(): void {

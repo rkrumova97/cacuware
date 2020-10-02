@@ -36,6 +36,7 @@
                      type="date"
                      id="startingDate"
                      [(ngModel)]="employee.startDate"
+                     value="{{employee.startDate}}"
                      name="startingDate"
                      required
                      #startingDate="ngModel"
@@ -58,6 +59,7 @@
                      id="vacation"
                      name="vacation"
                      [(ngModel)]="employee.vacationDays"
+                     value="{{employee.vacationDays}}"
                      required
                      #vacation="ngModel"
                      [ngClass]="{ 'is-invalid': vacation.invalid && (vacation.dirty || vacation.touched || submitted) }"/>
@@ -76,6 +78,7 @@
             <div class="col-12">
               <select
                 [(ngModel)]="employee.workingHours"
+                [value]="employee.workingHours"
                 name="workingHoursSelect"
                 id="workingHoursSelect"
                 class="custom-select"
@@ -98,6 +101,7 @@
             <label for="workingDaysSelect" class="col-12 col-form-label">Working Days</label>
             <div class="col-12">
               <select [(ngModel)]="employee.workingDays"
+                      [value]="employee.workingDays"
                       name="workingDaysSelect"
                       id="workingDaysSelect"
                       class="custom-select"
@@ -123,6 +127,7 @@
           <div class="col-12">
             <select
               [(ngModel)]="employee.education"
+              [value]="employee.education"
               name="education"
               id="education"
               class="custom-select"
@@ -149,7 +154,8 @@
           <button type="button" class="btn btn-primary m-2" routerLink="/hr/hire">
             Back
           </button>
-          <button type="button" class="btn btn-primary m-2" (click)="process()">Next
+          <button type="button" class="btn btn-primary m-2" (click)="process()">
+            Next
           </button>
         </div>
 
