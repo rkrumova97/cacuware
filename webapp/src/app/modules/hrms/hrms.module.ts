@@ -18,6 +18,8 @@ import { HireFilesComponent } from './components/hire/hire-files/hire-files.comp
 import {CookieService} from "ngx-cookie-service";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { PopupComponent } from './components/popup/popup.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {NgbCardModule} from "ngb-card";
 
 
 
@@ -28,7 +30,8 @@ import { PopupComponent } from './components/popup/popup.component';
     HrmsRoutingModule,
     FormsModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbCardModule
   ],
   providers: [CookieService]
 })

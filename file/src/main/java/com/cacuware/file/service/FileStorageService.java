@@ -1,5 +1,6 @@
 package com.cacuware.file.service;
 
+import com.cacuware.file.api.dto.UploadFileResponse;
 import com.cacuware.file.exception.FileStorageException;
 import com.cacuware.file.exception.MyFileNotFoundException;
 import com.cacuware.file.model.File;
@@ -9,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,17 +22,17 @@ public class FileStorageService {
     @Autowired
     private FileRepository fileRepository;
 
-    public File storeFile(MultipartFile file, int businessFile) {
+    public File storeFile(MultipartFile file, String businessFile) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
             // Check if the file's name contains invalid characters
-            if(fileName.contains("..")) {
+            if (fileName.contains("..")) {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            File dbFile = new File(fileName, file.getContentType(), Type.getByValue(businessFile), file.getBytes());
+            File dbFile = new File(fileName, file.getContentType(), Type.getByValue(Integer.parseInt(businessFile)), file.getBytes());
 
             return fileRepository.save(dbFile);
         } catch (IOException ex) {
@@ -38,5 +42,21 @@ public class FileStorageService {
 
     public File getFile(UUID fileId) {
         return fileRepository.findOne(fileId);
+    }
+
+    public List<UploadFileResponse> getFilesData() {
+        List<UploadFileResponse> list = new ArrayList<>();
+        fileRepository.findAll().forEach(file -> {
+            list.add(UploadFileResponse.builder()
+                    .size(file.getFile().length)
+                    .fileName(file.getFileName())
+                    .fileType(file.getFileType())
+                    .fileDownloadUri(ServletUriComponentsBuilder.fromCurrentContextPath()
+                            .path("/downloadFile/")
+                            .path(file.getId().toString())
+                            .toUriString())
+                    .build());
+        });
+        return list;
     }
 }

@@ -26,6 +26,7 @@
     "copy-webpack-plugin": "^6.0.3",
     "eslint": "^7.4.0",
     "jquery": "^3.5.1",
+    "ngb-card": "^1.2.2",
     "ngx-cookie-service": "^10.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.5",
