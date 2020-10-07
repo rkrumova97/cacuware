@@ -25,7 +25,7 @@ export class PopupComponent {
     this.modal = modal;
   }
 
-  fire(id?: string): string {
+  fire(id: string | null | undefined): string {
     console.log(id);
 
     this.http.getResource('/employees/fire/' + id)

@@ -33,7 +33,6 @@ public class SecurityData {
     private Short egn;
 
     @Column
-    @Max(value = 9)
     private Short idNumber;
 
     @Column(columnDefinition = "DATE", name = "issued_date")
@@ -48,18 +47,15 @@ public class SecurityData {
     private Integer yearsOfLabour;
 
     @Column
-    @Max(value = 2)
     private Integer monthsOfLabour;
 
     @Column
     private Integer daysOfLabour;
 
     @Column
-    @Max(value = 2)
     private Integer professionalYearsOfLabour;
 
     @Column
-    @Max(value = 2)
     private Integer professionalMonthsOfLabour;
 
     @Column

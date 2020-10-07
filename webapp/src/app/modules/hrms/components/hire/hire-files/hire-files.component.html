@@ -29,199 +29,33 @@
                 {{ progress }}%
               </div>
             </div>
-            <label class="btn btn-default"> Photo
+            <label class="btn btn-default"> Избери файл
               <input type="file" (change)="selectFile($event)"/>
             </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('1')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
+            <form [formGroup]="form" (ngSubmit)="upload()">
 
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> Noi
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('2')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
+              <label for="type">Type</label>
+              <select formControlName="type" id="type">
+                <option *ngFor="let order of documentTypes; let i = index" [value]="documentTypes[i]">
+                  {{order}}
+                </option>
+              </select>
 
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> Medicine
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('3')">
-              Upload
+              <br><br>
+            </form>
+            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload()">
+              Качи
             </button>
             <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
           </div>
         </div>
-
-        <div class="row m-4"></div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> Instructions protocol
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('4')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
-
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> Job description
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('5')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
-
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> ID card
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('6')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
-        </div>
-
-        <div class="row m-4"></div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> Diplomas / Certificate
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('7')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
-
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> DLPS Cards
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('8')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
-
-          <div class="col-md-4">
-            <div *ngIf="currentFile" class="progress">
-              <div
-                class="progress-bar progress-bar-info progress-bar-striped"
-                role="progressbar"
-                attr.aria-valuenow="{{ progress }}"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                [ngStyle]="{ width: progress + '%' }">
-                {{ progress }}%
-              </div>
-            </div>
-            <label class="btn btn-default"> Other
-              <input type="file" (change)="selectFile($event)"/>
-            </label>
-            <button class="btn btn-dark" [disabled]="!selectedFiles" (click)="upload('9')">
-              Upload
-            </button>
-            <ngb-alert type="danger" *ngIf="message">{{ message }}</ngb-alert>
-          </div>
-        </div>
-
         <div class="row m-4"></div>
 
         <div class="card">
           <div class="card-header">List of Files</div>
           <ul
             class="list-group list-group-flush"
-            *ngFor="let file of fileInfos | async"
+            *ngFor="let file of fileInfos"
           >
             <li class="list-group-item">
               <a href="{{ file.fileDownloadUri }}">{{ file.fileName }}</a>
@@ -236,7 +70,7 @@
           <button type="button" class="btn btn-primary m-2">
             Generate contract
           </button>
-          <button type="button" class="btn btn-primary m-2" routerLink="/hr/profile/{{id}}">
+          <button type="button" class="btn btn-primary m-2" routerLink="/hr/profile/{{employee!.id}}">
             Finish
           </button>
         </div>

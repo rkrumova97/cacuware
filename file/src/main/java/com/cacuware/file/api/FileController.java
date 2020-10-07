@@ -2,7 +2,9 @@ package com.cacuware.file.api;
 
 import com.cacuware.file.api.dto.UploadFileResponse;
 import com.cacuware.file.model.File;
+import com.cacuware.file.model.Type;
 import com.cacuware.file.service.FileStorageService;
+import com.cacuware.file.service.GenerateFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
@@ -25,6 +27,9 @@ public class FileController {
     @Autowired
     private FileStorageService dbFileStorageService;
 
+    @Autowired
+    private GenerateFileService generateFileService;
+
     @PostMapping("/uploadFile")
     @Produces("application/json")
     public ResponseEntity<UploadFileResponse> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam("type") String type) {
@@ -35,7 +40,7 @@ public class FileController {
                 .path(dbFile.getId().toString())
                 .toUriString();
 
-        return ResponseEntity.ok(new UploadFileResponse(dbFile.getFileName(), fileDownloadUri,
+        return ResponseEntity.ok(new UploadFileResponse(dbFile.getId(), dbFile.getFileName(), fileDownloadUri,
                 file.getContentType(), file.getSize()));
     }
 
@@ -64,6 +69,17 @@ public class FileController {
     @GetMapping("/getFiles")
     public ResponseEntity<List<UploadFileResponse>> getFiles() {
         return ResponseEntity.ok(dbFileStorageService.getFilesData());
+    }
+
+    @GetMapping("/getFileTypes")
+    public ResponseEntity<List<String>> getFileTypes() {
+        return ResponseEntity.ok(Type.getAllNames());
+    }
+
+    @GetMapping("/getWord")
+    public ResponseEntity<?> getWord() throws Exception {
+        generateFileService.createWord();
+        return ResponseEntity.ok().build();
     }
 
 

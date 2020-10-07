@@ -31,11 +31,12 @@ export class HireEmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.person = new Person();
-    if(this.route.snapshot.paramMap.get('id') !== undefined || this.route.snapshot.paramMap.get('id') !== undefined){
+    if(this.route.snapshot.paramMap.get('id') !== undefined && this.route.snapshot.paramMap.get('id') !== null){
        this.hrmsService.getOneResource("/persons/" + this.route.snapshot.paramMap.get('id')).subscribe(res =>{
          this.person = res;
        });
     }
+    console.log(this.route.snapshot.paramMap.get('id'));
   }
 
   process(): void {

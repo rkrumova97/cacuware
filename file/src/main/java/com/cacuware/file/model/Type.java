@@ -3,6 +3,7 @@ package com.cacuware.file.model;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 public enum Type {
@@ -15,7 +16,8 @@ public enum Type {
     ID_CARD(7),
     CERTIFICATES(8),
     OTHERS(9),
-    LPS(10);
+    REQUEST_HIRE(10),
+    LPS(11);
 
     private int value;
 
@@ -49,6 +51,14 @@ public enum Type {
 
     public static List<String> getAllNames(){
         return BY_LABEL.values().stream().map(Type::name).collect(Collectors.toList());
+    }
+
+    public static Type getByName(String name){
+        AtomicReference<Type> type = new AtomicReference<>();
+        BY_LABEL.values().forEach(t -> {
+             if(t.name().equals(name)) type.set(t);
+         });
+        return type.get();
     }
 
     @Override

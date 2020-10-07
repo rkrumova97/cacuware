@@ -41,7 +41,6 @@ export class HireSensitiveInfoComponent implements OnInit {
       console.log(employee);
       this.hrmsService.updateResource("/employees", employee).subscribe()
     }, error => this.success = false);
-    ;
   }
 
   close() {

@@ -7,5 +7,5 @@ import {Employee} from "../model/employee.model";
 })
 export class DataService {
   public person!: Person;
-  public employee?: Employee;
+  public employee!: Employee;
 }

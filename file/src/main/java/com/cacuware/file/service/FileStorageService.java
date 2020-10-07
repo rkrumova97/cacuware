@@ -32,7 +32,7 @@ public class FileStorageService {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            File dbFile = new File(fileName, file.getContentType(), Type.getByValue(Integer.parseInt(businessFile)), file.getBytes());
+            File dbFile = new File(fileName, file.getContentType(), Type.getByName(businessFile), file.getBytes());
 
             return fileRepository.save(dbFile);
         } catch (IOException ex) {
@@ -48,6 +48,7 @@ public class FileStorageService {
         List<UploadFileResponse> list = new ArrayList<>();
         fileRepository.findAll().forEach(file -> {
             list.add(UploadFileResponse.builder()
+                    .id(file.getId())
                     .size(file.getFile().length)
                     .fileName(file.getFileName())
                     .fileType(file.getFileType())

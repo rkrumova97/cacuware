@@ -31,6 +31,9 @@ public class EmployeeMapper {
         if (Objects.nonNull(employeeDto.getSecurityData())) {
             employee.setSecurityData(SecurityDataMapper.toEntity(employeeDto.getSecurityData()));
         }
+        if (Objects.nonNull(employeeDto.getFileIds())) {
+            employee.setFileIDs(employeeDto.getFileIds());
+        }
         return employee;
     }
 
@@ -46,6 +49,7 @@ public class EmployeeMapper {
                 .vacationDays(employee.getVacationDays())
                 .workingDays(employee.getWorkingDays())
                 .workingHours(employee.getWorkingHours())
+                .fileIds(employee.getFileIDs())
                 .build();
     }
 }

@@ -44,4 +44,11 @@ export class FileService {
     });
     return this.http.get(`${this.baseUrl}/getFiles`, {headers: headers});
   }
+
+  getFileTypes(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    });
+    return this.http.get(`${this.baseUrl}/getFileTypes`, {headers: headers});
+  }
 }

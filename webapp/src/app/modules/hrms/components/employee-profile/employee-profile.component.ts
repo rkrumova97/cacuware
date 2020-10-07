@@ -4,6 +4,7 @@ import {HrmsService} from "../../service/hrms.service";
 import {ActivatedRoute} from "@angular/router";
 import {Person} from "../../model/person.model";
 import {SecurityDataModel} from "../../model/security-data.model";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'app-employee-profile',
@@ -16,7 +17,7 @@ export class EmployeeProfileComponent implements OnInit {
   employee!: Employee;
   http: HrmsService;
 
-  constructor(private route: ActivatedRoute, http: HrmsService) {
+  constructor(private route: ActivatedRoute, http: HrmsService, private dataService:DataService) {
     this.http = http;
   }
 
@@ -26,8 +27,11 @@ export class EmployeeProfileComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.http.getOneResource('/employees/' + this.id).subscribe(res => {
       this.employee = res;
-      console.log(this.employee);
+      this.dataService.employee = res;
+      this.dataService.employee.id= this.id;
+      console.log(this.dataService.employee);
     });
+
   }
 
 

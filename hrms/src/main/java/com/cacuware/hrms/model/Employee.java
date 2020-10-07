@@ -7,6 +7,7 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -68,11 +69,10 @@ public class Employee {
     @JoinColumn(name = "security_data_id")
     private SecurityData securityData;
 
-//    @ManyToMany
-//    @JoinTable(name = "employee_fieldid",
-//            joinColumns = { @JoinColumn(name = "employee_id",nullable = false)},
-//            inverseJoinColumns = { @JoinColumn(name = "file_id")})
-//    private List<UUID> fileIDs;
+    @ElementCollection
+    @CollectionTable(name = "employee_fileids", joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"))
+    @Column(name = "file_id")
+    private List<UUID> fileIDs;
 
     @Override
     public String toString() {

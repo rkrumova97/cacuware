@@ -74,6 +74,13 @@ export class HrRoutes {
       ],
     },
     {
+      path: 'documents/:id',
+      component: HireFilesComponent,
+      children: [
+        {path: 'hr', component: HrmsComponent}
+      ],
+    },
+    {
       path: 'fire',
       component: FireEmployeeComponent,
       children: [

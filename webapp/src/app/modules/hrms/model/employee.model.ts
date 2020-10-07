@@ -2,7 +2,7 @@ import {Person} from "./person.model";
 import {SecurityDataModel} from "./security-data.model";
 
 export interface IEmployee {
-  id?: string;
+  id?:  string | null | undefined;
   idCardNumber?: string;
   idCardIssuedDate?: string;
   idCardAuthority?: string;
@@ -14,9 +14,6 @@ export interface IEmployee {
   egn?: number;
   salary?: number;
   iban?: string;
-  yearsOfLabour?: string;
-  monthsOfLabour?: string;
-  daysOfLabour?: string;
   startDate?: Date;
   leavingDate?: Date;
   leavingNoticeSubmissionDate?: Date;
@@ -24,16 +21,14 @@ export interface IEmployee {
   securityData?: SecurityDataModel;
   show?: any;
   education?: string;
-  professionYearsOfLabour?: string;
-  professionMonthsOfLabour?: string;
-  professionDaysOfLabour?: string;
+  filesIds?: string[];
 }
 
 export class Employee implements IEmployee {
   constructor(
     public person: Person,
     public securityData?: SecurityDataModel,
-    public id?: string,
+    public id?: string | null | undefined,
     public idCardNumber?: string,
     public idCardIssuedDate?: string,
     public idCardAuthority?: string,
@@ -46,6 +41,7 @@ export class Employee implements IEmployee {
     public leavingNoticeSubmissionDate?: Date,
     public show?: any,
     public education?: string,
+    public fileIds?: string[]
   ) {
   }
 }
