@@ -21,6 +21,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static com.cacuware.file.model.Type.CONTRACT;
+
 @RestController
 public class FileController {
 
@@ -76,8 +78,15 @@ public class FileController {
         return ResponseEntity.ok(Type.getAllNames());
     }
 
-    @GetMapping("/getWord")
-    public ResponseEntity<?> getWord() throws Exception {
+    @GetMapping("/getWord/{type}")
+    public ResponseEntity<?> getWord(@PathVariable String type) throws Exception {
+        switch (type){
+            case "contract": generateFileService.createContract();
+            case "instructions": generateFileService.createInstruction();
+            case "requestHire": generateFileService.createWord();
+            case "gdpr": generateFileService.createGDPR();
+            case "fire": generateFileService.createFireDocument();
+        }
         generateFileService.createWord();
         return ResponseEntity.ok().build();
     }

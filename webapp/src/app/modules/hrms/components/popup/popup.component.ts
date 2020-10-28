@@ -33,6 +33,7 @@ export class PopupComponent {
         console.log(r);
         this.router.navigate(['/hr/archive']);
       });
+
     this.modal.close();
     return "null";
   }

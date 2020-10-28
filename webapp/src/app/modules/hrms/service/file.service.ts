@@ -51,4 +51,8 @@ export class FileService {
     });
     return this.http.get(`${this.baseUrl}/getFileTypes`, {headers: headers});
   }
+
+  generateFiles(){
+    
+  }
 }
