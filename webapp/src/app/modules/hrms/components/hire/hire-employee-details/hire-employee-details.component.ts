@@ -13,6 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class HireEmployeeDetailsComponent implements OnInit {
   employee!: Employee;
   jobs?: string[];
+  education?: string[];
   submitted = false;
   dropdownSettings = {};
   success: boolean = true;
@@ -57,6 +58,10 @@ export class HireEmployeeDetailsComponent implements OnInit {
 
     this.hrmsService.getResource("/jobs").subscribe(res => {
       this.jobs = res;
+    });
+
+    this.hrmsService.getResource("/education").subscribe(res => {
+      this.education = res;
     });
   }
 

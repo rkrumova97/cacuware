@@ -58,7 +58,7 @@
             *ngFor="let file of fileInfos"
           >
             <li class="list-group-item">
-              <a href="{{ file.fileDownloadUri }}">{{ file.fileName }}</a>
+              <input type="button" (click)="download(file.fileDownloadUri, file.fileName)" value="{{ file.fileName }}"/>
             </li>
           </ul>
         </div>

@@ -123,26 +123,15 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="education" class="col-12 col-form-label">Education</label>
+          <label class="col-12 col-form-label">Education</label>
           <div class="col-12">
-            <select
-              [(ngModel)]="employee.education"
-              [value]="employee.education"
-              name="education"
-              id="education"
-              class="custom-select"
-              required
-              #education="ngModel"
-              [ngClass]="{ 'is-invalid': education.invalid && (education.dirty || education.touched || submitted) }">
-              <option *ngFor="let o of education" [ngValue]="o.value">
-                {{o.name}}
-              </option>
-            </select>
-            <div
-              *ngIf="workingHoursSelect.invalid && (workingHoursSelect.dirty || workingHoursSelect.touched || submitted)"
-              class="invalid-feedback d-block">
-              <span>Working Hours is required field.</span>
-            </div>
+            <ng-container *ngFor="let e of education">
+              <div class="custom-control custom-radio">
+                <input type="radio" id="{{e}}" name="education" class="custom-control-input"
+                       [value]="e" [(ngModel)]="employee.education">
+                <label class="custom-control-label" for="{{e}}">{{e}}</label>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>

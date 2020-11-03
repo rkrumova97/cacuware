@@ -1,6 +1,7 @@
 package com.cacuware.hrms.mapper;
 
 import com.cacuware.hrms.api.dto.EmployeeDto;
+import com.cacuware.hrms.model.Education;
 import com.cacuware.hrms.model.Employee;
 import com.cacuware.hrms.model.JobType;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,11 @@ public class EmployeeMapper {
         } else {
             employee.setJobNumber(JobType.valueOf(employeeDto.getJobNumber()));
         }
+        if (Objects.nonNull(Education.getByText(employeeDto.getEducation()))) {
+            employee.setEducation(Education.getByText(employeeDto.getEducation()));
+        } else {
+            employee.setEducation(Education.valueOf(employeeDto.getEducation()));
+        }
         if (Objects.nonNull(employeeDto.getSecurityData())) {
             employee.setSecurityData(SecurityDataMapper.toEntity(employeeDto.getSecurityData()));
         }
@@ -43,6 +49,7 @@ public class EmployeeMapper {
                 .leavingNoticeSubmissionDate(employee.getLeavingNoticeSubmissionDate())
                 .isFired(employee.getIsFired())
                 .jobNumber(employee.getJobNumber().getText())
+                .education(employee.getEducation().getText())
                 .person(PersonMapper.toDto(employee.getPerson()))
                 .securityData(SecurityDataMapper.toDto(employee.getSecurityData()))
                 .startDate(employee.getStartDate())

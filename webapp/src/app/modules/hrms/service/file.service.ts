@@ -52,7 +52,10 @@ export class FileService {
     return this.http.get(`${this.baseUrl}/getFileTypes`, {headers: headers});
   }
 
-  generateFiles(){
-    
+  download(url:string): any{
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token,
+      });
+      return this.http.get(url, {headers: headers, responseType: 'blob' as 'json' });
   }
 }

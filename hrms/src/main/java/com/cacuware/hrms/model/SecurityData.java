@@ -10,7 +10,6 @@ import org.hibernate.validator.constraints.Email;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -43,7 +42,6 @@ public class SecurityData {
     private String authority;
 
     @Column
-    @Max(value = 2)
     private Integer yearsOfLabour;
 
     @Column

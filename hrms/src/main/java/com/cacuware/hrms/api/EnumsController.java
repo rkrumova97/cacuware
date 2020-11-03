@@ -2,6 +2,7 @@ package com.cacuware.hrms.api;
 
 import com.cacuware.hrms.api.dto.EmployeeDto;
 import com.cacuware.hrms.mapper.EmployeeMapper;
+import com.cacuware.hrms.model.Education;
 import com.cacuware.hrms.model.Employee;
 import com.cacuware.hrms.model.JobType;
 import com.cacuware.hrms.service.EmployeeService;
@@ -17,12 +18,17 @@ import java.util.Objects;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/hrms/jobs")
-public class JobsController {
+@RequestMapping("/api/hrms")
+public class EnumsController {
 
-    @GetMapping
+    @GetMapping("/jobs")
     public List<String> findJobs() {
         return JobType.getAllNames();
+    }
+
+    @GetMapping("/education")
+    public List<String> findEducation() {
+        return Education.getAllNames();
     }
 
 }

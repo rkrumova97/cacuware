@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DataService} from "../../../service/data.service";
 import {FileService} from "../../../service/file.service";
 import {HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse} from "@angular/common/http";
-import {catchError, map} from "rxjs/operators";
+import * as fileSaver from 'file-saver';
 import {Observable, of} from "rxjs";
 import {Employee} from "../../../model/employee.model";
 import {HrmsService} from "../../../service/hrms.service";
@@ -64,6 +64,16 @@ export class HireFilesComponent implements OnInit {
     this.employee = new Employee(new Person(), new SecurityDataModel(), "");
     this.employee = this.dataService.employee;
     this.employee!.fileIds = [];
+
+    this.uploadService.getFiles().subscribe(file => {
+      this.fileInfos = file;
+      this.fileInfos.forEach(f =>{
+        this.employee!.fileIds = [];
+        this.employee!.fileIds.push(f.id);
+      })
+      console.log(this.employee);
+      // this.employeeService.postResource("/employees", this.employee).subscribe();
+    });
   }
 
   selectFile(event: any): void {
@@ -81,15 +91,6 @@ export class HireFilesComponent implements OnInit {
           this.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
           this.message = event.body.message;
-          this.uploadService.getFiles().subscribe(file => {
-              this.fileInfos = file;
-              this.fileInfos.forEach(f =>{
-                this.employee!.fileIds = [];
-                this.employee!.fileIds.push(f.id);
-              })
-            console.log(this.employee);
-            this.employeeService.postResource("/employees", this.employee).subscribe();
-          });
         }
       },
       err => {
@@ -103,5 +104,16 @@ export class HireFilesComponent implements OnInit {
   close() {
     this.employeeService.postResource("/employees", this.employee);
     this.success = true;
+  }
+
+  download(url: any, fileName: any) {
+    console.log(url);
+
+    this.uploadService.download(url).subscribe((response: Blob) => {
+      console.log(response);
+      let blob:any = new Blob([response], {type: response.type});
+      fileSaver.saveAs(blob, fileName);
+    }), () => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
   }
 }
