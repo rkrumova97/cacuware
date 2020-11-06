@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DataService} from "../../../service/data.service";
 import {FileService} from "../../../service/file.service";
-import {HttpErrorResponse, HttpEvent, HttpEventType, HttpResponse} from "@angular/common/http";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
 import * as fileSaver from 'file-saver';
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Employee} from "../../../model/employee.model";
 import {HrmsService} from "../../../service/hrms.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
@@ -24,7 +24,7 @@ export class HireFilesComponent implements OnInit {
   progress = 0;
   message = '';
   dropdownSettings = {};
-  documentTypes: Observable<any[]> | undefined ;
+  documentTypes: Observable<any[]> | undefined;
   form: FormGroup;
   type: string = "";
 
@@ -65,15 +65,13 @@ export class HireFilesComponent implements OnInit {
     this.employee = this.dataService.employee;
     this.employee!.fileIds = [];
 
-    this.uploadService.getFiles().subscribe(file => {
-      this.fileInfos = file;
-      this.fileInfos.forEach(f =>{
-        this.employee!.fileIds = [];
-        this.employee!.fileIds.push(f.id);
-      })
-      console.log(this.employee);
-      // this.employeeService.postResource("/employees", this.employee).subscribe();
-    });
+    this.uploadService.downloadDocuments("http://localhost:8083/generateRequestHire", this.employee)
+      .subscribe((response: Blob) => {
+      console.log(response);
+      let blob: any = new Blob([response], {type: response.type});
+      fileSaver.saveAs(blob, "Newwww");
+    }), () => console.log('Error downloading the file'),
+      () => console.info('File downloaded successfully');
   }
 
   selectFile(event: any): void {
@@ -91,9 +89,19 @@ export class HireFilesComponent implements OnInit {
           this.progress = Math.round(100 * event.loaded / event.total);
         } else if (event instanceof HttpResponse) {
           this.message = event.body.message;
+          this.employee?.fileIds?.push(event.body.id);
+          this.employeeService.postResource("/employees", this.employee).subscribe(() =>{
+            this.uploadService.getFilesByIDs( this.employee?.fileIds!).subscribe(file => {
+              this.fileInfos = file;
+              this.fileInfos.forEach(f => {
+                this.employee!.fileIds = [];
+                this.employee!.fileIds.push(f.id);
+              })
+            });
+          });
         }
       },
-      err => {
+      () => {
         this.progress = 0;
         this.message = 'Could not upload the file!';
         this.currentFile = null;
@@ -111,7 +119,7 @@ export class HireFilesComponent implements OnInit {
 
     this.uploadService.download(url).subscribe((response: Blob) => {
       console.log(response);
-      let blob:any = new Blob([response], {type: response.type});
+      let blob: any = new Blob([response], {type: response.type});
       fileSaver.saveAs(blob, fileName);
     }), () => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');

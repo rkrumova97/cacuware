@@ -23,7 +23,7 @@ public class GenerateFileService {
     private FileStorageService fileStorageService;
 
     public File createRequestHire() throws Exception {
-
+        int number = fileStorageService.findCount(Type.REQUEST_HIRE);
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         XWPFParagraph toWhom = document.createParagraph();
@@ -67,12 +67,12 @@ public class GenerateFileService {
 
         setsmth(document, out);
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Молба-1.docx",
+        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Молба-назначаване-№"+number+".docx",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
     }
 
     public File createInstruction(EmployeeDto employeeDto) throws Exception {
-        int number = 0;
+        int number = fileStorageService.findCount(Type.INSTRUCTORS);
 
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -84,7 +84,8 @@ public class GenerateFileService {
         run1.setFontSize(36);
         run1.setText("Служебна бележка");
         run1.addBreak();
-        run1.setText("№ " + number + "/" + LocalDate.now() + " год.");
+        String title = "№ " + number;
+        run1.setText(title + "/" + LocalDate.now() + " год.");
         run1.addBreak();
         run1.setText("ЕГН .....................");
 
@@ -99,7 +100,7 @@ public class GenerateFileService {
         XWPFParagraph layout = document.createParagraph();
         layout.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run2 = layout.createRun();
-        run2.setText("На г-н/ г-жа " + employeeDto.getFirstName() + employeeDto.getLastName() + employeeDto.getLastName() + ". е проведен начален инструктаж по безопасност, хигиена на труда и противопожарна охрана на " + LocalDate.now() + " год.");
+        run2.setText("На г-н/ г-жа " + employeeDto.getPerson().getFirstName() + employeeDto.getPerson().getMiddleName() + employeeDto.getPerson().getLastName() + ". е проведен начален инструктаж по безопасност, хигиена на труда и противопожарна охрана на " + LocalDate.now() + " год.");
 
         XWPFParagraph ending = document.createParagraph();
         ending.setAlignment(ParagraphAlignment.RIGHT);
@@ -109,13 +110,11 @@ public class GenerateFileService {
         document.write(out);
         out.close();
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Instruction.docx",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
+        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Служебна-бележка-" + title + ".docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.INSTRUCTORS.name());
     }
 
     public File createGDPR(EmployeeDto employeeDto) throws Exception {
-        int number = 0;
-
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -129,10 +128,10 @@ public class GenerateFileService {
         XWPFParagraph toWhom = document.createParagraph();
         toWhom.setAlignment(ParagraphAlignment.RIGHT);
         XWPFRun run = toWhom.createRun();
-        String line1 = "Долуподписаният/ата" + employeeDto.getFirstName() + employeeDto.getMiddleName() + employeeDto.getLastName() + ",  с ЕГН: "
-                + employeeDto.getEgn() + ", л.к. № " + employeeDto.getIdCard()
-                + "., издадена от " + employeeDto.getIdAuthority() +
-                "., на " + employeeDto.getIdYear() + ".  година.\n";
+        String line1 = "Долуподписаният/ата" + employeeDto.getPerson().getFirstName() + employeeDto.getPerson().getMiddleName() + employeeDto.getPerson().getLastName() + ",  с ЕГН: "
+                + employeeDto.getSecurityData().getEgn() + ", л.к. № " + employeeDto.getSecurityData().getIdNumber()
+                + "., издадена от " + employeeDto.getSecurityData().getAuthority() +
+                "., на " + employeeDto.getSecurityData().getIssuedDate() + ".  година.\n";
         run.setText(line1);
 
         XWPFParagraph heading = document.createParagraph();
@@ -155,33 +154,13 @@ public class GenerateFileService {
         document.write(out);
         out.close();
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Instruction.docx",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
-    }
-
-    private void setEnding(XWPFDocument document, String s) {
-        XWPFParagraph ending = document.createParagraph();
-        ending.setAlignment(ParagraphAlignment.RIGHT);
-        XWPFRun run3 = ending.createRun();
-        String line14 = "ДЕКЛАРАТОР:......................................................................\n" +
-                "(име, презиме, фамилия)\n" +
-                "\n" +
-                "………………………………………\n" +
-                "(подпис)\n" +
-                "\n";
-        run3.setText(line14);
-        ending.setAlignment(ParagraphAlignment.RIGHT);
-        run3.setText(s);
-        run3.addBreak();
-        run3.setText(" гр. …………………………..");
-    }
-
-    private XWPFDocument getXwpfDocument() {
-        return new XWPFDocument();
+        return fileStorageService.storeFile(new MockMultipartFile("Молба",
+                "GDPR-" + employeeDto.getPerson().getFirstName() + employeeDto.getPerson().getLastName() + ".docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.GDPR.name());
     }
 
     public File createContract(EmployeeDto employeeDto) throws Exception {
-        int number = 0;
+        int number = fileStorageService.findCount(Type.CONTRACT);
 
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -204,22 +183,22 @@ public class GenerateFileService {
                 "представлявано от : Свилен Венетков Крумов – Управител\n" +
                 "ЕГН : 7306183962\n" +
                 "от една страна , наричана за краткост по-долу РАБОТОДАТЕЛ и\n" +
-                employeeDto.getFirstName() +  employeeDto.getMiddleName() + employeeDto.getLastName() +
-                "с постоянен адрес : " + employeeDto.getAddress() + "\n" +
-                "притежаващ л.к.№ " + employeeDto.getIdCard() + " изд.на " + employeeDto.getIdYear()
-                + " , МВР: " + employeeDto.getIdAuthority() + "    , ЕГН : " + employeeDto.getEgn() + "\n" +
+                employeeDto.getPerson().getFirstName() + employeeDto.getPerson().getMiddleName() + employeeDto.getPerson().getLastName() +
+                "с постоянен адрес : " + employeeDto.getPerson().getAddress() + "\n" +
+                "притежаващ л.к.№ " + employeeDto.getSecurityData().getIdNumber() + " изд.на " + employeeDto.getSecurityData().getIssuedDate()
+                + " , МВР: " + employeeDto.getSecurityData().getAuthority() + "    , ЕГН : " + employeeDto.getSecurityData().getEgn() + "\n" +
                 "с образование : " + employeeDto.getEducation() + "                  със специалност : ......................\n" +
                 "втора специалност :                              , научна степен:\n" +
-                "с трудов стаж   " + employeeDto.getYearsOfLabour() + " г.  " + employeeDto.getMonthsOfLabour() + " м.   "
-                + employeeDto.getDaysOfLabour() + " дни , в т.ч.трудов стаж по специалността    " +
-                employeeDto.getProfessionYearsOfLabour() + employeeDto.getProfessionMonthsOfLabour() + employeeDto.getProfessionDaysOfLabour()
+                "с трудов стаж   " + employeeDto.getSecurityData().getYearsOfLabour() + " г.  " + employeeDto.getSecurityData().getMonthsOfLabour() + " м.   "
+                + employeeDto.getSecurityData().getDaysOfLabour() + " дни , в т.ч.трудов стаж по специалността    " +
+                employeeDto.getSecurityData().getProfessionYearsOfLabour() + employeeDto.getSecurityData().getProfessionMonthsOfLabour() + employeeDto.getSecurityData().getProfessionDaysOfLabour()
                 + " г.  м.  д.\n наричан за краткост по-долу РАБОТНИК (СЛУЖИТЕЛ), на основание чл.67 ал.1\n" +
                 "от Кодекса на труда се сключи настоящия трудов договор :\n" +
                 "1.Предприятието възлага , а работникът/служителят приема да изпълнява в :\n" +
                 "  „ЗМУ” ЕООД                                  \n" +
-                "Длъжността: " + employeeDto.getJobType() + "                           кв. Степен: \n" +
+                "Длъжността: " + employeeDto.getJobNumber() + "                           кв. Степен: \n" +
                 "категория персонал: работник, с шифър по класификатора на длъжностите: " + employeeDto.getJobNumber() + "\n" +
-                "2.С основно месечно (дневно , часово) възнаграждение   " + employeeDto.getSalary() + "   лв.\n" +
+                "2.С основно месечно (дневно , часово) възнаграждение   " + employeeDto.getSecurityData() + "   лв.\n" +
                 "\n" +
                 "3.Допълнително възнаграждение за продължителна работа , в размер на .........  %\n" +
                 "4.\n" +
@@ -250,15 +229,20 @@ public class GenerateFileService {
         document.write(out);
         out.close();
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Instruction.docx",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
-
+        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Договор-№"+number+".docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.CONTRACT.name());
     }
 
     public File createFireDocument(EmployeeDto employeeDto) throws Exception {
-        int number = 0;
-        String contract = "35 / 11.05.2018";
-        LocalDate end = (Objects.nonNull(employeeDto.getEndDate())) ? employeeDto.getEndDate() : LocalDate.now().plusMonths(1);
+        int number = fileStorageService.findCount(Type.FIRE);
+        final String[] name = new String[1];
+        fileStorageService.getFiles(employeeDto.getFileIds()).forEach(file -> {
+            if(file.getFileBusinessType().equals(Type.CONTRACT)){
+                name[0] = file.getCounter() + " / " + employeeDto.getStartDate();
+            }
+        });
+        String contract = name[0];
+        LocalDate end = (Objects.nonNull(employeeDto.getLeavingDate())) ? employeeDto.getLeavingDate() : LocalDate.now().plusMonths(1);
 
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -278,8 +262,8 @@ public class GenerateFileService {
         XWPFParagraph layout = document.createParagraph();
         layout.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run4 = layout.createRun();
-        run4.setText(employeeDto.getFirstName() + employeeDto.getMiddleName() + employeeDto.getLastName() + ", ЕГН: " + employeeDto.getEgn() + "\n" +
-                "на длъжност: " + employeeDto.getJobType() + ",  код по НКПД: " + employeeDto.getJobNumber() + ", \n" +
+        run4.setText(employeeDto.getPerson().getFirstName() + employeeDto.getPerson().getMiddleName() + employeeDto.getPerson().getLastName() + ", ЕГН: " + employeeDto.getSecurityData().getEgn() + "\n" +
+                "на длъжност: " + employeeDto.getJobNumber() + ",  код по НКПД: " + employeeDto.getJobNumber() + ", \n" +
                 "Трудов Договор " + contract + "г., чл. 67, ал.1, т.1,\n" +
                 " считано от " + end + " год.\n");
 
@@ -312,19 +296,14 @@ public class GenerateFileService {
         document.write(out);
         out.close();
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Instruction.docx",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
+        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Заповед-уволнение-№"+number+".docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.FIRE.name());
     }
 
-    public File createVacationDocument(EmployeeDto employee) throws Exception {
-        int number = 0;
-        String firstName = "Rumy";
-        String middleName = "Svil";
-        String lastName = "Krumova";
-        LocalDate end = LocalDate.now().plusMonths(1);
-        LocalDate fromDate = LocalDate.now().plusDays(1);
-        LocalDate toDate = LocalDate.now().plusDays(10);
-        int days = toDate.compareTo(fromDate);
+    public File createVacationDocument(EmployeeDto employee, VacationDto vacationDto) throws Exception {
+        int number = fileStorageService.findCount(Type.VACATION_APPROVAL);
+
+        int days = vacationDto.getToDate().compareTo(vacationDto.getFromDate());
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -333,7 +312,8 @@ public class GenerateFileService {
         XWPFRun run1 = request.createRun();
         run1.setBold(true);
         run1.setFontSize(36);
-        run1.setText("ЗАПОВЕД\n № " + number + " / " + LocalDate.now());
+        String title = "ЗАПОВЕД № " + number + " / " + LocalDate.now();
+        run1.setText(title);
         run1.addBreak();
         run1.addBreak();
         run1.setText("на основание чл. 173, ал. 1 КТ");
@@ -343,8 +323,10 @@ public class GenerateFileService {
         XWPFParagraph layout = document.createParagraph();
         layout.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run4 = layout.createRun();
-        run4.setText("В периода от " + fromDate + "до " + toDate + " г. да ползва платен годишен отпуск за " + LocalDate.now().getYear() + "година,\n" +
-                "в размер на " + days + ".работни дни \n " + firstName + middleName + lastName + "\n" +
+        run4.setText("В периода от " + vacationDto.getFromDate() + "до " + vacationDto.getToDate() +
+                " г. да ползва платен годишен отпуск за " + LocalDate.now().getYear() + "година,\n" +
+                "в размер на " + days + ".работни дни \n "
+                + employee.getPerson().getFirstName() + employee.getPerson().getMiddleName() + employee.getPerson().getLastName() + employee.getJobNumber() + "\n" +
                 "                    (посочват се трите имена и длъжноста на работника или служителя)\n" +
                 "\n" +
                 "Препис от заповедта да се връчи на работника  или служителя  за сведение и изпълнение и да се приложи към личното му трудово досие, а също така и в отдел счетоводство.\n");
@@ -358,13 +340,14 @@ public class GenerateFileService {
         document.write(out);
         out.close();
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Vacation.docx",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
+        return fileStorageService.storeFile(new MockMultipartFile("Молба",
+                title+".docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                out.toByteArray()), Type.VACATION_APPROVAL.name());
 
     }
 
     public File createVacationRequest(EmployeeDto employee, VacationDto vacation) throws Exception {
-        int number = 0;
+        int number = fileStorageService.findCount(Type.VACATION_REQUEST);
 
         int days = vacation.getToDate().compareTo(vacation.getFromDate());
         XWPFDocument document = getXwpfDocument();
@@ -387,11 +370,11 @@ public class GenerateFileService {
         run1.addBreak();
         run1.setBold(false);
         run1.setFontSize(26);
-        run1.setText("ОТ" + employee.getFirstName() + employee.getMiddleName() + employee.getLastName());
+        run1.setText("ОТ" + employee.getPerson().getFirstName() + employee.getPerson().getMiddleName() + employee.getPerson().getLastName());
         run1.addBreak();
-        run1.setText("ЕГН " + employee.getEgn());
+        run1.setText("ЕГН " + employee.getSecurityData().getEgn());
         run1.addBreak();
-        run1.setText("на длъжност " + employee.getJobType());
+        run1.setText("на длъжност " + employee.getJobNumber());
 
 
         XWPFParagraph layout = document.createParagraph();
@@ -399,15 +382,16 @@ public class GenerateFileService {
         XWPFRun run4 = layout.createRun();
         run4.setText("Уважаеми господин управител,\n" +
                 "\n" +
-                "\tМоля да ми разрешите ползването на " + days + "дни платен годишен отпуск, считано от "+vacation.getFromDate()+" до "+vacation.getToDate()+".г. включително.\n" +
+                "\tМоля да ми разрешите ползването на " + days + "дни платен годишен отпуск, считано от " + vacation.getFromDate() + " до " + vacation.getToDate() + ".г. включително.\n" +
                 "\n");
 
         setsmth(document, out);
         document.write(out);
         out.close();
 
-        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Vacation.docx",
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.REQUEST_HIRE.name());
+        return fileStorageService.storeFile(new MockMultipartFile("Молба", "Молба-отпуска-№"+number+".docx",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                out.toByteArray()), Type.VACATION_REQUEST.name());
     }
 
     private void setsmth(XWPFDocument document, ByteArrayOutputStream out) throws IOException {
@@ -421,6 +405,27 @@ public class GenerateFileService {
         run3.setText(line15);
         document.write(out);
         out.close();
+    }
+
+    private void setEnding(XWPFDocument document, String s) {
+        XWPFParagraph ending = document.createParagraph();
+        ending.setAlignment(ParagraphAlignment.RIGHT);
+        XWPFRun run3 = ending.createRun();
+        String line14 = "ДЕКЛАРАТОР:......................................................................\n" +
+                "(име, презиме, фамилия)\n" +
+                "\n" +
+                "………………………………………\n" +
+                "(подпис)\n" +
+                "\n";
+        run3.setText(line14);
+        ending.setAlignment(ParagraphAlignment.RIGHT);
+        run3.setText(s);
+        run3.addBreak();
+        run3.setText(" гр. …………………………..");
+    }
+
+    private XWPFDocument getXwpfDocument() {
+        return new XWPFDocument();
     }
 }
 

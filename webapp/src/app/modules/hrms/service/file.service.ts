@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Employee} from "../model/employee.model";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,13 @@ export class FileService {
     return this.http.get(`${this.baseUrl}/getFiles`, {headers: headers});
   }
 
+  getFilesByIDs(ids: string[]): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    });
+    return this.http.get(`${this.baseUrl}/getFilesByIds`, {headers: headers});
+  }
+
   getFileTypes(): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.token
@@ -57,5 +65,14 @@ export class FileService {
         'Authorization': 'Bearer ' + this.token,
       });
       return this.http.get(url, {headers: headers, responseType: 'blob' as 'json' });
+  }
+
+  downloadDocuments(url:string, employeeDto: Employee): any{
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token,
+      });
+    const params = new HttpParams()
+      .set('employee', JSON.stringify(employeeDto));
+      return this.http.get(url, {headers: headers, responseType: 'blob' as 'json', params: params });
   }
 }

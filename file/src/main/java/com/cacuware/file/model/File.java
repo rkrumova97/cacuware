@@ -29,6 +29,9 @@ public class File {
 	@Column(name = "file_name")
 	private String fileName;
 
+	@Column(name = "counter")
+	private Integer counter;
+
 	@Column(name = "file_type")
 	private String fileType;
 
@@ -38,11 +41,12 @@ public class File {
 	@Column
 	private byte[] file;
 
-	public File(String fileName, String fileType, Type fileBusinessType, byte[] file){
+	public File(String fileName, String fileType, Type fileBusinessType, byte[] file, Integer number){
 		this.file = file;
 		this.fileBusinessType = fileBusinessType;
 		this.fileName = fileName;
 		this.fileType = fileType;
+		this.counter = number;
 	}
 
 }

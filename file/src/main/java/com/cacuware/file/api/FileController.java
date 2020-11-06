@@ -7,6 +7,8 @@ import com.cacuware.file.model.File;
 import com.cacuware.file.model.Type;
 import com.cacuware.file.service.FileStorageService;
 import com.cacuware.file.service.GenerateFileService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import java.util.List;
 import java.util.UUID;
@@ -64,6 +67,10 @@ public class FileController {
     public ResponseEntity<byte[]> downloadFile(@PathVariable String fileId) {
         // Load file from database
         File dbFile = dbFileStorageService.getFile(UUID.fromString(fileId));
+        return getResponseEntity(dbFile);
+    }
+
+    private ResponseEntity<byte[]> getResponseEntity(File dbFile) {
         HttpHeaders respHeaders = new HttpHeaders();
         respHeaders.setContentLength(dbFile.getFile().length);
         respHeaders.setContentType(MediaType.parseMediaType(dbFile.getFileType()));
@@ -77,51 +84,59 @@ public class FileController {
         return ResponseEntity.ok(dbFileStorageService.getFilesData());
     }
 
+    @GetMapping("/getFilesByIds")
+    public ResponseEntity<List<UploadFileResponse>> getFiles(@RequestParam("ids") List<UUID> files) {
+        return ResponseEntity.ok(dbFileStorageService.getFilesByIDs(files));
+    }
+
     @GetMapping("/getFileTypes")
     public ResponseEntity<List<String>> getFileTypes() {
         return ResponseEntity.ok(Type.getAllNames());
     }
 
-    @GetMapping("/hireDocuments/{employee}")
-    public void generateHireDocuments(@PathVariable EmployeeDto employee, HttpServletResponse response) throws Exception {
-        File contract = generateFileService.createContract(employee);
-        File instruction = generateFileService.createInstruction(employee);
-        File requestHire = generateFileService.createRequestHire();
-        File gdpr = generateFileService.createGDPR(employee);
-        ZipOutputStream zipOut = new ZipOutputStream(response.getOutputStream());
-
-        ZipEntry zipEntry = new ZipEntry(contract.getFileName());
-        zipEntry.setSize(contract.getFile().length);
-        zipOut.putNextEntry(zipEntry);
-        StreamUtils.copy(contract.getFile(), zipOut);
-        zipOut.closeEntry();
-
-        zipEntry = new ZipEntry(instruction.getFileName());
-        zipEntry.setSize(instruction.getFile().length);
-        zipOut.putNextEntry(zipEntry);
-        StreamUtils.copy(instruction.getFile(), zipOut);
-        zipOut.closeEntry();
-
-        zipEntry = new ZipEntry(requestHire.getFileName());
-        zipEntry.setSize(requestHire.getFile().length);
-        zipOut.putNextEntry(zipEntry);
-        StreamUtils.copy(requestHire.getFile(), zipOut);
-        zipOut.closeEntry();
-
-        zipEntry = new ZipEntry(gdpr.getFileName());
-        zipEntry.setSize(gdpr.getFile().length);
-        zipOut.putNextEntry(zipEntry);
-        StreamUtils.copy(gdpr.getFile(), zipOut);
-        zipOut.closeEntry();
-
-        zipOut.finish();
-        zipOut.close();
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"zipfiles\"");
+    @GetMapping("/generateContract")
+    @Consumes("application/json")
+    public ResponseEntity<byte[]> generateContract(@RequestParam("employee") String employee) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        final EmployeeDto employeeDto =
+                objectMapper.readValue(employee, EmployeeDto.class);
+        File contract = generateFileService.createContract(employeeDto);
+        return getResponseEntity(contract);
     }
 
-    @GetMapping("/fireDocuments/{employee}")
-    public ResponseEntity<?> generateFireDocuments(@PathVariable EmployeeDto employee) throws Exception {
+    @GetMapping("/generateGDPR")
+    @Consumes("application/json")
+    public ResponseEntity<byte[]> generateHireDocuments(@RequestParam("employee") String employee) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        final EmployeeDto employeeDto =
+                objectMapper.readValue(employee, EmployeeDto.class);
+        File gdpr = generateFileService.createGDPR(employeeDto);
+        return getResponseEntity(gdpr);
+    }
+
+    @GetMapping("/generateInstructions")
+    @Consumes("application/json")
+    public ResponseEntity<byte[]> generateInstructions(@RequestParam("employee") String employee) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        final EmployeeDto employeeDto =
+                objectMapper.readValue(employee, EmployeeDto.class);
+        File instruction = generateFileService.createInstruction(employeeDto);
+        return getResponseEntity(instruction);
+    }
+
+    @GetMapping("/generateRequestHire")
+    @Consumes("application/json")
+    public ResponseEntity<byte[]> generateRequestHire() throws Exception {
+        File requestHire = generateFileService.createRequestHire();
+        return getResponseEntity(requestHire);
+    }
+
+    @GetMapping("/fireDocuments")
+    @Consumes("application/json")
+    public ResponseEntity<?> generateFireDocuments(@RequestParam("employee") EmployeeDto employee) throws Exception {
         File fireDocument = generateFileService.createFireDocument(employee);
         HttpHeaders respHeaders = new HttpHeaders();
         respHeaders.setContentLength(fireDocument.getFile().length);
@@ -131,28 +146,8 @@ public class FileController {
         return new ResponseEntity<>(fireDocument, respHeaders, HttpStatus.OK);
     }
 
-    @GetMapping("/vacationDocuments/{employee}")
-    public void generateVacationDocuments(@PathVariable EmployeeDto employee, @PathVariable VacationDto vacationDto, HttpServletResponse response) throws Exception {
-        File vacationDocument = generateFileService.createVacationDocument(employee);
-        File vacationRequest = generateFileService.createVacationRequest(employee, vacationDto);
+    @GetMapping("/vacationDocuments")
+    public void generateVacationDocuments(@RequestParam("employee") EmployeeDto employee, @RequestParam("vacation") VacationDto vacationDto, HttpServletResponse response) throws Exception {
 
-        ZipOutputStream zipOut = new ZipOutputStream(response.getOutputStream());
-
-        ZipEntry zipEntry = new ZipEntry(vacationDocument.getFileName());
-        zipEntry.setSize(vacationDocument.getFile().length);
-        zipOut.putNextEntry(zipEntry);
-        StreamUtils.copy(vacationDocument.getFile(), zipOut);
-        zipOut.closeEntry();
-
-        zipEntry = new ZipEntry(vacationRequest.getFileName());
-        zipEntry.setSize(vacationRequest.getFile().length);
-        zipOut.putNextEntry(zipEntry);
-        StreamUtils.copy(vacationRequest.getFile(), zipOut);
-        zipOut.closeEntry();
-
-        zipOut.finish();
-        zipOut.close();
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.addHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"zipfiles\"");
     }
 }

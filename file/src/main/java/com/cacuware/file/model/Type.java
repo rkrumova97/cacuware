@@ -17,7 +17,11 @@ public enum Type {
     CERTIFICATES(8),
     OTHERS(9),
     REQUEST_HIRE(10),
-    LPS(11);
+    LPS(11),
+    GDPR(12),
+    FIRE(13),
+    VACATION_REQUEST(14),
+    VACATION_APPROVAL(15);
 
     private int value;
 
