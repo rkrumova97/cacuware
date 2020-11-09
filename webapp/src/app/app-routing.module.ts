@@ -17,6 +17,10 @@ import { Routes, RouterModule } from '@angular/router';
           path: 'hr',
           loadChildren: () => import("./modules/hrms/hrms.module").then(m => m.HrmsModule)
         },
+        {
+          path: 'warehouse',
+          loadChildren: () => import("./modules/warehouse/warehouse.module").then(m => m.WarehouseModule)
+        },
       ],
     )
   ],
