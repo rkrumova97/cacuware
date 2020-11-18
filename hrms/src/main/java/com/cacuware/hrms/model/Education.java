@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public enum Education {
-    PRIMARY(1, "начално"),
-    SECONDARY(2, "основно"),
-    HIGH_SCHOOL(3, "средно"),
-    POST_GRADUATE(4, "бакалавър"),
-    MASTER(5, "магистър");
+    PRIMARY(1, "primary"),
+    SECONDARY(2, "secondary"),
+    HIGH_SCHOOL(3, "high school"),
+    POST_GRADUATE(4, "bachelor"),
+    MASTER(5, "master");
 
     private Integer id;
     private String text;

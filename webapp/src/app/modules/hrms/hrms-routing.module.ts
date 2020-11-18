@@ -102,7 +102,7 @@ export class HrRoutes {
       ],
     },
     {
-      path: 'salary?',
+      path: 'file-manager',
       component: GiveSalaryComponent,
       children: [
         {path: 'hr', component: HrmsComponent}

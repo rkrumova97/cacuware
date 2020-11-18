@@ -14,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,12 +21,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 @RestController
 public class FileController {
@@ -49,7 +47,7 @@ public class FileController {
                 .toUriString();
 
         return ResponseEntity.ok(new UploadFileResponse(dbFile.getId(), dbFile.getFileName(), fileDownloadUri,
-                file.getContentType(), file.getSize()));
+                dbFile.getFileBusinessType().toString(), file.getContentType(), file.getSize()));
     }
 
     @PostMapping("/uploadMultipleFiles")
@@ -94,44 +92,23 @@ public class FileController {
         return ResponseEntity.ok(Type.getAllNames());
     }
 
-    @GetMapping("/generateContract")
+    @GetMapping("/generateDocuments")
     @Consumes("application/json")
-    public ResponseEntity<byte[]> generateContract(@RequestParam("employee") String employee) throws Exception {
+    public ResponseEntity<List<UploadFileResponse>> generateDocuments(@RequestParam("employee") String employee) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         final EmployeeDto employeeDto =
                 objectMapper.readValue(employee, EmployeeDto.class);
+        List<UUID> ids = new ArrayList<>();
         File contract = generateFileService.createContract(employeeDto);
-        return getResponseEntity(contract);
-    }
-
-    @GetMapping("/generateGDPR")
-    @Consumes("application/json")
-    public ResponseEntity<byte[]> generateHireDocuments(@RequestParam("employee") String employee) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        final EmployeeDto employeeDto =
-                objectMapper.readValue(employee, EmployeeDto.class);
+        ids.add(contract.getId());
         File gdpr = generateFileService.createGDPR(employeeDto);
-        return getResponseEntity(gdpr);
-    }
-
-    @GetMapping("/generateInstructions")
-    @Consumes("application/json")
-    public ResponseEntity<byte[]> generateInstructions(@RequestParam("employee") String employee) throws Exception {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        final EmployeeDto employeeDto =
-                objectMapper.readValue(employee, EmployeeDto.class);
+        ids.add(gdpr.getId());
         File instruction = generateFileService.createInstruction(employeeDto);
-        return getResponseEntity(instruction);
-    }
-
-    @GetMapping("/generateRequestHire")
-    @Consumes("application/json")
-    public ResponseEntity<byte[]> generateRequestHire() throws Exception {
+        ids.add(instruction.getId());
         File requestHire = generateFileService.createRequestHire();
-        return getResponseEntity(requestHire);
+        ids.add(requestHire.getId());
+        return getFiles(ids);
     }
 
     @GetMapping("/fireDocuments")

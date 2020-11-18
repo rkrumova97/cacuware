@@ -7,14 +7,14 @@ import java.util.stream.Collectors;
 
 
 public enum JobType {
-    TINSMITH(72131002, "тенекеджия"),
-    ELECTRICIAN(74122009, "електромонтьор"),
-    LOCKSMITH_MECHANIC(72332032, "шлосер-монтьор"),
-    WELDER(72121001, "заварчик"),
-    PRODUCTION_COORDINATOR(24216013, "координатор производство"),
-    OFFICE_MANAGER(33413003, "офис мениджър"),
-    ASSEMBLER_METAL_STRUCTURES(72142007, "монтажник - метални конструкции"),
-    CLEANER(91120004, "хигиенист");
+    TINSMITH(72131002, "Tinsmith"),
+    ELECTRICIAN(74122009, "Electrician"),
+    LOCKSMITH_MECHANIC(72332032, "Locksmith mechanic"),
+    WELDER(72121001, "Welder"),
+    PRODUCTION_COORDINATOR(24216013, "Production coordinator"),
+    OFFICE_MANAGER(33413003, "Office manager"),
+    ASSEMBLER_METAL_STRUCTURES(72142007, "Assembler - metal structures"),
+    CLEANER(91120004, "cleaner");
 
     private Integer jobId;
     private String text;

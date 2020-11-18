@@ -53,18 +53,17 @@ public class FileStorageService {
 
     public List<UploadFileResponse> getFilesData() {
         List<UploadFileResponse> list = new ArrayList<>();
-        fileRepository.findAll().forEach(file -> {
-            list.add(UploadFileResponse.builder()
-                    .id(file.getId())
-                    .size(file.getFile().length)
-                    .fileName(file.getFileName())
-                    .fileType(file.getFileType())
-                    .fileDownloadUri(ServletUriComponentsBuilder.fromCurrentContextPath()
-                            .path("/downloadFile/")
-                            .path(file.getId().toString())
-                            .toUriString())
-                    .build());
-        });
+        fileRepository.findAll().forEach(file -> list.add(UploadFileResponse.builder()
+                .id(file.getId())
+                .size(file.getFile().length)
+                .fileName(file.getFileName())
+                .fileType(file.getFileType())
+                .fileDownloadUri(ServletUriComponentsBuilder.fromCurrentContextPath()
+                        .path("/downloadFile/")
+                        .path(file.getId().toString())
+                        .toUriString())
+                .fileBusinessType(file.getFileBusinessType().toString())
+                .build()));
         return list;
     }
 

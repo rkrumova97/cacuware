@@ -50,7 +50,18 @@ export class FileService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.token
     });
-    return this.http.get(`${this.baseUrl}/getFilesByIds`, {headers: headers});
+    const params = new HttpParams().append('ids', ids.toString())
+    return this.http.get(`${this.baseUrl}/getFilesByIds`, {headers: headers, params:params});
+  }
+
+  generateDocuments(employee: Employee): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    });
+
+    const params = new HttpParams()
+      .append('employee', JSON.stringify(employee));
+    return this.http.get(`${this.baseUrl}/generateDocuments`, {headers: headers, params:params});
   }
 
   getFileTypes(): Observable<any> {
@@ -67,12 +78,4 @@ export class FileService {
       return this.http.get(url, {headers: headers, responseType: 'blob' as 'json' });
   }
 
-  downloadDocuments(url:string, employeeDto: Employee): any{
-      let headers = new HttpHeaders({
-        'Authorization': 'Bearer ' + this.token,
-      });
-    const params = new HttpParams()
-      .set('employee', JSON.stringify(employeeDto));
-      return this.http.get(url, {headers: headers, responseType: 'blob' as 'json', params: params });
-  }
 }

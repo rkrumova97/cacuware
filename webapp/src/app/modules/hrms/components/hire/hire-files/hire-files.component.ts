@@ -65,13 +65,14 @@ export class HireFilesComponent implements OnInit {
     this.employee = this.dataService.employee;
     this.employee!.fileIds = [];
 
-    this.uploadService.downloadDocuments("http://localhost:8083/generateRequestHire", this.employee)
-      .subscribe((response: Blob) => {
-      console.log(response);
-      let blob: any = new Blob([response], {type: response.type});
-      fileSaver.saveAs(blob, "Newwww");
-    }), () => console.log('Error downloading the file'),
-      () => console.info('File downloaded successfully');
+    this.uploadService.generateDocuments(this.employee).subscribe(file => {
+      this.fileInfos = file;
+      this.fileInfos.forEach(f => {
+        this.employee!.fileIds = [];
+        this.employee!.fileIds.push(f.id);
+      })
+    });
+
   }
 
   selectFile(event: any): void {

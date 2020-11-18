@@ -15,6 +15,7 @@ public class UploadFileResponse {
     private UUID id;
     private String fileName;
     private String fileDownloadUri;
+    private String fileBusinessType;
     private String fileType;
     private long size;
 }
