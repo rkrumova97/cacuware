@@ -1,0 +1,132 @@
+<div class="row  justify-content-sm-center">
+  <div class="col-12 ">
+    <h1 class="headerTitle text-center">Add car</h1>
+  </div>
+  <div class="col-12 ">
+    <h2 class="headerTitle text-center">3) Car materials</h2>
+  </div>
+</div>
+
+<!--  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>-->
+
+<div class="row justify-content-center">
+  <div class="col">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_name">Name</label>
+        <input type="text" class="form-control" name="firstName" id="field_name"
+               value="{{car.brand}}"
+               placeholder="Material's name"
+               required
+               [(ngModel)]="car.brand"
+               #brand=ngModel
+               [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
+        />
+        <div
+          *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Brand is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_middle_name">Measurement</label>
+        <input type="text" class="form-control" name="middleName" id="field_measurent"
+               value="{{car.number}}"
+               placeholder="Car's vignette expiration date"
+               required
+               [(ngModel)]="car.number"
+               #number=ngModel
+               [ngClass]="{ 'is-invalid': number.invalid && (number.dirty || number.touched || submitted) }"
+        />
+        <div
+          *ngIf="number.invalid && (number.dirty || number.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Number is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label class="form-control-label" for="field_last_name">Quantity</label>
+        <input type="text" class="form-control" name="lastName" id="field_last_name"
+               placeholder="Material's quantity"
+               value="{{car.volume}}"
+               required
+               [(ngModel)]="car.volume"
+               #volume=ngModel
+               [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
+        />
+        <div
+          *ngIf="volume.invalid && (volume.dirty || volume.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Volume is required field.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-4"></div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_name">Single Materials Price</label>
+        <input type="text" class="form-control" name="firstName" id="ins"
+               value="{{car.brand}}"
+               placeholder="Single material's price"
+               required
+               [(ngModel)]="car.brand"
+               #brand=ngModel
+               [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
+        />
+        <div
+          *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Brand is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_middle_name">Price without taxes</label>
+        <input type="date" class="form-control" name="middleName" id="field_insdate"
+               value="{{car.number}}"
+               placeholder="Material's price without taxes"
+               required
+               [(ngModel)]="car.number"
+               #number=ngModel
+               [ngClass]="{ 'is-invalid': number.invalid && (number.dirty || number.touched || submitted) }"
+        />
+        <div
+          *ngIf="number.invalid && (number.dirty || number.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Number is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-5">
+        <label class="form-control-label" for="field_last_name">Invoice / Date</label>
+        <input type="text" class="form-control" name="lastName" id="field_insadd"
+               placeholder="Invoice and date"
+               value="{{car.volume}}"
+               required
+               [(ngModel)]="car.volume"
+               #volume=ngModel
+               [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
+        />
+        <div
+          *ngIf="volume.invalid && (volume.dirty || volume.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Volume is required field.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-2"></div>
+
+    <div class="row float-right">
+      <button type="button" class="btn btn-primary m-2" routerLink="/hr">
+        Back
+      </button>
+      <button type="button" class="btn btn-primary m-2" (click)="process()">Save</button>
+    </div>
+  </div>
+</div>
+
