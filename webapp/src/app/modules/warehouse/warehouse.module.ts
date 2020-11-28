@@ -12,9 +12,11 @@ import {FormsModule} from "@angular/forms";
 import { AddCarDocumentsComponent } from './components/car/add-car/add-car-documents/add-car-documents.component';
 import { AddCarMaterialsComponent } from './components/car/add-car/add-car-materials/add-car-materials.component';
 import { CarListComponent } from './components/car/car-list/car-list.component';
+import {PopupComponent} from "./components/popup/popup.component";
+import { ArchiveComponent } from './components/archive/archive.component';
 
 @NgModule({
-  declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent, AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent],
+  declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent, AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent, PopupComponent, ArchiveComponent],
   imports: [
     CommonModule,
     WarehouseRoutingModule,
