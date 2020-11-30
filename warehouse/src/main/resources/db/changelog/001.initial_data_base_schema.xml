@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.7"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.7
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.7.xsd">
+
+    <property name="uuid_type" value="uuid"/>
+    <property name="uuid_function" value="public.uuid_generate_v4()"/>
+
+    <changeSet id="20201128-1-add-uuid-extension" author="Rumyana Krumova">
+        <sql>CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</sql>
+    </changeSet>
+
+    <changeSet id="20201128-2-tables" author="Rumyana Krumova">
+
+        <createTable tableName="car">
+            <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar"/>
+            <column name="brand" type="varchar"/>
+            <column name="number" type="varchar"/>
+            <column name="engine_volume" type="varchar"/>
+            <column name="insurance" type="varchar"/>
+            <column name="insurance_expiry_date" type="date"/>
+            <column name="examination" type="varchar"/>
+            <column name="examination_expiry_date" type="date"/>
+            <column name="vignette" type="varchar"/>
+            <column name="vignette_expiry_date" type="date"/>
+            <column name="repair" type="varchar"/>
+            <column name="repair_date" type="date"/>
+            <column name="repair_money" type="int"/>
+            <column name="kilometers" type="int"/>
+            <column name="fuel" type="real"/>
+            <column name="norm" type="int"/>
+        </createTable>
+        <createTable tableName="ppe">
+            <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="size" type="varchar"/>
+            <column name="material_id" type="${uuid_type}"/>
+        </createTable>
+        <createTable tableName="material">
+            <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="measurement" type="varchar"/>
+            <column name="quantity" type="varchar"/>
+            <column name="single_price" type="int"/>
+            <column name="value" type="int"/>
+            <column name="income_invoice_number" type="int"/>
+            <column name="money_spent" type="int"/>
+            <column name="outcome_invoice_number" type="int"/>
+            <column name="date" type="date"/>
+            <column name="left" type="real"/>
+            <column name="type" type="varchar"/>
+        </createTable>
+        <createTable tableName="company">
+            <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar"/>
+            <column name="email" type="varchar"/>
+            <column name="mol" type="varchar"/>
+            <column name="bulstat" type="varchar"/>
+            <column name="contact_name" type="varchar"/>
+            <column name="contact_email" type="varchar"/>
+            <column name="contact_number" type="int"/>
+        </createTable>
+        <createTable tableName="project">
+            <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="company_id" type="${uuid_type}"/>
+        </createTable>
+        <createTable tableName="car_materialids">
+            <column name="material_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="car_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="ppe_peopleids">
+            <column name="ppe_id" type="${uuid_type}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="person_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="project_materialids">
+            <column name="material_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="project_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="project_carids">
+            <column name="car_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="project_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="project_peopleids">
+            <column name="people_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="project_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+        <createTable tableName="project_fileids">
+            <column name="file_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="project_id" type="${uuid_type}" defaultValue="${uuid_function}">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
