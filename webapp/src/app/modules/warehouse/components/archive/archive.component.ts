@@ -11,6 +11,7 @@ export class ArchiveComponent implements OnInit {
 
   isClicked?: boolean;
   router: Router;
+  employees: any;
 
   constructor( router: Router) {
     this.router = router;

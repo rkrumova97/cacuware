@@ -19,7 +19,7 @@ public class EmployeeDto {
 
     private LocalDate startDate;
 
-    private LocalDate leavingDate;
+    private LocalDate endDate;
 
     private LocalDate leavingNoticeSubmissionDate;
 
@@ -38,6 +38,8 @@ public class EmployeeDto {
     private SecurityDataDto securityData;
 
     private String education;
+
+    private List<UUID> fileIDs;
 
     private List<UUID> fileIds;
 

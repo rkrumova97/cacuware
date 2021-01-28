@@ -58,7 +58,8 @@ export class FileService {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.token
     });
-
+    
+    console.log(employee);
     const params = new HttpParams()
       .append('employee', JSON.stringify(employee));
     return this.http.get(`${this.baseUrl}/generateDocuments`, {headers: headers, params:params});

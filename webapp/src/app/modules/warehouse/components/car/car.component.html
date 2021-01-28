@@ -2,7 +2,7 @@
   <div class="row  justify-content-sm-center">
     <ul ngbNav #nav="ngbNav"  class="nav-tabs">
       <li [ngbNavItem]="1">
-        <a ngbNavLink class="m-3">Add car</a>
+        <a ngbNavLink class="m-3">Actual projects</a>
         <ng-template ngbNavContent>
           <app-add-car-info *ngIf="dataService.number == 1"></app-add-car-info>
           <app-add-car-documents *ngIf="dataService.number == 2"></app-add-car-documents>
@@ -10,17 +10,18 @@
         </ng-template>
       </li>
       <li [ngbNavItem]="2">
-        <a ngbNavLink class="m-3">Two</a>
+        <a ngbNavLink class="m-3">List of old projects</a>
         <ng-template ngbNavContent>
           <app-car-list></app-car-list>
         </ng-template>
       </li>
-      <li [ngbNavItem]="3">
-        <a ngbNavLink class="m-3">Three</a>
+            <li [ngbNavItem]="3">
+        <a ngbNavLink class="m-3">Month report</a>
         <ng-template ngbNavContent>
 
         </ng-template>
       </li>
+      
     </ul>
 
     <div [ngbNavOutlet]="nav" ></div>

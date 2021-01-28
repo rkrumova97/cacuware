@@ -9,8 +9,10 @@ spring:
     username: cacuware
     password: cacuware
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
 
-    
 logging:
   level:
     org.springframework.security: DEBUG

@@ -14,9 +14,10 @@ import { AddCarMaterialsComponent } from './components/car/add-car/add-car-mater
 import { CarListComponent } from './components/car/car-list/car-list.component';
 import {PopupComponent} from "./components/popup/popup.component";
 import { ArchiveComponent } from './components/archive/archive.component';
+import { CarProfileComponent } from './components/car/car-profile/car-profile.component';
 
 @NgModule({
-  declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent, AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent, PopupComponent, ArchiveComponent],
+  declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent, AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent, PopupComponent, ArchiveComponent, CarProfileComponent],
   imports: [
     CommonModule,
     WarehouseRoutingModule,

@@ -191,7 +191,7 @@ public class GenerateFileService {
                 "втора специалност :                              , научна степен:\n" +
                 "с трудов стаж   " + employeeDto.getSecurityData().getYearsOfLabour() + " г.  " + employeeDto.getSecurityData().getMonthsOfLabour() + " м.   "
                 + employeeDto.getSecurityData().getDaysOfLabour() + " дни , в т.ч.трудов стаж по специалността    " +
-                employeeDto.getSecurityData().getProfessionYearsOfLabour() + employeeDto.getSecurityData().getProfessionMonthsOfLabour() + employeeDto.getSecurityData().getProfessionDaysOfLabour()
+                employeeDto.getSecurityData().getProfessionalYearsOfLabour() + employeeDto.getSecurityData().getProfessionalMonthsOfLabour() + employeeDto.getSecurityData().getProfessionalDaysOfLabour()
                 + " г.  м.  д.\n наричан за краткост по-долу РАБОТНИК (СЛУЖИТЕЛ), на основание чл.67 ал.1\n" +
                 "от Кодекса на труда се сключи настоящия трудов договор :\n" +
                 "1.Предприятието възлага , а работникът/служителят приема да изпълнява в :\n" +
@@ -236,13 +236,13 @@ public class GenerateFileService {
     public File createFireDocument(EmployeeDto employeeDto) throws Exception {
         int number = fileStorageService.findCount(Type.FIRE);
         final String[] name = new String[1];
-        fileStorageService.getFiles(employeeDto.getFileIds()).forEach(file -> {
+        fileStorageService.getFiles(employeeDto.getFileIDs()).forEach(file -> {
             if(file.getFileBusinessType().equals(Type.CONTRACT)){
                 name[0] = file.getCounter() + " / " + employeeDto.getStartDate();
             }
         });
         String contract = name[0];
-        LocalDate end = (Objects.nonNull(employeeDto.getLeavingDate())) ? employeeDto.getLeavingDate() : LocalDate.now().plusMonths(1);
+        LocalDate end = (Objects.nonNull(employeeDto.getEndDate())) ? employeeDto.getEndDate() : LocalDate.now().plusMonths(1);
 
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
