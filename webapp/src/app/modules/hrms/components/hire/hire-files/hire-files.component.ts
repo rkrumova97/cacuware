@@ -9,6 +9,7 @@ import {HrmsService} from "../../../service/hrms.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Person} from "../../../model/person.model";
 import {SecurityDataModel} from "../../../model/security-data.model";
+import {EmailService} from "../../../service/email.service";
 
 @Component({
   selector: 'app-hire-files',
@@ -34,7 +35,8 @@ export class HireFilesComponent implements OnInit {
   files: any = [];
 
   constructor(private dataService: DataService, private employeeService: HrmsService,
-              private uploadService: FileService, private formBuilder: FormBuilder) {
+              private uploadService: FileService, private formBuilder: FormBuilder,
+              private mailService: EmailService) {
     this.form = this.formBuilder.group({
       type: ['']
     });
@@ -124,5 +126,9 @@ export class HireFilesComponent implements OnInit {
       fileSaver.saveAs(blob, fileName);
     }), () => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
+  }
+
+  finish() {
+    this.mailService.sendHireEmail(this.employee).subscribe();
   }
 }

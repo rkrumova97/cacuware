@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {HrmsService} from "../../service/hrms.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PopupComponent} from "../popup/popup.component";
-import {DatePipe, formatDate} from "@angular/common";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-list-employees',
