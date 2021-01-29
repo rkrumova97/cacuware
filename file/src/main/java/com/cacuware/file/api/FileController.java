@@ -113,8 +113,11 @@ public class FileController {
 
     @GetMapping("/fireDocuments")
     @Consumes("application/json")
-    public ResponseEntity<?> generateFireDocuments(@RequestParam("employee") EmployeeDto employee) throws Exception {
-        File fireDocument = generateFileService.createFireDocument(employee);
+    public ResponseEntity<?> generateFireDocuments(@RequestParam("employee") String employee) throws Exception {
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule());
+        EmployeeDto employeeDto = om.readValue(employee, EmployeeDto.class);
+        File fireDocument = generateFileService.createFireDocument(employeeDto);
         HttpHeaders respHeaders = new HttpHeaders();
         respHeaders.setContentLength(fireDocument.getFile().length);
         respHeaders.setContentType(MediaType.parseMediaType(fireDocument.getFileType()));

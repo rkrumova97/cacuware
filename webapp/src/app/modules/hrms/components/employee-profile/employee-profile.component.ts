@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Person} from "../../model/person.model";
 import {SecurityDataModel} from "../../model/security-data.model";
 import {DataService} from "../../service/data.service";
+import {FileService} from "../../service/file.service";
 
 @Component({
   selector: 'app-employee-profile',
@@ -15,9 +16,10 @@ export class EmployeeProfileComponent implements OnInit {
 
   id?: string | null;
   employee!: Employee;
+  files: any[] = [];
   http: HrmsService;
 
-  constructor(private route: ActivatedRoute, http: HrmsService, private dataService:DataService) {
+  constructor(private route: ActivatedRoute, http: HrmsService, private dataService:DataService, private fileService: FileService) {
     this.http = http;
   }
 
@@ -32,6 +34,10 @@ export class EmployeeProfileComponent implements OnInit {
       console.log(this.dataService.employee);
     });
 
+    this.fileService.getFiles().subscribe(res => {
+      this.files = res;
+
+    });
   }
 
 

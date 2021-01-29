@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../model/employee.model";
 
@@ -19,14 +19,35 @@ export class EmailService {
     this.token = otherKeys[0].substring(1, otherKeys[0].length - 1);
   }
 
-  sendHireEmail(employee: Employee | undefined): any{
+  sendHireEmail(employee: Employee | undefined): any {
     let headers = new HttpHeaders({
       'Content-type': 'application/json',
       'Authorization': 'Bearer ' + this.token,
     });
     return this.http.post(this.baseUrl + "/sendMail",
-      {"email":"rkrumova97@gmail.com",
-        "text":"Hi, \n You successfully hired " + employee + " \n Please after signed replace the signed documents. \n Greetings!", "subject":"Hire " + employee!.person.firstName + " " + employee!.person.lastName, "fileName":null, "file":null},
+      {
+        "email": "rkrumova97@gmail.com",
+        "text": "Hi, \n You successfully hired " + employee + " \n Please after signed replace the signed documents. \n Greetings!",
+        "subject": "Hire " + employee!.person.firstName + " " + employee!.person.lastName,
+        "fileName": null,
+        "file": null
+      },
+      {headers: headers});
+  }
+
+  sendFireEmail(employee: Employee | undefined): any {
+    let headers = new HttpHeaders({
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + this.token,
+    });
+    return this.http.post(this.baseUrl + "/sendMail",
+      {
+        "email": "rkrumova97@gmail.com",
+        "text": "Hi, \n You successfully fired " + employee + " \n Please after signed replace the signed documents. \n Greetings!",
+        "subject": "Fire " + employee!.person.firstName + " " + employee!.person.lastName,
+        "fileName": null,
+        "file": null
+      },
       {headers: headers});
   }
 }

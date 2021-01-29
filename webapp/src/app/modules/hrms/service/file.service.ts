@@ -78,4 +78,13 @@ export class FileService {
       return this.http.get(url, {headers: headers, responseType: 'blob' as 'json' });
   }
 
+  getFireDocuments(employee:Employee): any{
+      let headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token,
+      });
+    const params = new HttpParams().append('employee', JSON.stringify(employee))
+    return this.http.get(this.baseUrl + "/fireDocuments",
+      {headers: headers, responseType: 'blob' as 'json', params:params });
+  }
+
 }
