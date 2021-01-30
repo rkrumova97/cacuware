@@ -19,7 +19,7 @@ public class EmployeeDto {
 
     private LocalDate startDate;
 
-    private LocalDate endDate;
+    private LocalDate leavingDate;
 
     private LocalDate leavingNoticeSubmissionDate;
 

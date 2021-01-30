@@ -127,7 +127,15 @@ public class FileController {
     }
 
     @GetMapping("/vacationDocuments")
-    public void generateVacationDocuments(@RequestParam("employee") EmployeeDto employee, @RequestParam("vacation") VacationDto vacationDto, HttpServletResponse response) throws Exception {
-
+    public ResponseEntity<List<UploadFileResponse>> generateVacationDocuments(@RequestParam("vacation") String vacationDto, HttpServletResponse response) throws Exception {
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule());
+        VacationDto vacationDto1 = om.readValue(vacationDto, VacationDto.class);
+        List<UUID> ids = new ArrayList<>();
+        File contract = generateFileService.createVacationDocument(vacationDto1);
+        ids.add(contract.getId());
+        File gdpr = generateFileService.createVacationRequest(vacationDto1);
+        ids.add(gdpr.getId());
+        return getFiles(ids);
     }
 }

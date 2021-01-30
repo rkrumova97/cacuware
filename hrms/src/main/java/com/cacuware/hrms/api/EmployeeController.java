@@ -1,6 +1,7 @@
 package com.cacuware.hrms.api;
 
 import com.cacuware.hrms.api.dto.EmployeeDto;
+import com.cacuware.hrms.api.dto.VacationDto;
 import com.cacuware.hrms.mapper.EmployeeMapper;
 import com.cacuware.hrms.model.Employee;
 import com.cacuware.hrms.service.EmployeeService;
@@ -43,6 +44,13 @@ public class EmployeeController {
     @PutMapping
     public ResponseEntity<Employee> update(@RequestBody EmployeeDto employeeDto) throws URISyntaxException {
         Employee employee = employeeService.saveEmployee(employeeDto);
+        return ResponseEntity.created(new URI("/api/" + employee.getId()))
+                .body(employee);
+    }
+
+    @PutMapping("/vacation")
+    public ResponseEntity<Employee> updateVacationDays(@RequestBody VacationDto vacationDto) throws URISyntaxException {
+        Employee employee = employeeService.updateEmployee(vacationDto);
         return ResponseEntity.created(new URI("/api/" + employee.getId()))
                 .body(employee);
     }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Employee} from "../model/employee.model";
+import {ApplicationForVacation} from "../model/application-for-vacation.model";
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,16 @@ export class FileService {
     const params = new HttpParams()
       .append('employee', JSON.stringify(employee));
     return this.http.get(`${this.baseUrl}/generateDocuments`, {headers: headers, params:params});
+  }
+
+  generateVacationDocuments(vacation: ApplicationForVacation): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    });
+
+    const params = new HttpParams()
+      .append('vacation', JSON.stringify(vacation));
+    return this.http.get(`${this.baseUrl}/vacationDocuments`, {headers: headers, params:params});
   }
 
   getFileTypes(): Observable<any> {

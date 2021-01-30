@@ -13,7 +13,6 @@ export interface IEmployee {
   email?: string;
   egn?: number;
   salary?: number;
-  iban?: string;
   startDate?: Date;
   leavingDate?: Date;
   leavingNoticeSubmissionDate?: Date;

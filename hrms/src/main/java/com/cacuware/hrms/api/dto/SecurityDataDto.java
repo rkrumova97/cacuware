@@ -36,9 +36,9 @@ public class SecurityDataDto {
 
     private String email;
 
-    private Integer professionYearsOfLabour;
+    private Integer professionalYearsOfLabour;
 
-    private Integer professionMonthsOfLabour;
+    private Integer professionalMonthsOfLabour;
 
-    private Integer professionDaysOfLabour;
+    private Integer professionalDaysOfLabour;
 }

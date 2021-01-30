@@ -19,9 +19,9 @@ public class SecurityDataMapper {
                 .monthsOfLabour(securityDataDto.getMonthsOfLabour())
                 .salary(securityDataDto.getSalary())
                 .yearsOfLabour(securityDataDto.getYearsOfLabour())
-                .professionalDaysOfLabour(securityDataDto.getProfessionDaysOfLabour())
-                .professionalMonthsOfLabour(securityDataDto.getProfessionMonthsOfLabour())
-                .professionalYearsOfLabour(securityDataDto.getProfessionYearsOfLabour())
+                .professionalDaysOfLabour(securityDataDto.getProfessionalDaysOfLabour())
+                .professionalMonthsOfLabour(securityDataDto.getProfessionalMonthsOfLabour())
+                .professionalYearsOfLabour(securityDataDto.getProfessionalYearsOfLabour())
                 .build();
     }
 
@@ -37,9 +37,9 @@ public class SecurityDataMapper {
                 .monthsOfLabour(securityData.getMonthsOfLabour())
                 .salary(securityData.getSalary())
                 .yearsOfLabour(securityData.getYearsOfLabour())
-                .professionDaysOfLabour(securityData.getDaysOfLabour())
-                .professionMonthsOfLabour(securityData.getMonthsOfLabour())
-                .professionYearsOfLabour(securityData.getYearsOfLabour())
+                .professionalDaysOfLabour(securityData.getDaysOfLabour())
+                .professionalMonthsOfLabour(securityData.getMonthsOfLabour())
+                .professionalYearsOfLabour(securityData.getYearsOfLabour())
                 .build();
     }
 }

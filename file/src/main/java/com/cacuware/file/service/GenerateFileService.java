@@ -242,7 +242,7 @@ public class GenerateFileService {
             }
         });
         String contract = name[0];
-        LocalDate end = (Objects.nonNull(employeeDto.getEndDate())) ? employeeDto.getEndDate() : LocalDate.now().plusMonths(1);
+        LocalDate end = (Objects.nonNull(employeeDto.getLeavingDate())) ? employeeDto.getLeavingDate() : LocalDate.now().plusMonths(1);
 
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -300,10 +300,10 @@ public class GenerateFileService {
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document", out.toByteArray()), Type.FIRE.name());
     }
 
-    public File createVacationDocument(EmployeeDto employee, VacationDto vacationDto) throws Exception {
+    public File createVacationDocument(VacationDto vacationDto) throws Exception {
         int number = fileStorageService.findCount(Type.VACATION_APPROVAL);
 
-        int days = vacationDto.getToDate().compareTo(vacationDto.getFromDate());
+        LocalDate toDate = vacationDto.getStartDate().plusDays(vacationDto.getVacationDays());
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -323,10 +323,10 @@ public class GenerateFileService {
         XWPFParagraph layout = document.createParagraph();
         layout.setAlignment(ParagraphAlignment.CENTER);
         XWPFRun run4 = layout.createRun();
-        run4.setText("В периода от " + vacationDto.getFromDate() + "до " + vacationDto.getToDate() +
+        run4.setText("В периода от " + vacationDto.getStartDate() + "до " + toDate +
                 " г. да ползва платен годишен отпуск за " + LocalDate.now().getYear() + "година,\n" +
-                "в размер на " + days + ".работни дни \n "
-                + employee.getPerson().getFirstName() + employee.getPerson().getMiddleName() + employee.getPerson().getLastName() + employee.getJobNumber() + "\n" +
+                "в размер на " + vacationDto.getVacationDays() + ".работни дни \n "
+                + vacationDto.getEmployee().getPerson().getFirstName() + vacationDto.getEmployee().getPerson().getMiddleName() + vacationDto.getEmployee().getPerson().getLastName() + vacationDto.getEmployee().getJobNumber() + "\n" +
                 "                    (посочват се трите имена и длъжноста на работника или служителя)\n" +
                 "\n" +
                 "Препис от заповедта да се връчи на работника  или служителя  за сведение и изпълнение и да се приложи към личното му трудово досие, а също така и в отдел счетоводство.\n");
@@ -346,10 +346,10 @@ public class GenerateFileService {
 
     }
 
-    public File createVacationRequest(EmployeeDto employee, VacationDto vacation) throws Exception {
+    public File createVacationRequest(VacationDto vacation) throws Exception {
         int number = fileStorageService.findCount(Type.VACATION_REQUEST);
 
-        int days = vacation.getToDate().compareTo(vacation.getFromDate());
+        LocalDate toDate = vacation.getStartDate().plusDays(vacation.getVacationDays());
         XWPFDocument document = getXwpfDocument();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
@@ -370,11 +370,11 @@ public class GenerateFileService {
         run1.addBreak();
         run1.setBold(false);
         run1.setFontSize(26);
-        run1.setText("ОТ" + employee.getPerson().getFirstName() + employee.getPerson().getMiddleName() + employee.getPerson().getLastName());
+        run1.setText("ОТ" + vacation.getEmployee().getPerson().getFirstName() + vacation.getEmployee().getPerson().getMiddleName() + vacation.getEmployee().getPerson().getLastName());
         run1.addBreak();
-        run1.setText("ЕГН " + employee.getSecurityData().getEgn());
+        run1.setText("ЕГН " + vacation.getEmployee().getSecurityData().getEgn());
         run1.addBreak();
-        run1.setText("на длъжност " + employee.getJobNumber());
+        run1.setText("на длъжност " + vacation.getEmployee().getJobNumber());
 
 
         XWPFParagraph layout = document.createParagraph();
@@ -382,7 +382,7 @@ public class GenerateFileService {
         XWPFRun run4 = layout.createRun();
         run4.setText("Уважаеми господин управител,\n" +
                 "\n" +
-                "\tМоля да ми разрешите ползването на " + days + "дни платен годишен отпуск, считано от " + vacation.getFromDate() + " до " + vacation.getToDate() + ".г. включително.\n" +
+                "\tМоля да ми разрешите ползването на " + vacation.getVacationDays() + "дни платен годишен отпуск, считано от " + vacation.getStartDate() + " до " + toDate + ".г. включително.\n" +
                 "\n");
 
         setsmth(document, out);
