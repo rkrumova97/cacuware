@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Car {
@@ -71,9 +73,13 @@ public class Car {
     @Column
     private Integer norm;
 
+    @Column
+    private boolean isDeleted;
+
     @ElementCollection
     @CollectionTable(name = "car_materialids", joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"))
     private List<UUID> material;
+
 }
 
 

@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Material {
@@ -53,4 +55,7 @@ public class Material {
 
     @Column
     private String type;
+
+    @Column
+    private boolean isDeleted;
 }

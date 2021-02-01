@@ -10,13 +10,13 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PersonService {
-    public Person savePerson(PersonDto personDto);
+    Person savePerson(PersonDto personDto);
 
     Person getOneById(UUID uuid);
 
-    public void deletePerson(UUID uuid);
+    void deletePerson(UUID uuid);
 
-    public List<Person> findAllPerson(Sort sort);
+    List<Person> findAllPerson(Sort sort);
 
     Person updatePerson(PersonDto personDto);
 }

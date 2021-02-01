@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Company {
@@ -31,6 +33,9 @@ public class Company {
 
     @Column
     private String mol;
+
+    @Column
+    private boolean isDeleted;
 
     @Column
     private String bulstat;

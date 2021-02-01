@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Project {
@@ -24,6 +26,9 @@ public class Project {
 
     @Column
     private Company company;
+
+    @Column
+    private boolean isDeleted;
 
     @ElementCollection
     @CollectionTable(name = "project_peopleids", joinColumns = @JoinColumn(name = "ppe_id", referencedColumnName = "id"))
