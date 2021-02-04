@@ -10,7 +10,7 @@ import java.util.Objects;
 public class CarMapper {
     public static Car toEntity(CarDto carDto) {
         Car car =  Car.builder()
-                .material(carDto.getMaterial())
+                .material_id(carDto.getMaterial())
                 .type(carDto.getType())
                 .brand(carDto.getBrand())
                 .engineVolume(carDto.getEngineVolume())
@@ -24,7 +24,7 @@ public class CarMapper {
                 .number(carDto.getNumber())
                 .repair(carDto.getRepair())
                 .repairDate(carDto.getRepairDate())
-                .repairMoney(carDto.getRepairMoney())
+                .repairMoney(Integer.parseInt(carDto.getRepairMoney()))
                 .vignette(carDto.getVignette())
                 .vignetteExpiryDate(carDto.getVignetteExpiryDate())
                 .build();
@@ -37,7 +37,7 @@ public class CarMapper {
     public static CarDto toDto(Car car) {
         return CarDto.builder()
                 .id(car.getId())
-                .material(car.getMaterial())
+                .material(car.getMaterial_id())
                 .type(car.getType())
                 .brand(car.getBrand())
                 .engineVolume(car.getEngineVolume())
@@ -51,7 +51,7 @@ public class CarMapper {
                 .number(car.getNumber())
                 .repair(car.getRepair())
                 .repairDate(car.getRepairDate())
-                .repairMoney(car.getRepairMoney())
+                .repairMoney(car.getRepairMoney().toString())
                 .vignette(car.getVignette())
                 .vignetteExpiryDate(car.getVignetteExpiryDate())
                 .build();

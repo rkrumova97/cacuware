@@ -6,6 +6,7 @@ import {MaterialComponent} from "./components/material/material.component";
 import {PpeComponent} from "./components/ppe/ppe.component";
 import {ProjectComponent} from "./components/project/project.component";
 import {CarProfileComponent} from './components/car/car-profile/car-profile.component';
+import {CarArchiveComponent} from "./components/car/archive/car-archive.component";
 
 
 export class WareRoutes {
@@ -27,6 +28,13 @@ export class WareRoutes {
     {
       path: 'cars/profile:id',
       component: CarProfileComponent,
+      children: [
+        {path: 'warehouse', component: WarehouseComponent}
+      ],
+    },
+    {
+      path: 'cars/archive',
+      component: CarArchiveComponent,
       children: [
         {path: 'warehouse', component: WarehouseComponent}
       ],

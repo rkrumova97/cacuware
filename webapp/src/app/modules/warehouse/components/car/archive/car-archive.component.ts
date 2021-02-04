@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-archive',
-  templateUrl: './archive.component.html',
-  styleUrls: ['./archive.component.css']
+  selector: 'car-archive',
+  templateUrl: './car-archive.component.html',
+  styleUrls: ['./car-archive.component.css']
 })
-export class ArchiveComponent implements OnInit {
+export class CarArchiveComponent implements OnInit {
 
 
   isClicked?: boolean;
@@ -22,5 +22,9 @@ export class ArchiveComponent implements OnInit {
     // this.hrmsService.getResource("/employees/archive").subscribe(res => {
     //   this.employees = res;
     // });
+  }
+
+  open() {
+
   }
 }

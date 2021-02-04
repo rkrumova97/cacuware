@@ -34,6 +34,7 @@
             <column name="kilometers" type="int"/>
             <column name="fuel" type="real"/>
             <column name="norm" type="int"/>
+            <column name="is_deleted" type="boolean"/>
         </createTable>
         <createTable tableName="ppe">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -41,6 +42,7 @@
             </column>
             <column name="size" type="varchar"/>
             <column name="material_id" type="${uuid_type}"/>
+            <column name="is_deleted" type="boolean"/>
         </createTable>
         <createTable tableName="material">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -56,6 +58,7 @@
             <column name="date" type="date"/>
             <column name="left" type="real"/>
             <column name="type" type="varchar"/>
+            <column name="is_deleted" type="boolean"/>
         </createTable>
         <createTable tableName="company">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
@@ -68,12 +71,14 @@
             <column name="contact_name" type="varchar"/>
             <column name="contact_email" type="varchar"/>
             <column name="contact_number" type="int"/>
+            <column name="is_deleted" type="boolean"/>
         </createTable>
         <createTable tableName="project">
             <column name="id" type="${uuid_type}" defaultValue="${uuid_function}">
                 <constraints primaryKey="true"/>
             </column>
             <column name="company_id" type="${uuid_type}"/>
+            <column name="is_deleted" type="boolean"/>
         </createTable>
         <createTable tableName="car_materialids">
             <column name="material_id" type="${uuid_type}" defaultValue="${uuid_function}">

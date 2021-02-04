@@ -11,10 +11,10 @@ public class ProjectMapper {
     public static Project toEntity(ProjectDto projectDto) {
         Project person = Project.builder()
                 .company(CompanyMapper.toEntity(projectDto.getCompany()))
-                .cars(projectDto.getCars())
-                .files(projectDto.getFiles())
-                .materials(projectDto.getMaterials())
-                .people(projectDto.getPeople())
+                .car_id(projectDto.getCars())
+                .file_id(projectDto.getFiles())
+                .material_id(projectDto.getMaterials())
+                .people_id(projectDto.getPeople())
                 .build();
         if (Objects.nonNull(projectDto.getId())) {
             person.setId(projectDto.getId());
@@ -26,10 +26,10 @@ public class ProjectMapper {
         return ProjectDto.builder()
                 .id(project.getId())
                 .company(CompanyMapper.toDto(project.getCompany()))
-                .cars(project.getCars())
-                .files(project.getFiles())
-                .materials(project.getMaterials())
-                .people(project.getPeople())
+                .cars(project.getCar_id())
+                .files(project.getFile_id())
+                .materials(project.getMaterial_id())
+                .people(project.getPeople_id())
                 .build();
     }
 }

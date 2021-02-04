@@ -11,8 +11,8 @@ import java.util.Objects;
 public class PpeMapper {
     public static PPE toEntity(PpeDto ppeDto) {
         PPE ppe = PPE.builder()
-                .type(PPEType.getByText(ppeDto.getType()))
-                .people(ppeDto.getPeople())
+                //.type(PPEType.getByText(ppeDto.getType()))
+                .person_id(ppeDto.getPeople())
                 .size(ppeDto.getSize())
                 .material(MaterialMapper.toEntity(ppeDto.getMaterial()))
                 .build();
@@ -25,8 +25,8 @@ public class PpeMapper {
     public static PpeDto toDto(PPE ppe) {
         return PpeDto.builder()
                 .id(ppe.getId())
-                .type(ppe.getType().getText())
-                .people(ppe.getPeople())
+               // .type(ppe.getType().getText())
+                .people(ppe.getPerson_id())
                 .size(ppe.getSize())
                 .material(MaterialMapper.toDto(ppe.getMaterial()))
                 .build();

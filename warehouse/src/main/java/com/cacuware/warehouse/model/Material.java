@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ import java.util.UUID;
 
 @Data
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Material {
@@ -51,7 +53,7 @@ public class Material {
     private LocalDate date;
 
     @Column
-    private Integer left;
+    private Float left;
 
     @Column
     private String type;

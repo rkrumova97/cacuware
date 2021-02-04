@@ -28,7 +28,7 @@ public class MaterialDto {
 
     private LocalDate date;
 
-    private Integer left;
+    private Float left;
 
     private String type;
 

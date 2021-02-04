@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Data
 @Builder
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class PPE {
@@ -24,19 +25,20 @@ public class PPE {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
-    @Column
+    @OneToOne
+    @JoinColumn(name = "material_id", nullable = false)
     private Material material;
 
     @Column
     private String size;
 
-    @Column
-    private PPEType type;
+//    @Column
+//    private PPEType type;
 
-    @Column
+    @Column(name = "is_deleted")
     private boolean isDeleted;
 
     @ElementCollection
     @CollectionTable(name = "ppe_peopleids", joinColumns = @JoinColumn(name = "ppe_id", referencedColumnName = "id"))
-    private List<UUID> people;
+    private List<UUID> person_id;
 }

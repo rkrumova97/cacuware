@@ -1,22 +1,5 @@
-html {
-  height: 100%;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Work Sans', sans-serif;
-}
-
-body {
-  position: relative;
-  margin: 0;
-  padding-bottom: 6rem;
-  min-height: 100%;
-  padding-top: 26px;
-}
 .container-fluid{
   min-height: calc(100vh - 70px);
-}
-.link {
-  text-decoration: none;
 }
 
 #titleContainer {
@@ -27,6 +10,7 @@ body {
   border-radius: 3px;
   margin-left: 0;
   margin-right: 0;
+  margin-top: 10px;
 }
 
 .titleDecoration {
@@ -44,17 +28,6 @@ body {
   box-shadow: 0px 1px 2px rgba(12, 110, 148, 0.2);
 }
 
-.btnTwo {
-  position: relative;
-  width: 200px;
-  height: 100px;
-  margin-top: -100px;
-  padding-top: 2px;
-  background-color: #FFC107;
-  left: -250px;
-  transition: .3s;
-}
-
 .btnText {
   color: #FFFFFF;
   text-decoration: none;
@@ -62,23 +35,30 @@ body {
   margin-top: 14px;
 }
 
-.btnText2 {
-  margin-top: 57px;
-  margin-right: -130px;
-  color: #0c5c7d;
-  font-weight: 700;
-}
-
-.button:hover .btnTwo { /*When hovering over .button change .btnTwo*/
-  left: -130px;
-}
-
-.button:hover .btnText { /*When hovering over .button change .btnText*/
-  margin-left: 65px;
-}
 
 .button:active { /*Clicked and held*/
   box-shadow: 0px 5px 6px rgba(12, 110, 148, 0.3);
+}
+
+.container h3 {
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 300;
+  color: #3c4858;
+}
+
+.container h4 {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 10px 0;
+  font-weight: 300;
+  color: #3c4858;
+}
+
+small {
+  font-size: 75% !important;
+  color: #777;
 }
 
 .table {
@@ -101,7 +81,7 @@ body {
   vertical-align: middle;
   background-color: #fafdcb;
   font-size: 14px;
-  color: #23aabb;
+  color: dodgerblue;
 }
 
 .table .td-actions .btn {
@@ -112,4 +92,6 @@ body {
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
   background-color: #fff78f;
 }
+
+.clear { clear: both; height: 60px; }
 

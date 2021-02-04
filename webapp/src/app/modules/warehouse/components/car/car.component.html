@@ -10,7 +10,14 @@
   <li [ngbNavItem]="2">
     <a ngbNavLink>List of the cars</a>
     <ng-template ngbNavContent>
-    <app-car-list></app-car-list>
+      <app-car-list></app-car-list>
+      <car-archive *ngIf="dataService.number == 4"></car-archive>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Report form for the cars</a>
+    <ng-template ngbNavContent>
+      <app-car-report></app-car-report>
     </ng-template>
   </li>
 </ul>

@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -62,7 +63,7 @@ public class Car {
     private LocalDate repairDate;
 
     @Column(name = "repair_money")
-    private String repairMoney;
+    private Integer repairMoney;
 
     @Column
     private Integer kilometers;
@@ -73,12 +74,12 @@ public class Car {
     @Column
     private Integer norm;
 
-    @Column
+    @Column(name = "is_deleted")
     private boolean isDeleted;
 
     @ElementCollection
     @CollectionTable(name = "car_materialids", joinColumns = @JoinColumn(name = "car_id", referencedColumnName = "id"))
-    private List<UUID> material;
+    private List<UUID> material_id;
 
 }
 
