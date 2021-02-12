@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./material-report.component.css']
 })
 export class MaterialReportComponent implements OnInit {
+  cars: any;
 
   constructor() { }
 

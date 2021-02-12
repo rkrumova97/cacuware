@@ -1,1 +1,182 @@
-<p>ppe-add works!</p>
+<div class="row  justify-content-sm-center">
+  <div class="col-12 ">
+    <h1 class="headerTitle text-center">Add personal protective equipment</h1>
+  </div>
+</div>
+
+<!--  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>-->
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_ppe_type">Type</label>
+        <input type="text" class="form-control" name="type" id="field_ppe_type"
+               value="{{ppe.type}}"
+               placeholder="Ppe's type"
+               required
+               [(ngModel)]="ppe.type"
+               #type=ngModel
+               [ngClass]="{ 'is-invalid': type.invalid && (type.dirty || type.touched || submitted) }"
+        />
+        <div
+          *ngIf="type.invalid && (type.dirty || type.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Type is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_size">Size</label>
+        <input type="text" class="form-control" name="type" id="field_size"
+               value="{{ppe.type}}"
+               placeholder="Ppe's size"
+               required
+               [(ngModel)]="ppe.type"
+               #type=ngModel
+               [ngClass]="{ 'is-invalid': type.invalid && (type.dirty || type.touched || submitted) }"
+        />
+        <div
+          *ngIf="type.invalid && (type.dirty || type.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Type is required field.</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="row m-4"></div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_name">Name</label>
+        <input type="text" class="form-control" name="name" id="field_name"
+               value="{{ppe.name}}"
+               placeholder="Ppe's name"
+               required
+               [(ngModel)]="ppe.name"
+               #name=ngModel
+               [ngClass]="{ 'is-invalid': name.invalid && (name.dirty || name.touched || submitted) }"
+        />
+        <div
+          *ngIf="name.invalid && (name.dirty || name.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Name is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_type">Type</label>
+        <input type="text" class="form-control" name="type" id="field_type"
+               value="{{ppe.type}}"
+               placeholder="Ppe's type"
+               required
+               [(ngModel)]="ppe.type"
+               #type=ngModel
+               [ngClass]="{ 'is-invalid': type.invalid && (type.dirty || type.touched || submitted) }"
+        />
+        <div
+          *ngIf="type.invalid && (type.dirty || type.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Type is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_measurement">Measurement</label>
+        <input type="text" class="form-control" name="measurement" id="field_measurement"
+               placeholder="Ppe's measurement"
+               value="{{ppe.measurement}}"
+               required
+               [(ngModel)]="ppe.measurement"
+               #measurement=ngModel
+               [ngClass]="{ 'is-invalid': measurement.invalid && (measurement.dirty || measurement.touched || submitted) }"
+        />
+        <div
+          *ngIf="measurement.invalid && (measurement.dirty || measurement.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Measurement is required field.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row m-4"></div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="quantity" class="col-12 col-form-label">Quantity</label>
+        <input type="text" class="form-control" name="area" id="quantity" required
+               placeholder="Ppe's quantity"
+               value="{{ppe.quantity}}"
+               [(ngModel)]="ppe.quantity"
+               #quantity="ngModel"
+               [ngClass]="{ 'is-invalid': invoice.invalid && (invoice.dirty || invoice.touched || submitted) }"/>
+        <div *ngIf="invoice.invalid && (invoice.dirty || invoice.touched || submitted)"
+             class="invalid-feedback">
+          <span>Quantity is required field.</span>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="quantity" class="col-12 col-form-label">Single material's price</label>
+        <input type="text" class="form-control" name="area" id="price" required
+               placeholder="Ppe's single price"
+               value="{{ppe.price}}"
+               [(ngModel)]="ppe.price"
+               #price="ngModel"
+               [ngClass]="{ 'is-invalid': invoice.invalid && (invoice.dirty || invoice.touched || submitted) }"/>
+        <div *ngIf="invoice.invalid && (invoice.dirty || invoice.touched || submitted)"
+             class="invalid-feedback">
+          <span>Single price is required field.</span>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="invoice" class="col-12 col-form-label"> Material's invoice</label>
+        <input type="text" class="form-control" name="area" id="invoice" required
+               placeholder="Ppe's invoice"
+               value="{{ppe.invoice}}"
+               [(ngModel)]="ppe.invoice"
+               #invoice="ngModel"
+               [ngClass]="{ 'is-invalid': invoice.invalid && (invoice.dirty || invoice.touched || submitted) }"/>
+        <div *ngIf="invoice.invalid && (invoice.dirty || invoice.touched || submitted)"
+             class="invalid-feedback">
+          <span>Invoice is required field.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row m-4"></div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="delivery" class="col-12 col-form-label">Delivery company</label>
+        <input type="text" class="form-control" name="delivery" id="delivery" required
+               placeholder="Ppe's delivery company"
+               value="{{ppe.delivery}}"
+               [(ngModel)]="ppe.delivery"
+               #delivery="ngModel"
+               [ngClass]="{ 'is-invalid': delivery.invalid && (delivery.dirty || delivery.touched || submitted) }"/>
+        <div *ngIf="delivery.invalid && (delivery.dirty || delivery.touched || submitted)"
+             class="invalid-feedback">
+          <span>Delivery company is required field.</span>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="date" class="col-12 col-form-label">Date of income</label>
+        <input type="date" class="form-control" name="date" id="date" required
+               placeholder="Ppe's date"
+               value="{{ppe.date}}"
+               [(ngModel)]="ppe.date"
+               #date="ngModel"
+               [ngClass]="{ 'is-invalid': date.invalid && (date.dirty || date.touched || submitted) }"/>
+        <div *ngIf="date.invalid && (date.dirty || date.touched || submitted)"
+             class="invalid-feedback">
+          <span>Single price is required field.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row m-4"></div>
+
+<div class="row justify-content-center">
+  <button type="button" class="btn btn-primary m-2" routerLink="/warehouse">
+    Back
+  </button>
+  <button type="button" class="btn btn-primary m-2" (click)="process()">Save</button>
+</div>
+

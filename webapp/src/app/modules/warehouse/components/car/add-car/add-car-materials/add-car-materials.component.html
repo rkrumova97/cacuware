@@ -15,7 +15,7 @@
       <div class="form-group col-md-4">
         <label class="form-control-label" for="field_name">Name</label>
         <input type="text" class="form-control" name="firstName" id="field_name"
-               value="{{car.brand}}"
+               value="{{car.material}}"
                placeholder="Material's name"
                required
                [(ngModel)]="car.brand"
@@ -105,9 +105,9 @@
         <label class="form-control-label" for="field_last_name">Invoice / Date</label>
         <input type="text" class="form-control" name="lastName" id="field_insadd"
                placeholder="Invoice and date"
-               value="{{car.volume}}"
+               value="{{car.material.invoice}}"
                required
-               [(ngModel)]="car.volume"
+               [(ngModel)]="car.material.invoice"
                #volume=ngModel
                [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
         />

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Car} from "../../../../model/car.model";
 
 @Component({
   selector: 'app-add-car-materials',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-car-materials.component.css']
 })
 export class AddCarMaterialsComponent implements OnInit {
-  car: any;
+  car!: Car;
   submitted?: Boolean;
 
   constructor() { }

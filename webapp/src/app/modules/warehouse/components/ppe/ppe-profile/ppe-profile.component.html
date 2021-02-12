@@ -1,1 +1,345 @@
-<p>ppe-profile works!</p>
+
+<div class="emp-profile">
+  <form method="post">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="profile-head">
+          <h5>
+            VOLVO xc70
+          </h5>
+          <h6>
+            EH0000KT
+          </h6>
+        </div>
+        <hr>
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>Personal info</a>
+            <ng-template ngbNavContent>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="tab-content tab" id="myTabContent">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Name</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p> VOLVO xc70 EH0000KT</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Birthday</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{employee.person.birthday | date: 'yyyy-MM-dd'}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Gender</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{employee.person.gender}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Area</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{employee.person.area}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>City</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{employee.person.city}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Address</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{employee.person.address}}</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <label>Status</label>
+                      </div>
+                      <div class="col-md-6">
+                        <p>{{employee.person.status}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row float-right">
+                <button type="button" class="btn btn-primary m-2" routerLink="/hr/hire/{{employee.person.id}}">
+                  Edit
+                </button>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Employee</a>
+            <ng-template ngbNavContent>
+              <div class="row">
+                <div class="col-md-8 tab">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Start date</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.startDate | date: 'yyyy-MM-dd'}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Vacation days</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.vacationDays}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Working hours</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.workingHours}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Working days</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.workingDays}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Working hours</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.workingHours}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Job</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.jobNumber}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Notice of leave submission date</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.leavingNoticeSubmissionDate | date: 'yyyy-MM-dd'}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>End date</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.leavingDate | date: 'yyyy-MM-dd'}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row float-right">
+                <button type="button" class="btn btn-primary m-2" routerLink="/hr/employee-details/{{id}}">
+                  Edit
+                </button>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>Security data</a>
+            <ng-template ngbNavContent>
+              <div class="row">
+                <div class="col-md-8 tab">
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>Email</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.email}}</p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>Id Card Number</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.idNumber}}</p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>Id Card Issued Date</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.issuedDate | date: 'yyyy-MM-dd'}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Id Card Issued Authority</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.authority}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Years of labour</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.yearsOfLabour}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Months of labour</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.monthsOfLabour}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Days of labour</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.daysOfLabour}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Salary</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.salary}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>EGN</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p>{{employee.securityData.egn}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row float-right">
+                <button type="button" class="btn btn-primary m-2" routerLink="/hr/sensitive-info/{{employee.securityData.id}}">
+                  Edit
+                </button>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>Documents</a>
+            <ng-template ngbNavContent>
+              <div class="row">
+                <div class="col-md-8 tab">
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>CONTRACT</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>NOI</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>MEDICINE</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>INSTRUCTORS</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>JOB_DESCRIPTION</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>ID_CARD</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>CERTIFICATES</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>OTHERS</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div class="row ">
+                    <div class="col-md-6">
+                      <label>LPS</label>
+                    </div>
+                    <div class="col-md-6">
+                      <p></p>
+                    </div>
+                  </div>
+
+                  <div class="row float-right">
+                    <button type="button" class="btn btn-primary m-2" routerLink="/hr/documents/{{id}}">
+                      Edit
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+    </div>
+  </form>
+</div>

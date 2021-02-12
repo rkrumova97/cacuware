@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ppe-report.component.css']
 })
 export class PpeReportComponent implements OnInit {
+  cars: any;
 
   constructor() { }
 

@@ -26,9 +26,18 @@ import { PpeArchiveComponent } from './components/ppe/ppe-archive/ppe-archive.co
 import { PpeListComponent } from './components/ppe/ppe-list/ppe-list.component';
 import { PpeProfileComponent } from './components/ppe/ppe-profile/ppe-profile.component';
 import { PpeReportComponent } from './components/ppe/ppe-report/ppe-report.component';
+import {CompanyComponent} from "./components/company/company.component";
+import { ProjectListComponent } from './components/project/project-list/project-list.component';
+import { ProjectArchiveComponent } from './components/project/project-archive/project-archive.component';
+import { ProjectAddComponent } from './components/project/project-add/project-add.component';
+import { CompanyAddComponent } from './components/company/company-add/company-add.component';
+import { CompanyListComponent } from './components/company/company-list/company-list.component';
 
 @NgModule({
-  declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent, AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent, PopupComponent, CarArchiveComponent, CarProfileComponent, CarReportComponent, MaterialAddComponent, MaterialListComponent, MaterialArchiveComponent, MaterialProfileComponent, MaterialReportComponent, PpeAddComponent, PpeArchiveComponent, PpeListComponent, PpeProfileComponent, PpeReportComponent],
+  declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent,
+    AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent, PopupComponent, CarArchiveComponent, CarProfileComponent,
+    CarReportComponent, MaterialAddComponent, MaterialListComponent, MaterialArchiveComponent, MaterialProfileComponent,
+    MaterialReportComponent, PpeAddComponent, PpeArchiveComponent, PpeListComponent, PpeProfileComponent, PpeReportComponent, CompanyComponent, ProjectListComponent, ProjectArchiveComponent, ProjectAddComponent, CompanyAddComponent, CompanyListComponent],
   imports: [
     CommonModule,
     WarehouseRoutingModule,

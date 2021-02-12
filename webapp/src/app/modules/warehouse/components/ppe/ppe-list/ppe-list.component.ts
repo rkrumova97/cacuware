@@ -12,4 +12,11 @@ export class PpeListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  data() {
+
+  }
+
+  open() {
+
+  }
 }

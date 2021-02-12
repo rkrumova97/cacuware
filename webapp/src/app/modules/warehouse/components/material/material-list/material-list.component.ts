@@ -12,4 +12,11 @@ export class MaterialListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  open() {
+
+  }
+
+  data() {
+
+  }
 }

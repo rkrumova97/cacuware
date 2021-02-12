@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ppe-add.component.css']
 })
 export class PpeAddComponent implements OnInit {
+  ppe: any;
+  submitted!: Boolean;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  process() {
+
+  }
 }

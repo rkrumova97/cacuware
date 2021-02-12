@@ -50,9 +50,9 @@
             <label class="form-control-label" for="field_last_name">Volume of engine</label>
             <input type="text" class="form-control" name="lastName" id="field_last_name"
                    placeholder="Car's volume"
-                   value="{{car.volume}}"
+                   value="{{car.engineVolume}}"
                    required
-                   [(ngModel)]="car.volume"
+                   [(ngModel)]="car.engineVolume"
                    #volume=ngModel
                    [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
             />
@@ -69,8 +69,8 @@
             <label for="area" class="col-12 col-form-label">Expense norm</label>
             <input type="text" class="form-control" name="area" id="area" required
                    placeholder="Car's expense"
-                   value="{{car.expense}}"
-                   [(ngModel)]="car.expense"
+                   value="{{car.norm}}"
+                   [(ngModel)]="car.norm"
                    #expense="ngModel"
                    [ngClass]="{ 'is-invalid': expense.invalid && (expense.dirty || expense.touched || submitted) }"/>
             <div *ngIf="expense.invalid && (expense.dirty || expense.touched || submitted)"
@@ -83,7 +83,7 @@
         <div class="row m-2"></div>
 
         <div class="row float-right">
-          <button type="button" class="btn btn-primary m-2" routerLink="/hr">
+          <button type="button" class="btn btn-primary m-2" routerLink="/warehouse">
             Back
           </button>
           <button type="button" class="btn btn-primary m-2" (click)="process()">Next</button>

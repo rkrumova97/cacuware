@@ -1,1 +1,21 @@
-<p>ppe works!</p>
+<ul ngbNav #nav="ngbNav" class="nav-tabs  justify-content-center m-3">
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Add new ppe</a>
+    <ng-template ngbNavContent>
+      <app-ppe-add ></app-ppe-add>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>List of the ppes</a>
+    <ng-template ngbNavContent>
+      <app-ppe-list></app-ppe-list>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Report form for the ppes</a>
+    <ng-template ngbNavContent>
+      <app-ppe-report></app-ppe-report>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

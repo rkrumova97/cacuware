@@ -12,4 +12,7 @@ export class PpeArchiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  open() {
+
+  }
 }

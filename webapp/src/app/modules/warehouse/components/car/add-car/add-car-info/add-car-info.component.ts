@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from "../../../../service/data.service";
+import {Car} from "../../../../model/car.model";
 
 @Component({
   selector: 'app-add-car-info',
@@ -7,7 +8,7 @@ import {DataService} from "../../../../service/data.service";
   styleUrls: ['./add-car-info.component.css']
 })
 export class AddCarInfoComponent implements OnInit {
-  car: any;
+  car!: Car;
   submitted?: Boolean;
 
   constructor(public dataService: DataService) { }

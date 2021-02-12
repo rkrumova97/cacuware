@@ -15,10 +15,10 @@
       <div class="form-group col-md-4">
         <label class="form-control-label" for="field_name">Vignette</label>
         <input type="text" class="form-control" name="firstName" id="field_name"
-               value="{{car.brand}}"
+               value="{{car.vignette}}"
                placeholder="Car's vignette"
                required
-               [(ngModel)]="car.brand"
+               [(ngModel)]="car.vignette"
                #brand=ngModel
                [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
         />
@@ -32,10 +32,10 @@
       <div class="form-group col-md-4">
         <label class="form-control-label" for="field_middle_name">Vignette expiration date</label>
         <input type="date" class="form-control" name="middleName" id="field_middle_name"
-               value="{{car.number}}"
+               value="{{car.vignetteExpiryDate}}"
                placeholder="Car's vignette expiration date"
                required
-               [(ngModel)]="car.number"
+               [(ngModel)]="car.vignetteExpiryDate"
                #number=ngModel
                [ngClass]="{ 'is-invalid': number.invalid && (number.dirty || number.touched || submitted) }"
         />
@@ -50,9 +50,9 @@
         <label class="form-control-label" for="field_last_name">Vignette additional information</label>
         <input type="text" class="form-control" name="lastName" id="field_last_name"
                placeholder="Car's additional info"
-               value="{{car.volume}}"
+               value="{{car.vi}}"
                required
-               [(ngModel)]="car.volume"
+               [(ngModel)]="car.engineVolume"
                #volume=ngModel
                [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
         />
@@ -70,10 +70,10 @@
       <div class="form-group col-md-4">
         <label class="form-control-label" for="field_name">Insurance</label>
         <input type="text" class="form-control" name="firstName" id="ins"
-               value="{{car.brand}}"
+               value="{{car.insurance}}"
                placeholder="Car's insurance"
                required
-               [(ngModel)]="car.brand"
+               [(ngModel)]="car.insurance"
                #brand=ngModel
                [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
         />
@@ -87,10 +87,10 @@
       <div class="form-group col-md-4">
         <label class="form-control-label" for="field_middle_name">Insurance expiration date</label>
         <input type="date" class="form-control" name="middleName" id="field_insdate"
-               value="{{car.number}}"
+               value="{{car.insuranceExpiryDate}}"
                placeholder="Car's insurance expiration date"
                required
-               [(ngModel)]="car.number"
+               [(ngModel)]="car.insuranceExpiryDate"
                #number=ngModel
                [ngClass]="{ 'is-invalid': number.invalid && (number.dirty || number.touched || submitted) }"
         />
@@ -105,9 +105,9 @@
         <label class="form-control-label" for="field_last_name">Insurance additional information</label>
         <input type="text" class="form-control" name="lastName" id="field_insadd"
                placeholder="Car's additional info"
-               value="{{car.volume}}"
+               value="{{car.insurance}}"
                required
-               [(ngModel)]="car.volume"
+               [(ngModel)]="car.insurance"
                #volume=ngModel
                [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
         />
@@ -123,12 +123,12 @@
 
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_name">Examine</label>
-        <input type="text" class="form-control" name="firstName" id="field_name"
-               value="{{car.brand}}"
+        <label class="form-control-label" for="field_nam">Examine</label>
+        <input type="text" class="form-control" name="firstName" id="field_nam"
+               value="{{car.examination}}"
                placeholder="Car's examine"
                required
-               [(ngModel)]="car.brand"
+               [(ngModel)]="car.examination"
                #brand=ngModel
                [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
         />
@@ -140,12 +140,12 @@
       </div>
 
       <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_middle_name">Examine expiration date</label>
-        <input type="date" class="form-control" name="middleName" id="field_middle_name"
-               value="{{car.number}}"
+        <label class="form-control-label" for="field_middle">Examine expiration date</label>
+        <input type="date" class="form-control" name="middleName" id="field_middle"
+               value="{{car.examinationExpiryDate}}"
                placeholder="Car's examine expiration date"
                required
-               [(ngModel)]="car.number"
+               [(ngModel)]="car.examinationExpiryDate"
                #number=ngModel
                [ngClass]="{ 'is-invalid': number.invalid && (number.dirty || number.touched || submitted) }"
         />
@@ -160,9 +160,9 @@
         <label class="form-control-label" for="field_last_name">Examine additional information</label>
         <input type="text" class="form-control" name="lastName" id="field_exadd"
                placeholder="Car's additional info"
-               value="{{car.volume}}"
+               value="{{car.examination}}"
                required
-               [(ngModel)]="car.volume"
+               [(ngModel)]="car.examination"
                #volume=ngModel
                [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
         />
