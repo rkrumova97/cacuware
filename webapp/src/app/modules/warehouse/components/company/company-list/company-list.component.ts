@@ -12,4 +12,11 @@ export class CompanyListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  open() {
+
+  }
+
+  data() {
+
+  }
 }

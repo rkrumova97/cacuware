@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<!--  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>-->
+  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>
 
 <div class="row justify-content-center">
   <div class="col">
@@ -30,12 +30,12 @@
       </div>
 
       <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_middle_name">Measurement</label>
+        <label class="form-control-label" for="field_measurent">Measurement</label>
         <input type="text" class="form-control" name="middleName" id="field_measurent"
-               value="{{car.number}}"
+               value="{{material.measurement}}"
                placeholder="Car's vignette expiration date"
                required
-               [(ngModel)]="car.number"
+               [(ngModel)]="material.measurement"
                #number=ngModel
                [ngClass]="{ 'is-invalid': number.invalid && (number.dirty || number.touched || submitted) }"
         />
@@ -50,9 +50,9 @@
         <label class="form-control-label" for="field_last_name">Quantity</label>
         <input type="text" class="form-control" name="lastName" id="field_last_name"
                placeholder="Material's quantity"
-               value="{{car.volume}}"
+               value="{{material.quantity}}"
                required
-               [(ngModel)]="car.volume"
+               [(ngModel)]="material.quantity"
                #volume=ngModel
                [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
         />
@@ -85,7 +85,7 @@
       </div>
 
       <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_middle_name">Price without taxes</label>
+        <label class="form-control-label" for="field_insdate">Price without taxes</label>
         <input type="date" class="form-control" name="middleName" id="field_insdate"
                value="{{car.number}}"
                placeholder="Material's price without taxes"
@@ -105,9 +105,9 @@
         <label class="form-control-label" for="field_last_name">Invoice / Date</label>
         <input type="text" class="form-control" name="lastName" id="field_insadd"
                placeholder="Invoice and date"
-               value="{{car.material.invoice}}"
+               value="{{material.incomeInvoiceNumber}}"
                required
-               [(ngModel)]="car.material.invoice"
+               [(ngModel)]="material.incomeInvoiceNumber"
                #volume=ngModel
                [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
         />
@@ -122,7 +122,7 @@
     <div class="row m-2"></div>
 
     <div class="row float-right">
-      <button type="button" class="btn btn-primary m-2" routerLink="/hr">
+      <button type="button" class="btn btn-primary m-2" routerLink="/warehouse">
         Back
       </button>
       <button type="button" class="btn btn-primary m-2" (click)="process()">Save</button>

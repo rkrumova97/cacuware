@@ -14,7 +14,6 @@ import {HttpHandler} from "@angular/common/http";
 })
 export class HireSensitiveInfoComponent implements OnInit {
   security!: SecurityDataModel;
-  submitted?: Boolean;
   success: boolean = true;
 
 

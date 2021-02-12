@@ -12,4 +12,11 @@ export class ProjectArchiveComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  open() {
+
+  }
+
+  data() {
+
+  }
 }

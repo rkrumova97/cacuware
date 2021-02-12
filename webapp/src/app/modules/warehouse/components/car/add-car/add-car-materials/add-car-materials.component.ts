@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Car} from "../../../../model/car.model";
+import {Material} from "../../../../model/material.model";
 
 @Component({
   selector: 'app-add-car-materials',
@@ -8,7 +9,9 @@ import {Car} from "../../../../model/car.model";
 })
 export class AddCarMaterialsComponent implements OnInit {
   car!: Car;
+  material!: Material;
   submitted?: Boolean;
+  success!: boolean;
 
   constructor() { }
 
@@ -17,5 +20,9 @@ export class AddCarMaterialsComponent implements OnInit {
 
   process() {
 
+  }
+
+  close() {
+    this.success = true;
   }
 }

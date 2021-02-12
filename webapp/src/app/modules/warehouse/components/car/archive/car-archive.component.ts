@@ -7,8 +7,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./car-archive.component.css']
 })
 export class CarArchiveComponent implements OnInit {
-
-
   isClicked?: boolean;
   router: Router;
   employees: any;

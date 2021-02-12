@@ -12,4 +12,11 @@ export class ProjectListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  data() {
+
+  }
+
+  open() {
+
+  }
 }

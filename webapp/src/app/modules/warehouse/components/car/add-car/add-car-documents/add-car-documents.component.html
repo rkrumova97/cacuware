@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<!--  <ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>-->
+<ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>
 
 <div class="row justify-content-center">
   <div class="col">
@@ -19,13 +19,13 @@
                placeholder="Car's vignette"
                required
                [(ngModel)]="car.vignette"
-               #brand=ngModel
-               [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
+               #vignette=ngModel
+               [ngClass]="{ 'is-invalid': vignette.invalid && (vignette.dirty || vignette.touched || submitted) }"
         />
         <div
-          *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)"
+          *ngIf="vignette.invalid && (vignette.dirty || vignette.touched || submitted)"
           class="invalid-feedback d-block">
-          <span>Brand is required field.</span>
+          <span>vignette is required field.</span>
         </div>
       </div>
 
@@ -45,47 +45,30 @@
           <span>Number is required field.</span>
         </div>
       </div>
-
-      <div class="form-group col-md-5">
-        <label class="form-control-label" for="field_last_name">Vignette additional information</label>
-        <input type="text" class="form-control" name="lastName" id="field_last_name"
-               placeholder="Car's additional info"
-               value="{{car.vi}}"
-               required
-               [(ngModel)]="car.engineVolume"
-               #volume=ngModel
-               [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
-        />
-        <div
-          *ngIf="volume.invalid && (volume.dirty || volume.touched || submitted)"
-          class="invalid-feedback d-block">
-          <span>Volume is required field.</span>
-        </div>
-      </div>
     </div>
 
     <div class="row m-4"></div>
 
     <div class="form-row">
       <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_name">Insurance</label>
+        <label class="form-control-label" for="ins">Insurance</label>
         <input type="text" class="form-control" name="firstName" id="ins"
                value="{{car.insurance}}"
                placeholder="Car's insurance"
                required
                [(ngModel)]="car.insurance"
-               #brand=ngModel
-               [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
+               #insurance=ngModel
+               [ngClass]="{ 'is-invalid': insurance.invalid && (insurance.dirty || insurance.touched || submitted) }"
         />
         <div
-          *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)"
+          *ngIf="insurance.invalid && (insurance.dirty || insurance.touched || submitted)"
           class="invalid-feedback d-block">
-          <span>Brand is required field.</span>
+          <span>insurance is required field.</span>
         </div>
       </div>
 
       <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_middle_name">Insurance expiration date</label>
+        <label class="form-control-label" for="field_insdate">Insurance expiration date</label>
         <input type="date" class="form-control" name="middleName" id="field_insdate"
                value="{{car.insuranceExpiryDate}}"
                placeholder="Car's insurance expiration date"
@@ -100,23 +83,6 @@
           <span>Number is required field.</span>
         </div>
       </div>
-
-      <div class="form-group col-md-5">
-        <label class="form-control-label" for="field_last_name">Insurance additional information</label>
-        <input type="text" class="form-control" name="lastName" id="field_insadd"
-               placeholder="Car's additional info"
-               value="{{car.insurance}}"
-               required
-               [(ngModel)]="car.insurance"
-               #volume=ngModel
-               [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
-        />
-        <div
-          *ngIf="volume.invalid && (volume.dirty || volume.touched || submitted)"
-          class="invalid-feedback d-block">
-          <span>Volume is required field.</span>
-        </div>
-      </div>
     </div>
 
     <div class="row m-2"></div>
@@ -129,13 +95,13 @@
                placeholder="Car's examine"
                required
                [(ngModel)]="car.examination"
-               #brand=ngModel
-               [ngClass]="{ 'is-invalid': brand.invalid && (brand.dirty || brand.touched || submitted) }"
+               #examination=ngModel
+               [ngClass]="{ 'is-invalid': examination.invalid && (examination.dirty || examination.touched || submitted) }"
         />
         <div
-          *ngIf="brand.invalid && (brand.dirty || brand.touched || submitted)"
+          *ngIf="examination.invalid && (examination.dirty || examination.touched || submitted)"
           class="invalid-feedback d-block">
-          <span>Brand is required field.</span>
+          <span>Examination is required field.</span>
         </div>
       </div>
 
@@ -155,33 +121,15 @@
           <span>Number is required field.</span>
         </div>
       </div>
-
-      <div class="form-group col-md-5">
-        <label class="form-control-label" for="field_last_name">Examine additional information</label>
-        <input type="text" class="form-control" name="lastName" id="field_exadd"
-               placeholder="Car's additional info"
-               value="{{car.examination}}"
-               required
-               [(ngModel)]="car.examination"
-               #volume=ngModel
-               [ngClass]="{ 'is-invalid': volume.invalid && (volume.dirty || volume.touched || submitted) }"
-        />
-        <div
-          *ngIf="volume.invalid && (volume.dirty || volume.touched || submitted)"
-          class="invalid-feedback d-block">
-          <span>Volume is required field.</span>
-        </div>
-      </div>
     </div>
 
     <div class="row m-2"></div>
 
     <div class="row float-right">
-      <button type="button" class="btn btn-primary m-2" routerLink="/hr">
+      <button type="button" class="btn btn-primary m-2" routerLink="/warehouse">
         Back
       </button>
       <button type="button" class="btn btn-primary m-2" (click)="process()">Next</button>
     </div>
   </div>
 </div>
-

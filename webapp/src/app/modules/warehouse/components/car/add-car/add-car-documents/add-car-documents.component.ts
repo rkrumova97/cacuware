@@ -10,6 +10,7 @@ import {Car} from "../../../../model/car.model";
 export class AddCarDocumentsComponent implements OnInit {
   car!: Car;
   submitted?: Boolean;
+  success!: boolean;
 
   constructor(public dataService: DataService) { }
 
@@ -18,5 +19,9 @@ export class AddCarDocumentsComponent implements OnInit {
 
   process() {
     this.dataService.number = 3;
+  }
+
+  close() {
+    this.success = true;
   }
 }
