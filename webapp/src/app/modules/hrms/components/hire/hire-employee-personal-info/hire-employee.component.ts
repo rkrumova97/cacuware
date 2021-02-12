@@ -36,7 +36,6 @@ export class HireEmployeeComponent implements OnInit {
          this.person = res;
        });
     }
-    console.log(this.route.snapshot.paramMap.get('id'));
   }
 
   process(): void {

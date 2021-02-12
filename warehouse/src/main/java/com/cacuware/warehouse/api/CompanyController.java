@@ -6,7 +6,6 @@ import com.cacuware.warehouse.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -14,7 +13,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/api/warehouse/companies")
 public class CompanyController {
     @Autowired
@@ -26,7 +25,7 @@ public class CompanyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Company>> getAllCompaniess(Pageable pageable) {
+    public ResponseEntity<List<Company>> getAllCompanies(Pageable pageable) {
         List<Company> people = companyService.findAllCompanies(pageable.getSort());
         return ResponseEntity.ok().body(people);
     }

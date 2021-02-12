@@ -5,9 +5,9 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class HrmsService {
-  public clientId = 'hrms-service';
-  public resourceUrl = 'http://localhost:8084/api/hrms';
+export class WarehouseService {
+  public clientId = 'warehouse-service';
+  public resourceUrl = 'http://localhost:8087/api/warehouse';
 
   private item: string = "";
   private readonly token: string = "";
@@ -28,7 +28,6 @@ export class HrmsService {
   }
 
   postResource(resource: string, object: any): Observable<any> {
-
     const headers = new HttpHeaders({
       'Content-type': 'application/json',
       'Authorization': 'Bearer ' + this.token
@@ -60,16 +59,5 @@ export class HrmsService {
       'Authorization': 'Bearer ' + this.token,
     });
     return this.http.get(this.resourceUrl + resource, {headers: headers});
-  }
-
-  postFile(resource: string, fileToUpload: File): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-type': 'application/json',
-      'Authorization': 'Bearer ' + this.token
-    });
-    const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
-    return this.http
-      .post(this.resourceUrl + resource, formData, {headers: headers});
   }
 }

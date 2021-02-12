@@ -2,7 +2,6 @@ package com.cacuware.warehouse.service.impl;
 
 import com.cacuware.warehouse.api.dto.CompanyDto;
 import com.cacuware.warehouse.mapper.CompanyMapper;
-import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.Company;
 import com.cacuware.warehouse.repository.CompanyRepository;
 import com.cacuware.warehouse.service.CompanyService;

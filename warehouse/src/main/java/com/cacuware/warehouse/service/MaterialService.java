@@ -1,8 +1,6 @@
 package com.cacuware.warehouse.service;
 
-import com.cacuware.warehouse.api.dto.CompanyDto;
 import com.cacuware.warehouse.api.dto.MaterialDto;
-import com.cacuware.warehouse.model.Company;
 import com.cacuware.warehouse.model.Material;
 import org.springframework.data.domain.Sort;
 

@@ -26,7 +26,7 @@ public class CarDto {
     private LocalDate repairDate;
     private String repairMoney;
     private Integer kilometers;
-    private Double fuel;
+    private Float fuel;
     private Integer norm;
     private List<UUID> material;
 }

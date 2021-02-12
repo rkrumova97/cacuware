@@ -32,6 +32,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.checkTokenAccess("permitAll()");
+		oauthServer.allowFormAuthenticationForClients().checkTokenAccess("permitAll()");
 	}
 
 	@Bean

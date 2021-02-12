@@ -44,39 +44,15 @@
         </tr>
         </thead>
         <tbody class="bg-light text-center">
-        <tr>
-          <td> 1</td>
-          <td> VW</td>
-          <td> EH2222KK</td>
-          <td> Wagon</td>
-          <td> 100.000 km</td>
-
-          <td class="td-actions">
-            <a rel="tooltip" title="Profile" class="btn btn-info btn-round btn-just-icon btn-sm"
-               href="/warehouse/cars/profile">
-              <i class="material-icons">person</i>
-            </a>
-            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm" (click)="open()">
-              <i class="material-icons">close</i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td> 1</td>
-          <td> BMW</td>
-          <td> EH1212KK</td>
-          <td> Truck</td>
-          <td> 250.000 km</td>
-
-          <td class="td-actions">
-            <a rel="tooltip" title="Profile" class="btn btn-info btn-round btn-just-icon btn-sm"
-               href="warehouse/cars/profile">
-              <i class="material-icons">person</i>
-            </a> &nbsp;
-            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm" (click)="open()">
-              <i class="material-icons">close</i>
-            </a>
-          </td>
+        <tr *ngFor="let company of companies; let i = index" [attr.data-index]="0">
+          <td> {{company.id}} </td>
+          <td> {{company.name}} </td>
+          <td> {{company.email}} </td>
+          <td> {{company.mol}} </td>
+          <td> {{company.bulstat}} </td>
+          <td> {{company.contactName}} </td>
+          <td> {{company.contactEmail}} </td>
+          <td> {{company.contactNumber}} </td>
         </tr>
         </tbody>
       </table>

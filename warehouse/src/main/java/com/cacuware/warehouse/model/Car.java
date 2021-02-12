@@ -41,25 +41,25 @@ public class Car {
     @Column
     private String insurance;
 
-    @Column(name = "insurance_expiry_date")
+    @Column(name = "insurance_expiry_date", columnDefinition = "DATE")
     private LocalDate insuranceExpiryDate;
 
     @Column
     private String examination;
 
-    @Column(name = "examination_expiry_date")
+    @Column(name = "examination_expiry_date", columnDefinition = "DATE")
     private LocalDate examinationExpiryDate;
 
     @Column
     private String vignette;
 
-    @Column(name = "vignette_expiry_date")
+    @Column(name = "vignette_expiry_date", columnDefinition = "DATE")
     private LocalDate vignetteExpiryDate;
 
     @Column
     private String repair;
 
-    @Column(name = "repair_date")
+    @Column(name = "repair_date", columnDefinition = "DATE")
     private LocalDate repairDate;
 
     @Column(name = "repair_money")
@@ -69,7 +69,7 @@ public class Car {
     private Integer kilometers;
 
     @Column
-    private Double fuel;
+    private Float fuel;
 
     @Column
     private Integer norm;

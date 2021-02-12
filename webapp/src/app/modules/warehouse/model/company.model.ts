@@ -1,33 +1,33 @@
 export interface ICompany {
-  id: string;
+  id?: string;
 
-  name: string;
+  name?: string;
 
-  email: string;
+  email?: string;
 
-  mol: string;
+  mol?: string;
 
-  isDeleted: boolean;
+  isDeleted?: boolean;
 
-  bulstat: string;
+  bulstat?: string;
 
-  contactName: string;
+  contactName?: string;
 
-  contactEmail: string;
+  contactEmail?: string;
 
-  contactNumber: number;
+  contactNumber?: number;
 }
 
 export class Company implements ICompany {
   constructor(
-    public id: string,
-    public name: string,
-    public email: string,
-    public mol: string,
-    public isDeleted: boolean,
-    public bulstat: string,
-    public contactName: string,
-    public contactEmail: string,
-    public contactNumber: number) {
+    public id?: string,
+    public name?: string,
+    public email?: string,
+    public mol?: string,
+    public isDeleted?: boolean,
+    public bulstat?: string,
+    public contactName?: string,
+    public contactEmail?: string,
+    public contactNumber?: number) {
   }
 }

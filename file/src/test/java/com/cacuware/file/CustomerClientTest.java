@@ -22,7 +22,7 @@ import java.util.Collections;
 public class CustomerClientTest {
 
     @Test
-    public void testClient() throws IOException {
+    public void FileApiIntegrationTest() throws IOException {
         ResourceOwnerPasswordResourceDetails resourceDetails = new ResourceOwnerPasswordResourceDetails();
         resourceDetails.setUsername("admin");
         resourceDetails.setPassword("admin");

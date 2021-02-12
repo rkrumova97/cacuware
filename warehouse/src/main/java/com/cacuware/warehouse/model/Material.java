@@ -49,7 +49,7 @@ public class Material {
     @Column(name = "outcome_invoice_number")
     private Integer outcomeInvoiceNumber;
 
-    @Column
+    @Column(columnDefinition = "DATE")
     private LocalDate date;
 
     @Column

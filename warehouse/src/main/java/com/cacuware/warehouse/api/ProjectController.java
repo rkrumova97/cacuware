@@ -1,10 +1,7 @@
 package com.cacuware.warehouse.api;
 
-import com.cacuware.warehouse.api.dto.CompanyDto;
 import com.cacuware.warehouse.api.dto.ProjectDto;
-import com.cacuware.warehouse.model.Company;
 import com.cacuware.warehouse.model.Project;
-import com.cacuware.warehouse.service.CompanyService;
 import com.cacuware.warehouse.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;

@@ -2,7 +2,6 @@ package com.cacuware.warehouse.mapper;
 
 import com.cacuware.warehouse.api.dto.PpeDto;
 import com.cacuware.warehouse.model.PPE;
-import com.cacuware.warehouse.model.PPEType;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

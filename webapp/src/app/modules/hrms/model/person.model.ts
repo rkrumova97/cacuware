@@ -24,6 +24,7 @@ export class Person implements IPerson {
     public status?: string,
     public birthday?: Date
   ) {}
+
 }
 
 

@@ -3,7 +3,6 @@ package com.cacuware.warehouse.api.dto;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
 import java.util.UUID;
 
