@@ -1,46 +1,45 @@
 export interface IMaterial {
-  id: string;
+  id?: string;
 
-  measurement: string;
+  measurement?: string;
 
-  quantity: string;
+  quantity?: string;
 
-  singlePrice: number;
+  singlePrice?: number;
 
-  value: number;
+  value?: number;
 
-  incomeInvoiceNumber: number;
+  incomeInvoiceNumber?: number;
 
-  moneySpent: number;
+  moneySpent?: number;
 
-  outcomeInvoiceNumber: number;
+  outcomeInvoiceNumber?: number;
 
-  date: Date;
+  date?: Date;
 
-  left: number;
+  left?: number;
 
-  type: string;
+  type?: string;
 
-  delivery: any;
+  delivery?: any;
 
-
-  isDeleted: boolean;
+  isDeleted?: boolean;
 }
 
 export class Material implements IMaterial {
-  constructor(public id: string,
-              public measurement: string,
-              public quantity: string,
-              public singlePrice: number,
-              public value: number,
-              public incomeInvoiceNumber: number,
-              public moneySpent: number,
-              public outcomeInvoiceNumber: number,
-              public date: Date,
-              public left: number,
-              public type: string,
-              public isDeleted: boolean,
-              public delivery: any
+  constructor(public id?: string,
+              public measurement?: string,
+              public quantity?: string,
+              public singlePrice?: number,
+              public value?: number,
+              public incomeInvoiceNumber?: number,
+              public moneySpent?: number,
+              public outcomeInvoiceNumber?: number,
+              public date?: Date,
+              public left?: number,
+              public type?: string,
+              public isDeleted?: boolean,
+              public delivery?: any
   ) {
   }
 }

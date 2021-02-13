@@ -11,14 +11,14 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label class="form-control-label" for="field_ppe_type">Type</label>
-        <input type="text" class="form-control" name="type" id="field_ppe_type"
+        <select  class="form-control" name="type" id="field_ppe_type"
                value="{{ppe.type}}"
-               placeholder="Ppe's type"
                required
                [(ngModel)]="ppe.type"
                #type=ngModel
-               [ngClass]="{ 'is-invalid': type.invalid && (type.dirty || type.touched || submitted) }"
-        />
+               [ngClass]="{ 'is-invalid': type.invalid && (type.dirty || type.touched || submitted) }">
+          <option>Option</option>
+        </select>
         <div
           *ngIf="type.invalid && (type.dirty || type.touched || submitted)"
           class="invalid-feedback d-block">

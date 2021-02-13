@@ -39,6 +39,7 @@
           <th>files</th>
           <th>cars</th>
           <th>materials</th>
+          <th>archive</th>
         </tr>
         </thead>
         <tbody class="bg-light text-center">
@@ -48,6 +49,11 @@
           <td>{{project.cars}}</td>
           <td>{{project.people}}</td>
           <td>{{project.materials}}</td>
+          <td class="td-actions">&nbsp;
+            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm"   (click)="open(material)">
+              <i class="material-icons">close</i>
+            </a>
+          </td>
         </tr>
         </tbody>
       </table>

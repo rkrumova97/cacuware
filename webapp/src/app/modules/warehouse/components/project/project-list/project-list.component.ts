@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Project} from "../../../model/project.model";
 import {WarehouseService} from "../../../service/warehouse.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {PopupComponent} from "../../popup/popup.component";
 
 @Component({
   selector: 'app-project-list',
@@ -10,7 +12,8 @@ import {WarehouseService} from "../../../service/warehouse.service";
 export class ProjectListComponent implements OnInit {
   projects!: Project[];
 
-  constructor(private warehouseService: WarehouseService) { }
+  constructor(private warehouseService: WarehouseService, private modalService: NgbModal) {
+  }
 
   ngOnInit(): void {
     this.warehouseService.getResource("/projects").subscribe(res => {
@@ -22,7 +25,11 @@ export class ProjectListComponent implements OnInit {
 
   }
 
-  open() {
+  open(project: Project) {
+    const modalRef = this.modalService.open(PopupComponent, {centered: true});
+    modalRef.componentInstance.company = project;
+    modalRef.componentInstance.url = "/projects/delete";
+
 
   }
 }

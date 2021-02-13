@@ -42,36 +42,19 @@
         </tr>
         </thead>
         <tbody class="bg-light text-center">
-        <tr>
-          <td> 1</td>
-          <td> VW</td>
-          <td> EH2222KK</td>
-          <td> Wagon</td>
-          <td> 100.000 km</td>
-
+        <tr *ngFor="let car of cars; let i = index" [attr.data-index]="0">
+          <td> {{car.id}} </td>
+          <td> {{car.brand}} </td>
+          <td> {{car.number}} </td>
+          <td> {{car.type}} </td>
+          <td> {{car.kilometers}} </td>
           <td class="td-actions">
             <a rel="tooltip" title="Profile" class="btn btn-info btn-round btn-just-icon btn-sm"
-               href="/warehouse/cars/profile">
-              <i class="material-icons">person</i>
-            </a>
-            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm" (click)="open()">
-              <i class="material-icons">close</i>
-            </a>
-          </td>
-        </tr>
-        <tr>
-          <td> 1</td>
-          <td> BMW</td>
-          <td> EH1212KK</td>
-          <td> Truck</td>
-          <td> 250.000 km</td>
-
-          <td class="td-actions">
-            <a rel="tooltip" title="Profile" class="btn btn-info btn-round btn-just-icon btn-sm"
-               href="warehouse/cars/profile">
+               href="/warehouse/cars/{{car.id}}">
               <i class="material-icons">person</i>
             </a> &nbsp;
-            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm" (click)="open()">
+            &nbsp;
+            <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm"   (click)="open(car)">
               <i class="material-icons">close</i>
             </a>
           </td>

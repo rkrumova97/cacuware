@@ -32,12 +32,18 @@ import { ProjectArchiveComponent } from './components/project/project-archive/pr
 import { ProjectAddComponent } from './components/project/project-add/project-add.component';
 import { CompanyAddComponent } from './components/company/company-add/company-add.component';
 import { CompanyListComponent } from './components/company/company-list/company-list.component';
+import { CompanyArchiveComponent } from './components/company/company-archive/company-archive.component';
+import { CompanyPopupComponent } from './components/company/company-popup/company-popup.component';
+import { PpePopupComponent } from './components/ppe/ppe-popup/ppe-popup.component';
+import { CarPopupComponent } from './components/car/car-popup/car-popup.component';
+import { MaterialPopupComponent } from './components/material/material-popup/material-popup.component';
+import { ProjectPopupComponent } from './components/project/project-popup/project-popup.component';
 
 @NgModule({
   declarations: [WarehouseComponent, CarComponent, PpeComponent, MaterialComponent, ProjectComponent, AddCarInfoComponent,
     AddCarDocumentsComponent, AddCarMaterialsComponent, CarListComponent, PopupComponent, CarArchiveComponent, CarProfileComponent,
     CarReportComponent, MaterialAddComponent, MaterialListComponent, MaterialArchiveComponent, MaterialProfileComponent,
-    MaterialReportComponent, PpeAddComponent, PpeArchiveComponent, PpeListComponent, PpeProfileComponent, PpeReportComponent, CompanyComponent, ProjectListComponent, ProjectArchiveComponent, ProjectAddComponent, CompanyAddComponent, CompanyListComponent],
+    MaterialReportComponent, PpeAddComponent, PpeArchiveComponent, PpeListComponent, PpeProfileComponent, PpeReportComponent, CompanyComponent, ProjectListComponent, ProjectArchiveComponent, ProjectAddComponent, CompanyAddComponent, CompanyListComponent, CompanyArchiveComponent, CompanyPopupComponent, PpePopupComponent, CarPopupComponent, MaterialPopupComponent, ProjectPopupComponent],
   imports: [
     CommonModule,
     WarehouseRoutingModule,

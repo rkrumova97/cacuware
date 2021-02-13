@@ -13,6 +13,7 @@ import {MaterialArchiveComponent} from "./components/material/material-archive/m
 import {PpeProfileComponent} from "./components/ppe/ppe-profile/ppe-profile.component";
 import {PpeArchiveComponent} from "./components/ppe/ppe-archive/ppe-archive.component";
 import {CompanyComponent} from "./components/company/company.component";
+import {CompanyArchiveComponent} from "./components/company/company-archive/company-archive.component";
 
 
 export class WareRoutes {
@@ -97,6 +98,13 @@ export class WareRoutes {
     {
       path: 'company',
       component: CompanyComponent,
+      children: [
+        {path: 'warehouse', component: WarehouseComponent}
+      ],
+    },
+    {
+      path: 'company/archive',
+      component: CompanyArchiveComponent,
       children: [
         {path: 'warehouse', component: WarehouseComponent}
       ],

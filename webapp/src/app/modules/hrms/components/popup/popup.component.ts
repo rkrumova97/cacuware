@@ -29,6 +29,10 @@ export class PopupComponent {
     this.modal = modal;
   }
 
+  ngOnInit():void{
+
+  }
+
   fire(id: string | null | undefined): string {
     console.log(id);
 

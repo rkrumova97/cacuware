@@ -1,1 +1,103 @@
-<p>project-add works!</p>
+<div class="row  justify-content-sm-center">
+  <div class="col-12 ">
+    <h1 class="headerTitle text-center">Add project</h1>
+  </div>
+</div>
+
+<ngb-alert *ngIf="!success" (close)="close()" type="danger">There is an error!</ngb-alert>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_name">Materials</label>
+        <input type="text" class="form-control" name="name" id="field_name"
+               value="{{project.materials}}"
+               placeholder="Company's name"
+               required
+               [(ngModel)]="project.materials"
+               #name=ngModel
+               [ngClass]="{ 'is-invalid': name.invalid && (name.dirty || name.touched || submitted) }"
+        />
+        <div
+          *ngIf="name.invalid && (name.dirty || name.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>name is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_email">People</label>
+        <input type="text" class="form-control" name="email" id="field_email"
+               value="{{project.people}}"
+               placeholder="Company's email"
+               required
+               [(ngModel)]="project.people"
+               #email=ngModel
+               [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched || submitted) }"
+        />
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Email is required field.</span>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label class="form-control-label" for="field_last_name">Mol</label>
+        <input type="text" class="form-control" name="lastName" id="field_last_name"
+               placeholder="Company's mol"
+               value="{{project.cars}}"
+               required
+               [(ngModel)]="project.cars"
+               #mol=ngModel
+               [ngClass]="{ 'is-invalid': mol.invalid && (mol.dirty || mol.touched || submitted) }"
+        />
+        <div
+          *ngIf="mol.invalid && (mol.dirty || mol.touched || submitted)"
+          class="invalid-feedback d-block">
+          <span>Mol is required field.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row m-4"></div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="bulstat" class="col-12 col-form-label">Bulstat</label>
+        <input type="text" class="form-control" name="bulstat" id="bulstat" required
+               placeholder="Company's bulstat"
+               value="{{project.company}}"
+               [(ngModel)]="project.company"
+               #bulstat="ngModel"
+               [ngClass]="{ 'is-invalid': bulstat.invalid && (bulstat.dirty || bulstat.touched || submitted) }"/>
+        <div *ngIf="bulstat.invalid && (bulstat.dirty || bulstat.touched || submitted)"
+             class="invalid-feedback">
+          <span>Bulstat is required field.</span>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="contactName" class="col-12 col-form-label">Contact Name</label>
+        <input type="text" class="form-control" name="contactName" id="contactName" required
+               placeholder="Company's contact name"
+               value="{{project.files}}"
+               [(ngModel)]="project.files"
+               #contactName="ngModel"
+               [ngClass]="{ 'is-invalid': contactName.invalid && (contactName.dirty || contactName.touched || submitted) }"/>
+        <div *ngIf="contactName.invalid && (contactName.dirty || contactName.touched || submitted)"
+             class="invalid-feedback">
+          <span>Contact name is required field.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row m-2"></div>
+
+    <div class="row float-right">
+      <button type="button" class="btn btn-primary m-2" routerLink="/warehouse">
+        Back
+      </button>
+      <button type="button" class="btn btn-primary m-2" (click)="process()">Save</button>
+    </div>
+
+  </div>
+</div>
