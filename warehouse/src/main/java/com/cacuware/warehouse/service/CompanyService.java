@@ -15,4 +15,6 @@ public interface CompanyService {
     void deleteCompany(UUID uuid);
 
     List<Company> findAllCompanies(Sort sort);
+
+    List<Company> findAllDeletedCompanies();
 }

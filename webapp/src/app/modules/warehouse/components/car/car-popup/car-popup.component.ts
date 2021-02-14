@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {WarehouseService} from "../../../service/warehouse.service";
 import {Router} from "@angular/router";
-import {Company} from "../../../model/company.model";
 import {Car} from "../../../model/car.model";
 
 @Component({

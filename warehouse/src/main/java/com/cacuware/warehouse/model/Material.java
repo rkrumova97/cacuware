@@ -57,6 +57,10 @@ public class Material {
     @Column
     private String type;
 
+    @OneToOne
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
+
     @Column
     private boolean isDeleted;
 }

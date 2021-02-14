@@ -7,10 +7,12 @@ export interface IPpe {
   type?: string;
   isDeleted?: boolean;
   people?: string[];
+  name?:string;
 }
 
 export class Ppe implements IPpe {
   constructor(public id?: string,
+              public name?:string,
               public material?: Material,
               public size?: string,
               public type?: string,

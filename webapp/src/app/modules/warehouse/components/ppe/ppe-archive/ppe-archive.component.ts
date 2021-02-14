@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Ppe} from "../../../model/ppe.model";
+import {WarehouseService} from "../../../service/warehouse.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-ppe-archive',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PpeArchiveComponent implements OnInit {
 
-  constructor() { }
+  ppes!: Ppe[];
+
+  constructor(private warehouseService: WarehouseService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    this.warehouseService.getResource("/ppes").subscribe(res => {
+      this.ppes = res;
+    });
   }
 
   open() {

@@ -22,9 +22,7 @@ export class CarListComponent implements OnInit {
   }
   open(car:Car) {
    const modalRef = this.modalService.open(PopupComponent, {centered: true});
-    modalRef.componentInstance.company = car;
-    modalRef.componentInstance.url = "/cars/delete";
-
+    modalRef.componentInstance.car = car;
   }
 
   data() {

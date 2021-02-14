@@ -39,4 +39,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> findAllProjects(Sort sort) {
         return projectRepository.findAll(sort);
     }
+
+    @Override
+    public List<Project> findAllDeletedProjects() {
+        return projectRepository.findAllByDeletedTrue();
+    }
 }

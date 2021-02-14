@@ -20,6 +20,7 @@ public class MaterialMapper {
                 .quantity(materialDto.getQuantity())
                 .singlePrice(materialDto.getSinglePrice())
                 .value(materialDto.getValue())
+                .company(CompanyMapper.toEntity(materialDto.getCompanyDto()))
                 .build();
         if (Objects.nonNull(materialDto.getId())) {
             material.setId(materialDto.getId());
@@ -40,6 +41,7 @@ public class MaterialMapper {
                 .quantity(material.getQuantity())
                 .singlePrice(material.getSinglePrice())
                 .value(material.getValue())
+                .companyDto(CompanyMapper.toDto(material.getCompany()))
                 .build();
     }
 }

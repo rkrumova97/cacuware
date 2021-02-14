@@ -39,4 +39,9 @@ public class CarServiceImpl implements CarService {
     public List<Car> findAllCars(Sort sort) {
         return repository.findAll(sort);
     }
+
+    @Override
+    public List<Car> findAllDeletedCars() {
+        return repository.findAllByDeletedTrue();
+    }
 }

@@ -3,6 +3,7 @@ import {Material} from "../../../model/material.model";
 import {WarehouseService} from "../../../service/warehouse.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PopupComponent} from "../../popup/popup.component";
+import {MaterialPopupComponent} from "../material-popup/material-popup.component";
 
 @Component({
   selector: 'app-material-list',
@@ -21,9 +22,8 @@ export class MaterialListComponent implements OnInit {
   }
 
   open(material: Material) {
-    const modalRef = this.modalService.open(PopupComponent, {centered: true});
-    modalRef.componentInstance.company = material;
-    modalRef.componentInstance.url = "/materials/delete";
+    const modalRef = this.modalService.open(MaterialPopupComponent, {centered: true});
+    modalRef.componentInstance.material = material;
   }
 
   data() {

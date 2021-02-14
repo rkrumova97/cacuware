@@ -26,7 +26,6 @@ export class PpeListComponent implements OnInit {
 
   open(ppe: Ppe) {
     const modalRef = this.modalService.open(PopupComponent, {centered: true});
-    modalRef.componentInstance.company = ppe;
-    modalRef.componentInstance.url = "/ppes/delete";
+    modalRef.componentInstance.ppe = ppe;
   }
 }

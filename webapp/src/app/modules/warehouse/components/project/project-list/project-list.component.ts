@@ -27,9 +27,6 @@ export class ProjectListComponent implements OnInit {
 
   open(project: Project) {
     const modalRef = this.modalService.open(PopupComponent, {centered: true});
-    modalRef.componentInstance.company = project;
-    modalRef.componentInstance.url = "/projects/delete";
-
-
+    modalRef.componentInstance.project = project;
   }
 }

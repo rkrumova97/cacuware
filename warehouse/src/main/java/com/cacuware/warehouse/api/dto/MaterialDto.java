@@ -32,4 +32,6 @@ public class MaterialDto {
     private String type;
 
     private boolean isDeleted;
+
+    private CompanyDto companyDto;
 }

@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.api;
 
 import com.cacuware.warehouse.api.dto.MaterialDto;
+import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.Material;
 import com.cacuware.warehouse.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class MaterialController {
     public ResponseEntity<?> delete(@PathVariable UUID uuid) {
         materialService.deleteMaterial(uuid);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/archive")
+    public ResponseEntity<List<Material>> archive() {
+        List<Material> materials = materialService.findAllDeletedMaterials();
+        return ResponseEntity.ok().body(materials);
     }
 }

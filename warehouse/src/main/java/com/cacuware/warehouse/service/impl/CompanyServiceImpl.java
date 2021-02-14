@@ -38,4 +38,9 @@ public class CompanyServiceImpl implements CompanyService {
     public List<Company> findAllCompanies(Sort sort) {
         return repository.findAll(sort);
     }
+
+    @Override
+    public List<Company> findAllDeletedCompanies() {
+        return repository.findAllByDeletedTrue();
+    }
 }

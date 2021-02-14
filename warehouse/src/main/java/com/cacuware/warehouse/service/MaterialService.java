@@ -15,4 +15,6 @@ public interface MaterialService {
     void deleteMaterial(UUID uuid);
 
     List<Material> findAllMaterials(Sort sort);
+
+    List<Material> findAllDeletedMaterials();
 }

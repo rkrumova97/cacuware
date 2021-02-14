@@ -9,83 +9,51 @@
 <div class="row justify-content-center">
   <div class="col-md-8">
     <div class="form-row">
-      <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_name">Materials</label>
-        <input type="text" class="form-control" name="name" id="field_name"
-               value="{{project.materials}}"
-               placeholder="Company's name"
-               required
-               [(ngModel)]="project.materials"
-               #name=ngModel
-               [ngClass]="{ 'is-invalid': name.invalid && (name.dirty || name.touched || submitted) }"
-        />
-        <div
-          *ngIf="name.invalid && (name.dirty || name.touched || submitted)"
-          class="invalid-feedback d-block">
-          <span>name is required field.</span>
+      <div class="form-group col-md-6">
+        <label for="name" class="col-12 col-form-label">Name</label>
+        <div class="col-12">
+          <input id="name" multiple class="form-control" [(ngModel)]="project.name">
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="employee" class="col-12 col-form-label">People</label>
+        <div class="col-12">
+          <select id="employee" multiple class="form-control" [(ngModel)]="selectedEmployees">
+            <option *ngFor="let employee of employees"
+                    [value]="employee.id">{{employee.person.firstName + " " + employee.person.lastName}}</option>
+          </select>
         </div>
       </div>
 
-      <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_email">People</label>
-        <input type="text" class="form-control" name="email" id="field_email"
-               value="{{project.people}}"
-               placeholder="Company's email"
-               required
-               [(ngModel)]="project.people"
-               #email=ngModel
-               [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched || submitted) }"
-        />
-        <div
-          *ngIf="email.invalid && (email.dirty || email.touched || submitted)"
-          class="invalid-feedback d-block">
-          <span>Email is required field.</span>
-        </div>
-      </div>
 
-      <div class="form-group col-md-4">
-        <label class="form-control-label" for="field_last_name">Mol</label>
-        <input type="text" class="form-control" name="lastName" id="field_last_name"
-               placeholder="Company's mol"
-               value="{{project.cars}}"
-               required
-               [(ngModel)]="project.cars"
-               #mol=ngModel
-               [ngClass]="{ 'is-invalid': mol.invalid && (mol.dirty || mol.touched || submitted) }"
-        />
-        <div
-          *ngIf="mol.invalid && (mol.dirty || mol.touched || submitted)"
-          class="invalid-feedback d-block">
-          <span>Mol is required field.</span>
+      <div class="form-group col-md-6">
+        <label for="car" class="col-12 col-form-label">Cars</label>
+        <div class="col-12">
+          <select id="car" multiple class="form-control" [(ngModel)]="selectedCars">
+            <option *ngFor="let car of cars"
+                    [value]="car.id">{{car.brand + " " + car.number}}</option>
+          </select>
         </div>
       </div>
     </div>
     <div class="row m-4"></div>
     <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="bulstat" class="col-12 col-form-label">Bulstat</label>
-        <input type="text" class="form-control" name="bulstat" id="bulstat" required
-               placeholder="Company's bulstat"
-               value="{{project.company}}"
-               [(ngModel)]="project.company"
-               #bulstat="ngModel"
-               [ngClass]="{ 'is-invalid': bulstat.invalid && (bulstat.dirty || bulstat.touched || submitted) }"/>
-        <div *ngIf="bulstat.invalid && (bulstat.dirty || bulstat.touched || submitted)"
-             class="invalid-feedback">
-          <span>Bulstat is required field.</span>
+      <div class="form-group col-md-6">
+        <label for="company" class="col-12 col-form-label">Company</label>
+        <div class="col-12">
+          <select id="company" class="form-control" [(ngModel)]="company">
+            <option *ngFor="let company of companies"
+                    [value]="company.id">{{company.name}}</option>
+          </select>
         </div>
       </div>
-      <div class="form-group col-md-4">
-        <label for="contactName" class="col-12 col-form-label">Contact Name</label>
-        <input type="text" class="form-control" name="contactName" id="contactName" required
-               placeholder="Company's contact name"
-               value="{{project.files}}"
-               [(ngModel)]="project.files"
-               #contactName="ngModel"
-               [ngClass]="{ 'is-invalid': contactName.invalid && (contactName.dirty || contactName.touched || submitted) }"/>
-        <div *ngIf="contactName.invalid && (contactName.dirty || contactName.touched || submitted)"
-             class="invalid-feedback">
-          <span>Contact name is required field.</span>
+      <div class="form-group col-md-6">
+        <label for="materials" class="col-12 col-form-label">Material</label>
+        <div class="col-12">
+          <select id="materials" multiple class="form-control" [(ngModel)]="selectedMaterials">
+            <option *ngFor="let material of materials"
+                    [value]="material.id">{{material.type + " " + material.incomeInvoiceNumber}}</option>
+          </select>
         </div>
       </div>
     </div>
@@ -98,6 +66,5 @@
       </button>
       <button type="button" class="btn btn-primary m-2" (click)="process()">Save</button>
     </div>
-
   </div>
 </div>

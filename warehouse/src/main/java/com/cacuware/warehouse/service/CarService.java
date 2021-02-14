@@ -15,4 +15,6 @@ public interface CarService {
     void deleteCar(UUID uuid);
 
     List<Car> findAllCars(Sort sort);
+
+    List<Car> findAllDeletedCars();
 }

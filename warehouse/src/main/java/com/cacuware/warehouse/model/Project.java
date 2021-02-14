@@ -25,6 +25,9 @@ public class Project {
     @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
+    @Column
+    private String name;
+
     @OneToOne
     @JoinColumn(name = "company_id", nullable = false)
     private Company company;

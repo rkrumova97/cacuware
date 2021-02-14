@@ -36,7 +36,6 @@ export class CompanyAddComponent implements OnInit {
     this.warehouseService.postResource("/companies", this.company).subscribe(r => {
       this.success = true;
       this.company = r;
-      this.router.navigate(['/warehouse/company/profile/'+this.company.id])
     }, () => this.success = false);
   }
 }

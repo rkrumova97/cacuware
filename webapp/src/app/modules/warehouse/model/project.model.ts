@@ -1,31 +1,34 @@
 import {Company} from "./company.model";
 
 export interface IProject {
-  id: string;
+  id?: string;
 
-  company: Company;
+  name?: string;
 
-  isDeleted: boolean;
+  company?: Company;
 
-  people: string[];
+  isDeleted?: boolean;
 
-  files: string[];
+  people?: string[];
 
-  cars: string[];
+  files?: string[];
 
-  materials: string[];
+  cars?: string[];
+
+  materials?: string[];
 
 }
 
 export class Project implements IProject {
   constructor(
-    public id: string,
-    public company: Company,
-    public isDeleted: boolean,
-    public people: string[],
-    public files: string[],
-    public cars: string[],
-    public materials: string[]) {
+    public id?: string,
+    public name?: string,
+    public company?: Company,
+    public isDeleted?: boolean,
+    public people?: string[],
+    public files?: string[],
+    public cars?: string[],
+    public materials?: string[]) {
   }
 }
 

@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.api;
 
 import com.cacuware.warehouse.api.dto.ProjectDto;
+import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.Project;
 import com.cacuware.warehouse.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class ProjectController {
     public ResponseEntity<?> delete(@PathVariable UUID uuid) {
         projectService.deleteProject(uuid);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/archive")
+    public ResponseEntity<List<Project>> archive() {
+        List<Project> projects = projectService.findAllDeletedProjects();
+        return ResponseEntity.ok().body(projects);
     }
 }

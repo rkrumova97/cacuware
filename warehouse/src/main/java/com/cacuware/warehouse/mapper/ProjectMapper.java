@@ -15,6 +15,7 @@ public class ProjectMapper {
                 .file_id(projectDto.getFiles())
                 .material_id(projectDto.getMaterials())
                 .people_id(projectDto.getPeople())
+                .name(projectDto.getName())
                 .build();
         if (Objects.nonNull(projectDto.getId())) {
             person.setId(projectDto.getId());
@@ -30,6 +31,7 @@ public class ProjectMapper {
                 .files(project.getFile_id())
                 .materials(project.getMaterial_id())
                 .people(project.getPeople_id())
+                .name(project.getName())
                 .build();
     }
 }

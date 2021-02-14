@@ -11,6 +11,8 @@ import java.util.UUID;
 public class ProjectDto {
     private UUID id;
 
+    private String name;
+
     private CompanyDto company;
 
     private boolean isDeleted;

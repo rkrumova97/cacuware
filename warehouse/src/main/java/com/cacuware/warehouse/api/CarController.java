@@ -43,4 +43,10 @@ public class CarController {
         carService.deleteCar(uuid);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping(value = "/archive")
+    public ResponseEntity<List<Car>> archive() {
+        List<Car> employees = carService.findAllDeletedCars();
+        return ResponseEntity.ok().body(employees);
+    }
 }

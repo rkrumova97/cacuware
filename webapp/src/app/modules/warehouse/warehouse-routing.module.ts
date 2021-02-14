@@ -8,12 +8,11 @@ import {ProjectComponent} from "./components/project/project.component";
 import {CarProfileComponent} from './components/car/car-profile/car-profile.component';
 import {CarArchiveComponent} from "./components/car/archive/car-archive.component";
 import {MaterialAddComponent} from "./components/material/material-add/material-add.component";
-import {MaterialProfileComponent} from "./components/material/material-profile/material-profile.component";
 import {MaterialArchiveComponent} from "./components/material/material-archive/material-archive.component";
-import {PpeProfileComponent} from "./components/ppe/ppe-profile/ppe-profile.component";
 import {PpeArchiveComponent} from "./components/ppe/ppe-archive/ppe-archive.component";
 import {CompanyComponent} from "./components/company/company.component";
 import {CompanyArchiveComponent} from "./components/company/company-archive/company-archive.component";
+import {ProjectAddComponent} from "./components/project/project-add/project-add.component";
 
 
 export class WareRoutes {
@@ -54,13 +53,6 @@ export class WareRoutes {
       ],
     },
     {
-      path: 'materials/profile:id',
-      component: MaterialProfileComponent,
-      children: [
-        {path: 'warehouse', component: WarehouseComponent}
-      ],
-    },
-    {
       path: 'materials/archive',
       component: MaterialArchiveComponent,
       children: [
@@ -75,13 +67,6 @@ export class WareRoutes {
       ],
     },
     {
-      path: 'ppe/profile:id',
-      component: PpeProfileComponent,
-      children: [
-        {path: 'warehouse', component: WarehouseComponent}
-      ],
-    },
-    {
       path: 'ppe/archive',
       component: PpeArchiveComponent,
       children: [
@@ -91,6 +76,13 @@ export class WareRoutes {
     {
       path: 'projects',
       component: ProjectComponent,
+      children: [
+        {path: 'warehouse', component: WarehouseComponent}
+      ],
+    },
+    {
+      path: 'projects/add',
+      component: ProjectAddComponent,
       children: [
         {path: 'warehouse', component: WarehouseComponent}
       ],

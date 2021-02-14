@@ -16,4 +16,5 @@ public interface ProjectService {
 
     List<Project> findAllProjects(Sort sort);
 
+    List<Project> findAllDeletedProjects();
 }

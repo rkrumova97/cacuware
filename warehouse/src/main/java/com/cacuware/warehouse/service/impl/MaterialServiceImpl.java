@@ -38,4 +38,9 @@ public class MaterialServiceImpl implements MaterialService {
     public List<Material> findAllMaterials(Sort sort) {
         return repository.findAll(sort);
     }
+
+    @Override
+    public List<Material> findAllDeletedMaterials() {
+        return repository.findAllByDeletedTrue();
+    }
 }

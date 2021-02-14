@@ -4,6 +4,7 @@ import com.cacuware.warehouse.api.dto.PpeDto;
 import com.cacuware.warehouse.mapper.PpeMapper;
 import com.cacuware.warehouse.model.PPE;
 import com.cacuware.warehouse.repository.PpeRepository;
+import com.cacuware.warehouse.service.MaterialService;
 import com.cacuware.warehouse.service.PpeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -17,8 +18,12 @@ public class PpeServiceImpl implements PpeService {
     @Autowired
     private PpeRepository repository;
 
+    @Autowired
+    private MaterialService service;
+
     @Override
     public PPE savePpe(PpeDto ppeDto) {
+        service.saveMaterial(ppeDto.getMaterial());
         return repository.save(PpeMapper.toEntity(ppeDto));
     }
 
@@ -37,5 +42,10 @@ public class PpeServiceImpl implements PpeService {
     @Override
     public List<PPE> findAllPpes(Sort sort) {
         return repository.findAll(sort);
+    }
+
+    @Override
+    public List<PPE> findAllDeletedPpes() {
+        return repository.findAllByDeletedTrue();
     }
 }

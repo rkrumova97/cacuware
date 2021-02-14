@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.api;
 
 import com.cacuware.warehouse.api.dto.CompanyDto;
+import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.Company;
 import com.cacuware.warehouse.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,11 @@ public class CompanyController {
     public ResponseEntity<?> delete(@PathVariable UUID uuid) {
         companyService.deleteCompany(uuid);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/archive")
+    public ResponseEntity<List<Company>> archive() {
+        List<Company> companies = companyService.findAllDeletedCompanies();
+        return ResponseEntity.ok().body(companies);
     }
 }

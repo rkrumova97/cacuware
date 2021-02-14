@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.api;
 
 import com.cacuware.warehouse.api.dto.PpeDto;
+import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.PPE;
 import com.cacuware.warehouse.service.PpeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,11 @@ public class PpeController {
     public ResponseEntity<?> delete(@PathVariable UUID uuid) {
         ppeService.deletePpe(uuid);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/archive")
+    public ResponseEntity<List<PPE>> archive() {
+        List<PPE> ppes = ppeService.findAllDeletedPpes();
+        return ResponseEntity.ok().body(ppes);
     }
 }

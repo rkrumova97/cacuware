@@ -38,15 +38,15 @@ export class HireEmployeeDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.employee = new Employee(new Person());
     this.employee.person = this.dataService.person!;
-    // this.dropdownSettings = {
-    //   singleSelection: false,
-    //   idField: 'item_id',
-    //   textField: 'item_text',
-    //   selectAllText: 'Select All',
-    //   unSelectAllText: 'UnSelect All',
-    //   itemsShowLimit: 3,
-    //   allowSearchFilter: true
-    // };
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
 
     if(this.route.snapshot.paramMap.get('id')){
       this.hrmsService.getOneResource("/employees/" + this.route.snapshot.paramMap.get('id')).subscribe(res =>{
