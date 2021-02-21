@@ -9,5 +9,9 @@ import java.util.UUID;
 
 @Repository
 public interface MaterialRepository extends JpaRepository<Material, UUID> {
-    List<Material> findAllByDeletedTrue();
+    List<Material> findAllByIsDeletedTrue();
+
+    List<Material> findAllByIsDeletedFalse();
+
+    Material findById(UUID uuid);
 }

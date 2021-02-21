@@ -1,14 +1,20 @@
 package com.cacuware.warehouse.mapper;
 
 import com.cacuware.warehouse.api.dto.MaterialDto;
+import com.cacuware.warehouse.model.Company;
 import com.cacuware.warehouse.model.Material;
+import com.cacuware.warehouse.service.CompanyService;
+import com.cacuware.warehouse.service.impl.CompanyServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 @Component
 public class MaterialMapper {
-    public static Material toEntity(MaterialDto materialDto) {
+
+    public static Material toEntity(MaterialDto materialDto, Company company) {
+
         Material material = Material.builder()
                 .type(materialDto.getType())
                 .date(materialDto.getDate())
@@ -20,7 +26,7 @@ public class MaterialMapper {
                 .quantity(materialDto.getQuantity())
                 .singlePrice(materialDto.getSinglePrice())
                 .value(materialDto.getValue())
-                .company(CompanyMapper.toEntity(materialDto.getCompanyDto()))
+                .company(company)
                 .build();
         if (Objects.nonNull(materialDto.getId())) {
             material.setId(materialDto.getId());
@@ -41,7 +47,7 @@ public class MaterialMapper {
                 .quantity(material.getQuantity())
                 .singlePrice(material.getSinglePrice())
                 .value(material.getValue())
-                .companyDto(CompanyMapper.toDto(material.getCompany()))
+                .delivery(material.getCompany().getId())
                 .build();
     }
 }

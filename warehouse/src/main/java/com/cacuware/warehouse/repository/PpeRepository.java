@@ -9,5 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface PpeRepository extends JpaRepository<PPE, UUID> {
-    List<PPE> findAllByDeletedTrue();
+    List<PPE> findAllByIsDeletedTrue();
+
+    List<PPE> findAllByIsDeletedFalse();
 }

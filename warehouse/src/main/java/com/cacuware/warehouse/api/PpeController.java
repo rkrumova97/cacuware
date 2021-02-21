@@ -1,5 +1,6 @@
 package com.cacuware.warehouse.api;
 
+import com.cacuware.warehouse.api.dto.MaterialDto;
 import com.cacuware.warehouse.api.dto.PpeDto;
 import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.PPE;
@@ -37,6 +38,13 @@ public class PpeController {
         PPE ppe = ppeService.savePpe(ppeDto);
         return ResponseEntity.created(new URI("/api/" + ppe.getId()))
                 .body(ppe);
+    }
+
+    @PutMapping("/report")
+    public ResponseEntity<List<PpeDto>> report(@RequestBody List<PpeDto> ppeDtoList) {
+        List<PpeDto> ppeDtos = ppeService.report(ppeDtoList);
+        return ResponseEntity.ok()
+                .body(ppeDtos);
     }
 
     @DeleteMapping(value = "/{uuid}")

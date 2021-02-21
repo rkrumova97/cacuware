@@ -9,5 +9,9 @@ import java.util.UUID;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company, UUID> {
-    List<Company> findAllByDeletedTrue();
+    List<Company> findAllByIsDeletedTrue();
+
+    List<Company> findAllByIsDeletedFalse();
+
+    Company findById(UUID uuid);
 }

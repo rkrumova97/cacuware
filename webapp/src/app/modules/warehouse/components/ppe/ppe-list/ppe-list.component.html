@@ -33,7 +33,6 @@
         <thead class="bg-warning text-danger text-center">
         <tr>
           <th>ID</th>
-          <th>Name</th>
           <th>Measurement</th>
           <th>Type</th>
           <th>Size</th>
@@ -48,14 +47,13 @@
         <tbody class="bg-light text-center">
         <tr *ngFor="let ppe of ppes; let i = index" [attr.data-index]="0">
           <td> {{ppe.id}} </td>
-          <td> {{ppe.type}} </td>
           <td> {{ppe.material.measurement}} </td>
           <td> {{ppe.material.type}} </td>
           <td> {{ppe.size}} </td>
           <td> {{ppe.material.quantity}} </td>
           <td> {{ppe.material.singlePrice}} </td>
           <td> {{ppe.material.incomeInvoiceNumber}} </td>
-          <td> {{ppe.material.delivery}} </td>
+          <td> {{getCompany(ppe.material.company.id)}} </td>
           <td> {{ppe.material.date}} </td>
           <td class="td-actions">&nbsp;
             <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm" (click)="open(ppe)">

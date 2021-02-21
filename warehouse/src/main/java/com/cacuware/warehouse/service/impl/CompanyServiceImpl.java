@@ -24,7 +24,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company getOneById(UUID uuid) {
-        return repository.getOne(uuid);
+        return repository.findById(uuid);
     }
 
     @Override
@@ -36,11 +36,11 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Company> findAllCompanies(Sort sort) {
-        return repository.findAll(sort);
+        return repository.findAllByIsDeletedFalse();
     }
 
     @Override
     public List<Company> findAllDeletedCompanies() {
-        return repository.findAllByDeletedTrue();
+        return repository.findAllByIsDeletedTrue();
     }
 }

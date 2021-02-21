@@ -1,7 +1,11 @@
 package com.cacuware.warehouse.service.impl;
 
+import com.cacuware.warehouse.api.dto.MaterialDto;
 import com.cacuware.warehouse.api.dto.PpeDto;
+import com.cacuware.warehouse.mapper.MaterialMapper;
 import com.cacuware.warehouse.mapper.PpeMapper;
+import com.cacuware.warehouse.model.Company;
+import com.cacuware.warehouse.model.Material;
 import com.cacuware.warehouse.model.PPE;
 import com.cacuware.warehouse.repository.PpeRepository;
 import com.cacuware.warehouse.service.MaterialService;
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,8 +28,8 @@ public class PpeServiceImpl implements PpeService {
 
     @Override
     public PPE savePpe(PpeDto ppeDto) {
-        service.saveMaterial(ppeDto.getMaterial());
-        return repository.save(PpeMapper.toEntity(ppeDto));
+        Material material = service.saveMaterial(ppeDto.getMaterial());
+        return repository.save(PpeMapper.toEntity(ppeDto, material));
     }
 
     @Override
@@ -41,11 +46,22 @@ public class PpeServiceImpl implements PpeService {
 
     @Override
     public List<PPE> findAllPpes(Sort sort) {
-        return repository.findAll(sort);
+        return repository.findAllByIsDeletedFalse();
     }
 
     @Override
     public List<PPE> findAllDeletedPpes() {
-        return repository.findAllByDeletedTrue();
+        return repository.findAllByIsDeletedTrue();
+    }
+
+    @Override
+    public List<PpeDto> report(List<PpeDto> ppeDtoList) {
+        List<PpeDto> ppeDtos = new ArrayList<>();
+        for (PpeDto ppeDto : ppeDtoList) {
+            Material material = service.getOneById(ppeDto.getMaterial().getId());
+            PPE ppe = repository.save(PpeMapper.toEntity(ppeDto, material));
+            ppeDtos.add(PpeMapper.toDto(ppe));
+        }
+        return ppeDtos;
     }
 }

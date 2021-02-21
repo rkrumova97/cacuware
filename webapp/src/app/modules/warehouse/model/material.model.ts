@@ -27,6 +27,7 @@ export interface IMaterial {
 }
 
 export class Material implements IMaterial {
+  projects: any;
   constructor(public id?: string,
               public measurement?: string,
               public quantity?: string,

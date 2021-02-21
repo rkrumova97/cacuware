@@ -17,4 +17,6 @@ public interface PpeService {
     List<PPE> findAllPpes(Sort sort);
 
     List<PPE> findAllDeletedPpes();
+
+    List<PpeDto> report(List<PpeDto> ppeDtoList);
 }

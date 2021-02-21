@@ -34,14 +34,12 @@
         <thead class="bg-warning text-danger text-center">
         <tr>
           <th>ID</th>
-          <th>Name</th>
           <th>Measurement</th>
           <th>Type</th>
           <th>Quantity</th>
           <th>Single material's price</th>
           <th>Invoice number</th>
           <th>Delivery company</th>
-          <th>Date</th>
         </tr>
         </thead>
         <tbody class="bg-light text-center">
@@ -52,8 +50,7 @@
           <td> {{material.quantity}} </td>
           <td> {{material.singlePrice}} </td>
           <td> {{material.incomeInvoiceNumber}} </td>
-          <td> {{material.delivery}} </td>
-          <td> {{material.date}} </td>
+          <td> {{getCompany(material.company.id)}} </td>
         </tr>
         </tbody>
       </table>

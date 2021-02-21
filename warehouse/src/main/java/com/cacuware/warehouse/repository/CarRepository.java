@@ -9,5 +9,7 @@ import java.util.UUID;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car, UUID> {
-    List<Car> findAllByDeletedTrue();
+    List<Car> findAllByIsDeletedIsTrue();
+
+    List<Car> findAllByIsDeletedIsFalse();
 }

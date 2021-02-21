@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {Car} from "../../../model/car.model";
+import {WarehouseService} from "../../../service/warehouse.service";
 
 @Component({
   selector: 'car-archive',
@@ -13,15 +14,15 @@ export class CarArchiveComponent implements OnInit {
   employees: any;
   cars!: Car[];
 
-  constructor( router: Router) {
+  constructor( router: Router, private warehouseService: WarehouseService,) {
     this.router = router;
   }
 
   ngOnInit() {
     this.isClicked = true;
-    // this.hrmsService.getResource("/employees/archive").subscribe(res => {
-    //   this.employees = res;
-    // });
+    this.warehouseService.getResource("/cars/archive").subscribe(res => {
+      this.cars = res;
+    });
   }
 
   open() {

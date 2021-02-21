@@ -34,9 +34,9 @@
         <thead class="bg-warning text-danger text-center">
         <tr>
           <th>id</th>
+          <th>name</th>
           <th>company</th>
           <th>people</th>
-          <th>files</th>
           <th>cars</th>
           <th>materials</th>
         </tr>
@@ -44,10 +44,11 @@
         <tbody class="bg-light text-center">
         <tr *ngFor="let project of projects; let i = index" [attr.data-index]="0">
           <td>{{project.id}}</td>
-          <td>{{project.company}}</td>
-          <td>{{project.cars}}</td>
-          <td>{{project.people}}</td>
-          <td>{{project.materials}}</td>
+          <td>{{project.name}}</td>
+          <td>{{project.company.name}}</td>
+          <td><div *ngFor="let person of people">{{person.person.firstName + " " + person.person.lastName}}</div></td>
+          <td><div *ngFor="let car of cars">{{car.number + " " + car.brand}}</div></td>
+          <td><div *ngFor="let material of materials">{{material.incomeInvoiceNumber + " " + material.type}}</div></td>
         </tr>
         </tbody>
       </table>

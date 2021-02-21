@@ -9,7 +9,7 @@ import java.util.Objects;
 @Component
 public class CarMapper {
     public static Car toEntity(CarDto carDto) {
-        Car car =  Car.builder()
+        Car car = Car.builder()
                 .material_id(carDto.getMaterial())
                 .type(carDto.getType())
                 .brand(carDto.getBrand())
@@ -24,12 +24,14 @@ public class CarMapper {
                 .number(carDto.getNumber())
                 .repair(carDto.getRepair())
                 .repairDate(carDto.getRepairDate())
-                .repairMoney(Integer.parseInt(carDto.getRepairMoney()))
                 .vignette(carDto.getVignette())
                 .vignetteExpiryDate(carDto.getVignetteExpiryDate())
                 .build();
-        if(Objects.nonNull(carDto.getId())){
+        if (Objects.nonNull(carDto.getId())) {
             car.setId(carDto.getId());
+        }
+        if (Objects.nonNull(carDto.getRepairMoney())) {
+            car.setRepairMoney(Integer.parseInt(carDto.getRepairMoney()));
         }
         return car;
     }

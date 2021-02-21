@@ -33,5 +33,5 @@ public class MaterialDto {
 
     private boolean isDeleted;
 
-    private CompanyDto companyDto;
+    private UUID delivery;
 }

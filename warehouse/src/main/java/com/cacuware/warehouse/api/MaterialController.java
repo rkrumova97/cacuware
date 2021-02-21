@@ -27,8 +27,8 @@ public class MaterialController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Material>> getAllMaterials(Pageable pageable) {
-        List<Material> materials = materialService.findAllMaterials(pageable.getSort());
+    public ResponseEntity<List<MaterialDto>> getAllMaterials() {
+        List<MaterialDto> materials = materialService.findAllMaterials();
         return ResponseEntity.ok().body(materials);
     }
 
@@ -37,6 +37,13 @@ public class MaterialController {
         Material Material = materialService.saveMaterial(materialDto);
         return ResponseEntity.created(new URI("/api/" + Material.getId()))
                 .body(Material);
+    }
+
+    @PutMapping("/report")
+    public ResponseEntity<List<MaterialDto>> report(@RequestBody List<MaterialDto> materialDto) throws URISyntaxException {
+        List<MaterialDto> materials = materialService.report(materialDto);
+        return ResponseEntity.ok()
+                .body(materials);
     }
 
     @DeleteMapping(value = "/{uuid}")

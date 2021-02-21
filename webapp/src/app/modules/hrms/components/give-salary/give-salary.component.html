@@ -46,7 +46,7 @@
         <tr *ngFor="let file of fileInfos" [attr.data-index]="0">
           <td><input type="button" class="btn-primary" (click)="download(file.fileDownloadUri, file.fileName)"
                      value="{{ file.fileName }}"/></td>
-          <td>{{file.businessType}}</td>
+          <td>{{file.fileBusinessType}}</td>
         </tr>
 
       </table>

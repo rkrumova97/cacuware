@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {WarehouseService} from "../../../service/warehouse.service";
 import {Ppe} from "../../../model/ppe.model";
 import {Material} from "../../../model/material.model";
+import {Company} from "../../../model/company.model";
 
 @Component({
   selector: 'app-ppe-add',
@@ -15,6 +16,9 @@ export class PpeAddComponent implements OnInit {
   submitted!: Boolean;
   success: boolean = true;
   material!: Material;
+  companies!: Company[];
+  company!: Company;
+
 
   constructor(private http: HttpClient, private router: Router,
               private warehouseService: WarehouseService, private route: ActivatedRoute) {
@@ -29,10 +33,15 @@ export class PpeAddComponent implements OnInit {
         this.ppe = res;
       });
     }
+    this.warehouseService.getResource("/companies").subscribe(r => {
+      this.companies = r;
+    });
   }
 
   process() {
     this.ppe.material = this.material;
+    this.ppe.material.delivery = this.company;
+
     console.log(this.ppe);
     this.warehouseService.postResource("/ppes", this.ppe).subscribe(r => {
       this.success = true;

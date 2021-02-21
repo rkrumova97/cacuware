@@ -13,7 +13,7 @@ public class ProjectDto {
 
     private String name;
 
-    private CompanyDto company;
+    private UUID company;
 
     private boolean isDeleted;
 

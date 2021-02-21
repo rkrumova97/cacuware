@@ -20,16 +20,16 @@
         </tr>
         </thead>
         <tbody class="bg-light text-center">
-        <tr *ngFor="let car of cars; let i = index" [attr.data-index]="0">
-          <td>{{car.number}}</td>
+        <tr *ngFor="let material of materials; let i = index" [attr.data-index]="0">
+          <td>{{material.type + " " + material.incomeInvoiceNumber}}</td>
           <td>
             <div class="col">
               <div ngbDropdown class="d-inline-block">
-                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choose person</button>
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Choose project</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                  <button ngbDropdownItem>Action - 1</button>
-                  <button ngbDropdownItem>Another Action</button>
-                  <button ngbDropdownItem>Something else is here</button>
+                  <ng-container *ngFor="let project of projects">
+                    <button ngbDropdownItem   [(ngModel)]="material.projects">{{project.name}}</button>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -39,8 +39,17 @@
               <div ngbDropdown class="d-inline-block">
                 <div aria-labelledby="dropdownBasic1">
                   <label>
-                    <input type="number"/>
+                    <input type="number" class="form-control" name="area" id="invoice" required
+                           placeholder="Material's invoice"
+                           value="{{material.outcomeInvoiceNumber}}"
+                           [(ngModel)]="material.outcomeInvoiceNumber"
+                           #invoice="ngModel"
+                           [ngClass]="{ 'is-invalid': invoice.invalid && (invoice.dirty || invoice.touched || submitted) }"/>
                   </label>
+                  <div *ngIf="invoice.invalid && (invoice.dirty || invoice.touched || submitted)"
+                       class="invalid-feedback">
+                    <span>Invoice is required field.</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -50,8 +59,17 @@
               <div ngbDropdown class="d-inline-block">
                 <div aria-labelledby="dropdownBasic1">
                   <label>
-                    <input type="number"/>
-                  </label>
+                  <input type="number" class="form-control" name="area" required
+                         placeholder="Material's invoice"
+                         value="{{material.left}}"
+                         [(ngModel)]="material.left"
+                         #invoice="ngModel"
+                         [ngClass]="{ 'is-invalid': invoice.invalid && (invoice.dirty || invoice.touched || submitted) }"/>
+                </label>
+                  <div *ngIf="invoice.invalid && (invoice.dirty || invoice.touched || submitted)"
+                       class="invalid-feedback">
+                    <span>Left is required field.</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,7 +81,7 @@
   </div>
 
   <div class="col-md-6">
-    <button type="submit" class="btn btn-primary ">Save</button>
+    <button type="submit" class="btn btn-primary " (click)="process()">Save</button>
   </div>
   <div class="clear"></div>
 

@@ -32,7 +32,7 @@ export class PpePopupComponent implements OnInit {
   delete(id: string | null | undefined): string {
     console.log(this.ppe);
 
-    this.http.deleteResource("/materials/" + id, id)
+    this.http.deleteResource("/ppes/" + id, id)
       .subscribe(r => {
         console.log(r);
       });

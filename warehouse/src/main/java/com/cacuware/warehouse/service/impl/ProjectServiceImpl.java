@@ -3,8 +3,10 @@ package com.cacuware.warehouse.service.impl;
 
 import com.cacuware.warehouse.api.dto.ProjectDto;
 import com.cacuware.warehouse.mapper.ProjectMapper;
+import com.cacuware.warehouse.model.Company;
 import com.cacuware.warehouse.model.Project;
 import com.cacuware.warehouse.repository.ProjectRepository;
+import com.cacuware.warehouse.service.CompanyService;
 import com.cacuware.warehouse.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -18,9 +20,13 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private CompanyService service;
+
     @Override
     public Project saveProject(ProjectDto projectDto) {
-        return projectRepository.save(ProjectMapper.toEntity(projectDto));
+        Company company = service.getOneById(projectDto.getCompany());
+        return projectRepository.save(ProjectMapper.toEntity(projectDto,company));
     }
 
     @Override
@@ -37,11 +43,11 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public List<Project> findAllProjects(Sort sort) {
-        return projectRepository.findAll(sort);
+        return projectRepository.findAllByIsDeletedFalse();
     }
 
     @Override
     public List<Project> findAllDeletedProjects() {
-        return projectRepository.findAllByDeletedTrue();
+        return projectRepository.findAllByIsDeletedTrue();
     }
 }

@@ -5,7 +5,7 @@
   <!-- All materials view - button -->
   <div class="row">
     <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
-      <a href="/warehouse/materials/archive" (click)="data()" class="link">
+      <a href="/warehouse/materials/archive" class="link">
         <div class="button mt-2 mb-2">
           <p class="btnText">Archive</p>
           <div class="btnTwo">
@@ -34,7 +34,6 @@
         <thead class="bg-warning text-danger text-center">
         <tr>
           <th>ID</th>
-          <th>Name</th>
           <th>Measurement</th>
           <th>Type</th>
           <th>Quantity</th>
@@ -53,7 +52,7 @@
           <td> {{material.quantity}} </td>
           <td> {{material.singlePrice}} </td>
           <td> {{material.incomeInvoiceNumber}} </td>
-          <td> {{material.delivery}} </td>
+          <td> {{getCompany(material.delivery)}} </td>
           <td> {{material.date}} </td>
           <td class="td-actions">&nbsp;
             <a rel="tooltip" title="Fire" class="btn btn-danger btn-round btn-just-icon btn-sm"   (click)="open(material)">

@@ -1,22 +1,23 @@
 import {Material} from "./material.model";
+import {Employee} from "../../hrms/model/employee.model";
 
 export interface IPpe {
   id?: string;
-  material?: Material;
+  material?: any;
   size?: string;
   type?: string;
   isDeleted?: boolean;
-  people?: string[];
+  people?: Employee[];
   name?:string;
 }
 
 export class Ppe implements IPpe {
   constructor(public id?: string,
               public name?:string,
-              public material?: Material,
+              public material?: any,
               public size?: string,
               public type?: string,
               public isDeleted?: boolean,
-              public people?: string[]) {
+              public people?: Employee[]) {
   }
 }

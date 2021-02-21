@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Material} from "../../../model/material.model";
 import {WarehouseService} from "../../../service/warehouse.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {PopupComponent} from "../../popup/popup.component";
 import {MaterialPopupComponent} from "../material-popup/material-popup.component";
+import {Company} from "../../../model/company.model";
 
 @Component({
   selector: 'app-material-list',
@@ -12,8 +12,13 @@ import {MaterialPopupComponent} from "../material-popup/material-popup.component
 })
 export class MaterialListComponent implements OnInit {
   materials!: Material[];
+  companies!: Company[];
 
-  constructor(private warehouseService: WarehouseService, private modalService: NgbModal) { }
+  constructor(private warehouseService: WarehouseService, private modalService: NgbModal) {
+    this.warehouseService.getResource("/companies").subscribe(res => {
+      this.companies = res;
+    });
+  }
 
   ngOnInit(): void {
     this.warehouseService.getResource("/materials").subscribe(res => {
@@ -26,7 +31,11 @@ export class MaterialListComponent implements OnInit {
     modalRef.componentInstance.material = material;
   }
 
-  data() {
-
+  getCompany(uuid: string): string {
+    let name: string | undefined | null = "";
+    this.companies.forEach(company => {
+      name = company.id == uuid ? company.name : null;
+    });
+    return name;
   }
 }

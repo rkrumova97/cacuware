@@ -14,6 +14,8 @@ export class MaterialAddComponent implements OnInit {
   material!: Material;
   submitted!: Boolean;
   success: boolean = true;
+  companies!: Company[];
+  company!: Company;
 
   constructor(private http: HttpClient, private router: Router,
               private warehouseService: WarehouseService, private route: ActivatedRoute) {
@@ -27,6 +29,9 @@ export class MaterialAddComponent implements OnInit {
       });
     }
     console.log(this.route.snapshot.paramMap.get('id'));
+    this.warehouseService.getResource("/companies").subscribe(r => {
+      this.companies = r;
+    });
   }
 
   close() {
@@ -34,10 +39,10 @@ export class MaterialAddComponent implements OnInit {
   }
 
   process() {
+    this.material.delivery = this.company;
     this.warehouseService.postResource("/materials", this.material).subscribe(r => {
       this.success = true;
       this.material = r;
-      this.router.navigate(['/warehouse/materials/profile/'+this.material.id])
     }, () => this.success = false);
   }
 

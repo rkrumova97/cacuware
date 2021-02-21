@@ -8,7 +8,7 @@ import * as fileSaver from "file-saver";
   styleUrls: ['./give-salary.component.css']
 })
 export class GiveSalaryComponent implements OnInit {
-  fileInfos: any[] = [];
+  fileInfos: any;
 
   constructor( private uploadService: FileService) { }
 

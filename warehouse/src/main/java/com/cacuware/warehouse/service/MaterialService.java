@@ -10,11 +10,13 @@ import java.util.UUID;
 public interface MaterialService {
     Material saveMaterial(MaterialDto materialDto);
 
+    List<MaterialDto> report(List<MaterialDto> materialDto);
+
     Material getOneById(UUID uuid);
 
     void deleteMaterial(UUID uuid);
 
-    List<Material> findAllMaterials(Sort sort);
+    List<MaterialDto> findAllMaterials();
 
     List<Material> findAllDeletedMaterials();
 }
