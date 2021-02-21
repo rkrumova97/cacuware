@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,5 +44,15 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<Car> findAllDeletedCars() {
         return repository.findAllByIsDeletedIsTrue();
+    }
+
+    @Override
+    public List<CarDto> report(List<CarDto> carDtoList) {
+        List<CarDto> carDtos = new ArrayList<>();
+        for (CarDto carDto : carDtoList) {
+            Car car = repository.save(CarMapper.toEntity(carDto));
+            carDtos.add(CarMapper.toDto(car));
+        }
+        return carDtos;
     }
 }

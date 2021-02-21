@@ -1,6 +1,7 @@
 package com.cacuware.warehouse.api;
 
 import com.cacuware.warehouse.api.dto.CarDto;
+import com.cacuware.warehouse.api.dto.PpeDto;
 import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,13 @@ public class CarController {
         Car car = carService.saveCar(carDto);
         return ResponseEntity.created(new URI("/api/" + car.getId()))
                 .body(car);
+    }
+
+    @PutMapping("/report")
+    public ResponseEntity<List<CarDto>> report(@RequestBody List<CarDto> carDtoList) {
+        List<CarDto> carDtos = carService.report(carDtoList);
+        return ResponseEntity.ok()
+                .body(carDtos);
     }
 
     @DeleteMapping(value = "/{uuid}")

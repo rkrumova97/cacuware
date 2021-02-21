@@ -1,5 +1,6 @@
 package com.cacuware.warehouse.api;
 
+import com.cacuware.warehouse.api.dto.PpeDto;
 import com.cacuware.warehouse.api.dto.ProjectDto;
 import com.cacuware.warehouse.model.Car;
 import com.cacuware.warehouse.model.Project;
@@ -27,8 +28,8 @@ public class ProjectController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Project>> getAllProjects(Pageable pageable) {
-        List<Project> projects = projectService.findAllProjects(pageable.getSort());
+    public ResponseEntity<List<ProjectDto>> getAllProjects(Pageable pageable) {
+        List<ProjectDto> projects = projectService.findAllProjects(pageable.getSort());
         return ResponseEntity.ok().body(projects);
     }
 
@@ -37,6 +38,13 @@ public class ProjectController {
         Project Project = projectService.saveProject(projectDto);
         return ResponseEntity.created(new URI("/api/" + Project.getId()))
                 .body(Project);
+    }
+
+    @PutMapping("/report")
+    public ResponseEntity<List<ProjectDto>> report(@RequestBody List<ProjectDto> projectDtos) {
+        List<ProjectDto> projectDtoList = projectService.report(projectDtos);
+        return ResponseEntity.ok()
+                .body(projectDtoList);
     }
 
     @DeleteMapping(value = "/{uuid}")

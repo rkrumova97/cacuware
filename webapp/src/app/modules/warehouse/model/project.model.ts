@@ -5,7 +5,7 @@ export interface IProject {
 
   name?: string;
 
-  company?: Company;
+  company?: string;
 
   isDeleted?: boolean;
 
@@ -23,7 +23,7 @@ export class Project implements IProject {
   constructor(
     public id?: string,
     public name?: string,
-    public company?: Company,
+    public company?: string,
     public isDeleted?: boolean,
     public people?: string[],
     public files?: string[],

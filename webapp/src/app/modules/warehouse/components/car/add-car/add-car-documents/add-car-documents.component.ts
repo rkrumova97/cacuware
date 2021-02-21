@@ -20,7 +20,7 @@ export class AddCarDocumentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.car = new Car();
+    this.car = this.dataService.car;
     if (this.route.snapshot.paramMap.get('id') !== undefined && this.route.snapshot.paramMap.get('id') !== null) {
       this.warehouseService.getOneResource("/api/warehouse/cars" + this.route.snapshot.paramMap.get('id')).subscribe(res => {
         this.car = res;
@@ -31,6 +31,7 @@ export class AddCarDocumentsComponent implements OnInit {
   process() {
     this.dataService.number = 3;
     this.dataService.car = this.car;
+    console.log(this.dataService.car)
   }
 
   close() {

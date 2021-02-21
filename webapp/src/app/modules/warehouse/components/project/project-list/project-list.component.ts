@@ -8,6 +8,7 @@ import {Material} from "../../../model/material.model";
 import {Employee} from "../../../../hrms/model/employee.model";
 import {HrmsService} from "../../../../hrms/service/hrms.service";
 import {Car} from "../../../model/car.model";
+import {Company} from "../../../model/company.model";
 
 @Component({
   selector: 'app-project-list',
@@ -19,6 +20,7 @@ export class ProjectListComponent implements OnInit {
   materials!: Material[];
   people!: Employee[];
   cars!: Car[];
+  companies!: Company[];
 
   constructor(private warehouseService: WarehouseService, private hrmsService: HrmsService,
               private modalService: NgbModal) {
@@ -30,12 +32,15 @@ export class ProjectListComponent implements OnInit {
     });
     this.warehouseService.getResource("/materials").subscribe(res => {
       this.materials = res;
-    })
+    });
     this.hrmsService.getResource("/employees").subscribe(res => {
       this.people = res;
-    })
+    });
     this.warehouseService.getResource("/cars").subscribe(res => {
       this.cars = res;
+    });
+    this.warehouseService.getResource("/companies").subscribe(res => {
+      this.companies = res;
     })
   }
 
@@ -46,5 +51,13 @@ export class ProjectListComponent implements OnInit {
   open(project: Project) {
     const modalRef = this.modalService.open(ProjectPopupComponent, {centered: true});
     modalRef.componentInstance.project = project;
+  }
+
+  getCompany(uuid: string): string {
+    let name: string | undefined | null = "";
+    this.companies.forEach(company => {
+      name = company.id == uuid ? company.name : null;
+    });
+    return name;
   }
 }

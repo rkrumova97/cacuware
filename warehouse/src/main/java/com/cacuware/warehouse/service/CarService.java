@@ -17,4 +17,6 @@ public interface CarService {
     List<Car> findAllCars(Sort sort);
 
     List<Car> findAllDeletedCars();
+
+    List<CarDto> report(List<CarDto> carDtoList);
 }

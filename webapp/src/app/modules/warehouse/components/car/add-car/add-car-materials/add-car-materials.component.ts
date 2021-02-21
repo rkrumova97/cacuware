@@ -4,6 +4,7 @@ import {Material} from "../../../../model/material.model";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {WarehouseService} from "../../../../service/warehouse.service";
+import {DataService} from "../../../../service/data.service";
 
 @Component({
   selector: 'app-add-car-materials',
@@ -17,10 +18,11 @@ export class AddCarMaterialsComponent implements OnInit {
   success!: boolean;
 
   constructor(private http: HttpClient, private router: Router,
-              private warehouseService: WarehouseService, private route: ActivatedRoute) { }
+              private warehouseService: WarehouseService, private route: ActivatedRoute,
+              private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.car = new Car();
+    this.car = this.dataService.car;
     if (this.route.snapshot.paramMap.get('id') !== undefined && this.route.snapshot.paramMap.get('id') !== null) {
       this.warehouseService.getOneResource("/api/warehouse/cars" + this.route.snapshot.paramMap.get('id')).subscribe(res => {
         this.car = res;
@@ -29,9 +31,12 @@ export class AddCarMaterialsComponent implements OnInit {
   }
 
   process() {
+    this.car.material = [];
+    this.car.material.push(this.material);
     this.warehouseService.postResource("/cars", this.car).subscribe(r => {
       this.success = true;
       this.car = r;
+
     }, () => this.success = false);
   }
 

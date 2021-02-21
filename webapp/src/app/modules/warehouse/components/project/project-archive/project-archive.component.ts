@@ -5,6 +5,7 @@ import {Material} from "../../../model/material.model";
 import {Employee} from "../../../../hrms/model/employee.model";
 import {Car} from "../../../model/car.model";
 import {HrmsService} from "../../../../hrms/service/hrms.service";
+import {Company} from "../../../model/company.model";
 
 @Component({
   selector: 'app-project-archive',
@@ -16,6 +17,7 @@ export class ProjectArchiveComponent implements OnInit {
   materials!: Material[];
   people!: Employee[];
   cars!: Car[];
+  companies!: Company[];
 
   constructor(private warehouseService: WarehouseService, private hrmsService: HrmsService) { }
 
@@ -32,6 +34,9 @@ export class ProjectArchiveComponent implements OnInit {
     this.warehouseService.getResource("/cars").subscribe(res => {
       this.cars = res;
     })
+    this.warehouseService.getResource("/companies").subscribe(res => {
+      this.companies = res;
+    })
 
   }
 
@@ -41,5 +46,13 @@ export class ProjectArchiveComponent implements OnInit {
 
   data() {
 
+  }
+
+  getCompany(uuid: string): string {
+    let name: string | undefined | null = "";
+    this.companies.forEach(company => {
+      name = company.id == uuid ? company.name : null;
+    });
+    return name;
   }
 }

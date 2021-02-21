@@ -14,7 +14,7 @@ import {WarehouseService} from "../../../../service/warehouse.service";
 export class AddCarInfoComponent implements OnInit {
   car!: Car;
   submitted?: Boolean;
-  success!: boolean;
+  success: boolean = true;
 
   constructor(public dataService: DataService, private http: HttpClient, private router: Router,
               private warehouseService: WarehouseService, private route: ActivatedRoute) { }
@@ -31,6 +31,7 @@ export class AddCarInfoComponent implements OnInit {
   process() {
     this.dataService.number = 2;
     this.dataService.car = this.car;
+    console.log(this.car);
   }
 
   close() {

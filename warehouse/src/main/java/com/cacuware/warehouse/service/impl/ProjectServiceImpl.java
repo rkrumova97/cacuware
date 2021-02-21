@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project saveProject(ProjectDto projectDto) {
         Company company = service.getOneById(projectDto.getCompany());
-        return projectRepository.save(ProjectMapper.toEntity(projectDto,company));
+        return projectRepository.save(ProjectMapper.toEntity(projectDto, company));
     }
 
     @Override
@@ -42,12 +43,32 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> findAllProjects(Sort sort) {
-        return projectRepository.findAllByIsDeletedFalse();
+    public List<ProjectDto> findAllProjects(Sort sort) {
+        List<ProjectDto> projectDtos = new ArrayList<>();
+        for (Project projectDto : projectRepository.findAllByIsDeletedFalse()) {
+            projectDtos.add(ProjectMapper.toDto(projectDto));
+        }
+        return projectDtos;
     }
 
     @Override
     public List<Project> findAllDeletedProjects() {
         return projectRepository.findAllByIsDeletedTrue();
+    }
+
+    @Override
+    public List<ProjectDto> report(List<ProjectDto> projectDtos) {
+        List<ProjectDto> projectDtoList = new ArrayList<>();
+        for (ProjectDto projectDto : projectDtos) {
+            Company company = service.getOneById(projectDto.getCompany());
+            // Project p = projectRepository.getOne(projectDto.getId());
+//            projectDto.getCars().addAll(p.getCar_id());
+//            projectDto.getMaterials().addAll(p.getMaterial_id());
+//            projectDto.getPeople().addAll(p.getPeople_id());
+//            projectDto.getCars().addAll(p.getCar_id());
+            Project project = projectRepository.save(ProjectMapper.toEntity(projectDto, company));
+            projectDtoList.add(ProjectMapper.toDto(project));
+        }
+        return projectDtoList;
     }
 }

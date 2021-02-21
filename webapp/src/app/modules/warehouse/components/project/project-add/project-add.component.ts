@@ -56,7 +56,7 @@ export class ProjectAddComponent implements OnInit {
       }
     });
 
-    this.project.company = this.company;
+    this.project.company = this.company.id;
 
     this.project.cars = [];
     this.selectedCars.forEach(car => {

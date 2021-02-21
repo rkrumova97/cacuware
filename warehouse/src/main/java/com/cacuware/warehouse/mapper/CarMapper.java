@@ -53,7 +53,7 @@ public class CarMapper {
                 .number(car.getNumber())
                 .repair(car.getRepair())
                 .repairDate(car.getRepairDate())
-                .repairMoney(car.getRepairMoney().toString())
+                //.repairMoney(car.getRepairMoney().toString())
                 .vignette(car.getVignette())
                 .vignetteExpiryDate(car.getVignetteExpiryDate())
                 .build();

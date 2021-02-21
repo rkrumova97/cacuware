@@ -14,7 +14,9 @@ public interface ProjectService {
 
     void deleteProject(UUID uuid);
 
-    List<Project> findAllProjects(Sort sort);
+    List<ProjectDto> findAllProjects(Sort sort);
 
     List<Project> findAllDeletedProjects();
+
+    List<ProjectDto> report(List<ProjectDto> projectDtos);
 }
