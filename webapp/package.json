@@ -36,7 +36,7 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1000.8",
+    "@angular-devkit/build-angular": "^15.0.4",
     "@angular/cli": "~10.0.1",
     "@angular/compiler-cli": "~10.0.2",
     "@types/jasmine": "~3.5.0",
@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^3.6.0",
     "codelyzer": "^6.0.0-next.1",
     "file-saver": "^2.0.2",
-    "html-webpack-plugin": "^4.3.0",
+    "html-webpack-plugin": "^5.5.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.16",
@@ -57,7 +57,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "typescript": "~3.9.5",
-    "webpack": "^4.43.0"
+    "webpack": "^5.75.0"
   },
   "eslintConfig": {
     "parserOptions": {
